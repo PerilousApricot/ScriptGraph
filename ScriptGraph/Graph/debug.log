@@ -1,0 +1,227 @@
+Generic Options
+ [+] Debug               debug.log
+ [+] Output              output.root
+ [+] Skip Events         ---
+ [+] Events              1
+ [+] Inputs              (1):
+        /uscms_data/d2/meloam/s8workflow/edges/generateTree-RUN2010B-hltdijet30u/crab_0_110223_121628/res/s8_tree_268_1_97X.root
+
+Trigger Options
+ [+] Triggers            ---
+
+<< /uscms_data/d2/meloam/s8workflow/edges/generateTree-RUN2010B-hltdijet30u/crab_0_110223_121628/res/s8_tree_268_1_97X.root
+ Tree 5.0 with 194 triggers.
+
+Triggers List is saved in the log file
+
+Triggers:
+ > 9863100              HLT_Mu11_Ele8
+ > 16574998             HLT_RPCBarrelCosmics
+ > 34089112             HLT_Ele12_SW_TighterEleId_L1R
+ > 117509268            DQM_FEDIntegrity
+ > 118276931            HLT_L1_BPTX_MinusOnly
+ > 137801936            HLTriggerFinalPath
+ > 176189333            HLT_DoubleJet15U_ForwardBackward
+ > 181381755            HLT_Mu11_PFTau15
+ > 228007565            AlCa_EcalPhiSym
+ > 244305807            HLT_Mu3_Track5_Jpsi
+ > 262955799            HLT_PixelTracks_Multiplicity100
+ > 323817292            HLT_HT160U_Eta3
+ > 367880799            HLT_DTErrors
+ > 398659065            HLT_Ele17_SW_TighterEleIdIsol_L1R
+ > 431073173            HLT_L1Tech_BSC_halo
+ > 492456426            HLT_Photon10_Cleaned_L1R
+ > 530747014            HLT_Mu7_Photon13_Cleaned_L1R
+ > 540609211            AlCa_RPCMuonNoTriggers
+ > 605105172            HLT_Mu5_Ele17
+ > 605105176            HLT_Mu5_Ele13
+ > 617025205            HLT_L1Tech_BSC_minBias_OR
+ > 638043853            HLT_PixelTracks_Multiplicity85
+ > 638044019            HLT_PixelTracks_Multiplicity70
+ > 651529808            HLT_HcalPhiSym
+ > 720662052            AlCa_RPCMuonNoHits
+ > 726168124            HLT_TrackerCosmics
+ > 803407141            HLT_Mu21
+ > 803407145            HLT_Mu25
+ > 803407462            HLT_Mu11
+ > 803407464            HLT_Mu13
+ > 803407466            HLT_Mu15
+ > 803407468            HLT_Mu17
+ > 803407470            HLT_Mu19
+ > 830030333            HLT_MinBiasPixel_SingleTrack
+ > 921849557            HLT_Ele17_SW_Isol_L1R
+ > 959288102            HLT_LogMonitor
+ > 1070667017           HLT_R033U_MR100U
+ > 1090090047           HLT_DoubleEle4_SW_eeRes_L1R
+ > 1141566045           HLT_ZeroBias
+ > 1157038275           HLT_Photon40_CaloId_Cleaned_L1R
+ > 1201881741           HLT_Mu3_TkMu0_OST_Jpsi_Tight
+ > 1216962856           HLT_DoubleMu3_HT50U
+ > 1285819084           HLT_L1Jet6U
+ > 1306089328           HLT_L1MuOpen_AntiBPTX
+ > 1310701133           HLT_DoublePhoton17_SingleIsol_L1R
+ > 1355128329           HLT_Ele10_SW_HT100U_L1R
+ > 1405691529           HLT_IsoTrackHE
+ > 1405691530           HLT_IsoTrackHB
+ > 1440123156           HLT_L1Tech_BSC_halo_forPhysicsBackground
+ > 1512357250           HLT_L1_BPTX
+ > 1517154918           HLT_RP025U_MR70U
+ > 1644954296           HLT_DoubleMu5
+ > 1644954301           HLT_DoubleMu0
+ > 1644954302           HLT_DoubleMu3
+ > 1664215096           HLT_Photon20_Cleaned_L1R
+ > 1667236336           HLT_IsoMu9_PFTau15
+ > 1691418523           HLT_BTagMu_DiJet30U_Mu5
+ > 1697963046           HLT_BTagMu_DiJet10U
+ > 1697967223           HLT_BTagMu_DiJet20U
+ > 1698049857           HLT_BTagMu_DiJet30U
+ > 1702006335           HLT_DiJetAve15U
+ > 1702203820           HLT_DiJetAve30U
+ > 1702221493           HLT_DiJetAve70U
+ > 1702228366           HLT_DiJetAve50U
+ > 1745176328           HLT_HT140U_J30U_Eta3
+ > 1746462470           HLT_ExclDiJet30U_HFOR
+ > 1747742450           HLT_L1MET20
+ > 1822464577           HLT_DiJet50U_PT50U
+ > 1828677571           HLT_L1DoubleMuOpen
+ > 1833432418           HLT_HcalCalibration
+ > 1848098921           HLT_Ele22_SW_L1R
+ > 1874919465           HLT_DoublePhoton22_L1R
+ > 1899178747           HLT_DiJetAve100U
+ > 1900356167           HLT_DiJetAve140U
+ > 1927734923           HLT_SingleIsoTau35_Trk15_MET25
+ > 1941444818           HLT_Activity_Ecal_SC7
+ > 1957589899           HLT_Photon20_Isol_Cleaned_L1R
+ > 2031535326           HLT_HT150U_Eta3
+ > 2045264069           HLT_R030U_MR100U
+ > 2088013927           HLT_Photon22_SC22HE_L1R
+ > 2117057826           HLT_L2Mu30
+ > 2135081555           HLT_Mu0_TkMu0_OST_Jpsi_Tight
+ > 2138173181           HLT_L2Mu0_NoVertex
+ > 2174781468           HLT_DoubleIsoTau15_OneLeg_Trk5
+ > 2185214357           HLT_DoublePhoton5_CEP_L1R
+ > 2187002847           HLT_Activity_CSC
+ > 2188811091           HLT_Mu5_Track0_Jpsi
+ > 2189923412           HLT_MET120
+ > 2189923549           HLT_MET100
+ > 2258684934           HLT_L1Mu7
+ > 2275446344           HLT_Mu9
+ > 2275446348           HLT_Mu5
+ > 2275446350           HLT_Mu7
+ > 2275446705           HLT_Mu0
+ > 2275446706           HLT_Mu3
+ > 2284177932           HLT_DoubleEle17_SW_L1R
+ > 2286382927           HLT_L2DoubleMu0
+ > 2287466809           HLT_Ele32_SW_TighterEleId_L1R
+ > 2309898452           HLT_HT50U
+ > 2336796531           HLT_DoubleEle5_SW_Upsilon_L1R
+ > 2351401027           HLT_Mu30_NoVertex
+ > 2352597860           HLT_HcalNZS
+ > 2361787146           HLT_L2Mu7
+ > 2364604214           HLT_MultiVertex6
+ > 2369316402           HLT_MET45
+ > 2371507146           AlCa_RPCMuonNormalisation
+ > 2445815010           HLT_SingleIsoTau20_Trk15_MET25
+ > 2460022208           HLT_Photon50_NoHE_L1R
+ > 2468955070           HLT_DoubleEle8_SW_HT70U_L1R
+ > 2504927324           HLT_Activity_DT
+ > 2507419692           HLT_L1_BptxXOR_BscMinBiasOR
+ > 2519609973           HLT_DoubleJet35U_ForwardBackward
+ > 2529599913           HLT_L1Jet10U
+ > 2544406238           HLT_L1ETT100
+ > 2562378864           HLT_Photon50_Cleaned_L1R
+ > 2588802645           HLT_MET80_CenJet50U
+ > 2661500776           HLT_Ele10_SW_L1R
+ > 2680084157           HLT_Calibration
+ > 2770684204           HLT_HT150U
+ > 2770762173           HLT_HT160U
+ > 2770846855           HLT_HT200U
+ > 2771106946           HLT_HT100U
+ > 2771185557           HLT_HT130U
+ > 2774763215           HLT_Mu5_HT100U
+ > 2823053978           HLT_Jet180U
+ > 2823234561           HLT_Jet140U
+ > 2823283842           HLT_Jet100U
+ > 2914183436           HLT_Mu3_Ele8_HT70U
+ > 2955352747           HLT_EcalOnly_SumEt160
+ > 2982867139           HLT_Mu3_Track3_Jpsi
+ > 2988657402           HLT_EcalCalibration
+ > 3001703851           HLT_IsoMu11
+ > 3001703853           HLT_IsoMu13
+ > 3001703855           HLT_IsoMu15
+ > 3001703857           HLT_IsoMu17
+ > 3013656102           HLT_R010U_MR50U
+ > 3077942079           HLT_TechTrigHCALNoise
+ > 3125370087           HLT_L1Tech_HCAL_HF
+ > 3138358887           HLT_L1MuOpen
+ > 3192994127           HLT_BTagMu_DiJet20U_Mu5
+ > 3211934964           HLT_Ele22_SW_TighterCaloIdIsol_L1R
+ > 3275091457           HLT_MET45_DiJet30U
+ > 3320654938           HLT_Ele10_SW_EleId_HT70U_L1R
+ > 3367553527           HLT_Mu5_Jet70U
+ > 3367627221           HLT_Mu5_Jet50U
+ > 3382929277           HLT_DoubleMu0_Quarkonium
+ > 3393216673           HLT_DoubleIsoTau15_Trk5
+ > 3398078749           HLT_IsoEle12_PFTau15
+ > 3423916914           HLT_Random
+ > 3444390681           HLT_L1_BPTX_PlusOnly
+ > 3467303587           HLT_Photon110_NoHE_Cleaned_L1R
+ > 3507909944           HLT_L1Tech_RPC_TTU_RBst1_collisions
+ > 3516247973           HLT_Photon20_NoHE_L1R
+ > 3573347486           HLT_L1MuOpen_DT
+ > 3577034087           HLT_Photon70_Cleaned_L1R
+ > 3583719671           HLT_L1SingleEG8
+ > 3594749561           HLT_IsoMu9
+ > 3602152659           HLT_ZeroBiasPixel_SingleTrack
+ > 3606115749           HLT_L2DoubleMu20_NoVertex
+ > 3609197589           HLT_ExclDiJet30U_HFAND
+ > 3665131107           HLT_Jet15U
+ > 3665161604           HLT_Jet70U
+ > 3665171715           HLT_Jet30U
+ > 3665179937           HLT_Jet50U
+ > 3667110634           HLT_Activity_Ecal_SC17
+ > 3669733065           HLT_Photon40_Isol_Cleaned_L1R
+ > 3671638530           HLT_QuadJet25U
+ > 3671640404           HLT_QuadJet20U
+ > 3671708307           HLT_QuadJet15U
+ > 3679209691           HLT_StoppedHSCP20
+ > 3679210271           HLT_StoppedHSCP35
+ > 3695614007           HLT_DoubleJet25U_ForwardBackward
+ > 3706798574           HLT_MultiVertex8_L1ETT60
+ > 3719787970           HLT_Ele10_SW_HT70U_L1R
+ > 3734560429           HLT_Mu5_HT70U
+ > 3755256567           HLT_DiJet20U_Meff180U
+ > 3777113319           HLT_L1Tech_BSC_HighMultiplicity
+ > 3790653354           HLT_Photon17_Isol_SC17HE_L1R
+ > 3792137557           HLT_GlobalRunHPDNoise
+ > 3877986371           HLT_Ele17_SW_L1R
+ > 3881028552           HLT_Ele17_SW_TightCaloEleId_Ele8HE_L1R
+ > 3907756790           HLT_Photon30_Cleaned_L1R
+ > 3943217037           HLT_Mu8_Ele8
+ > 3967705585           HLT_Mu5_L2Mu0
+ > 3970134512           HLT_Mu5_MET45
+ > 3975488708           HLT_MET65_CenJet50U
+ > 3991041898           AlCa_EcalPi0
+ > 3991053969           AlCa_EcalEta
+ > 3996665375           HLT_Jet15U_HcalNoiseFiltered
+ > 4004668320           HLT_L1Mu20
+ > 4033108020           HLT_Activity_DT_Tuned
+ > 4078157202           HLT_Mu5_TkMu0_OST_Jpsi_Tight
+ > 4143191061           HLT_L1Tech_BSC_minBias
+ > 4205366289           HLT_Ele22_SW_TighterEleId_L1R
+
+ Extract S8 Tree from input file
+ + Disable Electrons branch
+
+ File has 4008 entries stored
+
+done analyzing Tree
+Trigger cutflow (events passed trigger)
+      Name                          Hash
+---------------------------------------------------
+---------------------------------------------------
+
+Stats
+ - Run time              0.27 (s)
+     (per event)         0.27 (s)
+ - Processed events      1

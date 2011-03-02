@@ -1,0 +1,33 @@
+Input 'crab_0_*/res/*.root' does not exist
+
+Generic Options
+ [+] Debug               monitor.input.20.log
+ [+] Output              monitor.input.20.root
+ [+] Skip Events         ---
+ [+] Events              all
+ [+] Inputs              (1):
+      x crab_0_*/res/*.root
+
+Muon-In-Jet Options
+ [+] Jet Tag             TCHEM
+ [+] Away Jet Tag        TCHPL
+ [+] Muon pT             6..
+ [+] Jet pT              60..80
+ [+] Jet Eta             ---
+
+Pythia Options
+ [+] Gluon Splitting     ---
+ [+] Pt Hat Cut          ---
+
+Trigger Options
+ [+] Triggers            (1)
+
+      Name                          Hash
+---------------------------------------------------
+ [+] hlt_btagmu_dijet20u           1697967223
+---------------------------------------------------
+
+Solver Input Options
+ [+] Input Type          monte-carlo
+
+No input is specified: nothing to be done
