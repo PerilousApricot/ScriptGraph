@@ -11,8 +11,6 @@ class BindFileList( LateBind ):
 	def bind( self, edge ):
 		node  = edge.getParent()
 		files,_ = node.getFiles()
-		print "My parent node is %s" % node.getName()
-		print "GOT THESE FILES %s" % files
 		handle = open(self.fileName, 'w')
 		for file in files:
 			if not os.path.isabs(file):
