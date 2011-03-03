@@ -13,7 +13,7 @@ def main():
 	
 							
 	try:
-		opts, args = getopt.getopt(sys.argv[1:], "hc:v", ["help", "cfg=", "list", "execute="])
+		opts, args = getopt.getopt(sys.argv[1:], "hc:v", ["help", "cfg=", "list", "execute=", "describe=","push"])
 	except getopt.GetoptError, err:
 		# print help information and exit:
 		print str(err) # will print something like "option -a not recognized"
@@ -37,6 +37,10 @@ def main():
 			executeEdge( g, a )
 		if o == "--status":
 			getStatus( g, a )
+		if o == "--describe":
+			describeEdge( g, a )
+		if o == "--push":
+			pushGraph(g)
 
 def usage():
 	#enter usage here
@@ -47,9 +51,12 @@ def usage():
 	print "  --execute edgeName  : executes the given edge"
 	print "  --status edgeName   : returns the status of a single edge"
 
+def prettyPrintEdge( edge ):
+	print " " + edge.getName() + " " + edge.getStatus()
+
 def prettyPrintEdgeList( edges ):
 	for edge in edges:
-		print " " + edge.getName() + " " + edge.getStatus()
+		prettyPrintEdge( edge )
 
 def getStatus( g, name ):
 	edge = g.getEdge( name )
@@ -62,6 +69,32 @@ def globEdges( g, name ):
 		if re.match( name, edge ):
 			output.append( edge )
 	return output
+
+def describeEdge( g, a ):
+	a = g.getEdge( a )
+	a.checkStatus()
+	for edge in a.getParent().getParents():
+		edge.checkStatus()
+	for edge in a.getChild().getChildren():
+		edge.checkStatus()
+
+	a.getParent().isReady()
+
+	print "Edge name %s type %s.%s" % (a.getName(), a.__module__, a.__class__)
+	prettyPrintEdge( a )
+	if a.getParent().getParents():
+		print "Edge parents"
+		for edge in a.getParent().getParents():
+			prettyPrintEdge( edge )
+	if a.getChild().getChildren():
+		print "Edge children"
+		for edge in a.getChild().getChildren():
+			prettyPrintEdge( edge )
+
+
+	if not a.getParent().isReady():
+		print "Edge is blocked, parent name is %s" % a.getParent().getName()
+		
 
 def executeEdge( g, name ):
 	edges = globEdges( g, name )
@@ -82,6 +115,13 @@ def executeOneEdge( g, name ):
 	edge.checkStatus()
 	print "Status is: %s [%s]" % ( edge.getName(), edge.getStatus() )
 
+def pushGraph( g ):
+	edgelist = g.getNextEdges()
+	print "Edges ready to be pushed: "
+	prettyPrintEdgeList( edgelist )
+	if edgelist:
+		print "Pushing ...."
+		g.pushGraph()
 
 def listGraph( g ):
 	print "Loading status, (may take a long time)"
