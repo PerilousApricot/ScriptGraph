@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-import os, os.path
+import os, os.path, re
 import ScriptGraph.Graph.Graph as Graph
 import ScriptGraph.Graph.Node as NodeModule
 from ScriptGraph.Graph.Node import Node as Node
@@ -36,21 +36,24 @@ default_trigger = "HLT_BTagMu*"
 # TODO: Update with the real list
 # <trigger name> <shorthand name< <min run> <max run>
 trigger_list_linked = { 'RUN2010B' : [ [ "HLT_BTagMu_DiJet20U*","hltdijet20u", "147196", "148818" ],
-				                   [ "HLT_BTagMu_DiJet30U*","hltdijet30u", "148819", "149294" ] ],
-				        'RUN2010A' : [ [ "HLT_BTagMu_Jet10U"   ,"hltjet10u"  , "141961", "142039" ],
-				                   [ "HLT_BTagMu_Jet20U"   ,"hltjet20u"  , "146944", "147116" ] ]
-}
+				                     [ "HLT_BTagMu_DiJet30U*","hltdijet30u", "148819", "149294"   ],
+								     [ "HLT_BTagMu_Jet20U"   ,"hltjet20u"  , "146428", "147116"   ] ],
+				        'RUN2010A' : [ [ "HLT_BTagMu_Jet10U"   ,"hltjet10u"  , "141961", "142039" ] ]
+				                  }
 
 #trigger_list_linked = { 'RUN2010B' : trigger_list_linked['RUN2010B'] }
 trigger_list = [ [ "HLT_BTagMu_DiJet20U*","hltdijet20u", "147196", "148818","HLT_BTagMu_DiJet20U" ],
                  [ "HLT_BTagMu_DiJet30U*","hltdijet30u", "148819", "149294","HLT_BTagMu_DiJet30U" ],
 				 [ "HLT_BTagMu_Jet10U"   ,"hltjet10u"  , "141961", "142039","HLT_BTagMu_Jet10U" ],
-				 [ "HLT_BTagMu_Jet20U"   ,"hltjet20u"  , "146944", "147116","HLT_BTagMu_Jet20U" ] 
+				 [ "HLT_BTagMu_Jet20U"   ,"hltjet20u"  , "146428", "147116","HLT_BTagMu_Jet20U" ] 
 ]
 
-binToAssociatedTriggers = { 
+binToAssociatedTriggers = {
 					"60to80" : [ "HLT_BTagMu_DiJet20U", "HLT_BTagMu_DiJet30U" ]
 }
+binToReweightTrigers = {
+					"60to80"  : [ "HLT_BTagMu_DiJet20U" ],
+					"80to120" : [ "HLT_BTagMu_DiJet20U" ]
 
 operating_points = [ "TCHEM" ]
 jet_bins = [ ["60to80", "60..80" ] ]
@@ -133,15 +136,16 @@ class ComputeEventCount( LateBind ):
 		self.lumiCountNode = lumiCountNode
 
 	def bind( self, edge ):
-		events = self.eventNode.getValueFromOnlyOutputFile()
+		events = float(self.eventNode.getValueFromOnlyOutputFile())
 		lumiCount = 0
 		for onenode in self.lumiCountNodeList:
-			lumiCount += onenode.getValueFromOnlyOutputFile()
-		lumisForTrigger = 0
-		for onenode in self.lumiCountNode:
-			lumisForTrigger += onenode.getValueFromOnlyOutputFile()
-		
-		return ( events * lumisForTrigger ) / lumiCount
+			lumiCount += float(onenode.getValueFromOnlyOutputFile())
+		#lumisForTrigger = 0
+		#for onenode in self.lumiCountNode:
+		#	lumisForTrigger += float(onenode.getValueFromOnlyOutputFile())
+		lumisForTrigger = float( onenode.getValueFromOnlyOutputFile() )
+		print "%s %s %s" % (events, lumisForTrigger, lumiCount)
+		return int( ( events * lumisForTrigger ) / lumiCount)
 
 class ComputeSkipCount( LateBind ):
 	# eventCountNode     - the node that has the number of events in this sample
@@ -152,23 +156,23 @@ class ComputeSkipCount( LateBind ):
 	def __init__( self, eventCountNode, trigger, lumiByTriggerList, lumiCountNodeList ):
 		self.eventNode = eventCountNode
 		self.lumiCountNodeList = lumiCountNodeList
-		self.lumiByTriggeRList = lumiByTriggerList
+		self.lumiByTriggerList = lumiByTriggerList
 		self.targetTrigger = trigger
 
 	def bind( self, edge ):
-		lumis  = self.lumiCountNode.getValueFromOnlyOutputFile()
-		events = self.eventNode.getValueFromOnlyOutputFile()
+		#lumis  = float(self.lumiCountNodeList.getValueFromOnlyOutputFile())
+		events = float(self.eventNode.getValueFromOnlyOutputFile())
 		lumiCount = 0
 		for onenode in self.lumiCountNodeList:
-			lumiCount += onenode.getValueFromOnlyOutputFile()
+			lumiCount += float(onenode.getValueFromOnlyOutputFile())
 		
-		lumisForTrigger = 0
+		currentEvent    = 0
 		keylist = self.lumiByTriggerList.keys()
 		for trigger in keylist:
 			if trigger == self.targetTrigger:
-				return
-			for onenode in lumiByTriggerList[ trigger ]:
-				lumisForTrigger += onenode.getValueFromOnlyOutputFile()
+				return currentEvent
+			for onenode in self.lumiByTriggerList[ trigger ]:
+				currentEvent += int( events * float( onenode.getValueFromOnlyOutputFile() )/ lumiCount )
 
 		raise RuntimeException, "Unknown trigger"
 	
@@ -306,7 +310,7 @@ for dataset in data_datasets:
 			
 			# Add accounting
 			luminosityNodes[ "%s-%s" % (dataset[1], trigger[1]) ] = lumiNode
-			if not hasattr( luminosityByTrigger, trigger[1] ):
+			if not trigger[1] in luminosityByTrigger:
 				luminosityByTrigger[ trigger[1] ] = []
 			luminosityByTrigger[ trigger[1] ].append( lumiNode )
 
@@ -405,7 +409,7 @@ for opoint in operating_points:
 				if not trigger[1] in skiplessS8MonitorData[ opoint ][ bin[0] ]:
 					skiplessS8MonitorData[ opoint ][ bin[0] ][ trigger[1] ] = []
 
-				skiplessS8Monitor[ opoint ][ bin[0] ][ trigger[1] ].append(\
+				skiplessS8MonitorData[ opoint ][ bin[0] ][ trigger[1] ].append(\
 						run_monitor_input_helper( g,
 							jet_pt = bin[1],
 							tag = opoint,
@@ -418,7 +422,7 @@ for opoint in operating_points:
 #
 # Run s8_monitor_input over QCD, taking skipevent/eventcount into consideration
 #
-
+skippedS8Monitor = {}
 for opoint in operating_points:
 	for bin in jet_bins:
 		for trigger in trigger_list:
@@ -432,9 +436,9 @@ for opoint in operating_points:
 					   ]
 	
 				step_postfix = "-%s-%s-%s-%s" % ( sample[1], trigger[1], bin[0],opoint )
-				run_monitor_input_helper( g,
+				currNode = run_monitor_input_helper( g,
 							step_postfix,
-							trigger_name = trigger[0],
+							trigger_name = trigger[4],
 							skip_events =  ComputeSkipCount(  eventCountNodes[ sample[1] ],
 																 trigger[1],
 																 luminosityByTrigger,
@@ -448,7 +452,11 @@ for opoint in operating_points:
 							input_files = qcdTreeNodes[ sample[1] ],
 							muon_pt = "6..",
 							additional_dependencies = deps)
+				nodekey = "%s-%s-%s" % ( trigger[1], bin[0], opoint )
+				if not nodekey in skippedS8Monitor:
+					skippedS8Monitor[nodekey] = []
 
+				skippedS8Monitor[ nodekey ].append( currNode )
 
 
 #
@@ -457,52 +465,152 @@ for opoint in operating_points:
 #
 class getLumi( LateBind ):
 	def __init__(self, lumiNode):
-		self.lumiNOde = lumiNode
+		self.lumiNode = lumiNode
 	def bind( self, edge ):
-		if isinstance( lumiNode, type([]) ):
-			lumi = 0
-			for oneEdge in lumiNode:
-				lumi += float( lumiNode.getOnlyValueFromInputFile() )
-			return lumi
-		else:
-			return lumiNode.getOnlyValueFromInputFile()
+		print "lumiNode is %s" % str(self.lumiNode)
+		return float( self.lumiNode.getValueFromOnlyOutputFile() )
 
-class appendCommandLine( LateBind ):
+def makeRootQCDFilenameFromInput( name ):
+	pattern = "-qcd(.+?)-"
+	print "searching %s and %s" % (pattern, name)
+	match   = re.search( pattern, name )
+	if match:
+		return "pt" + match.group(1) + ".root"
+	else:
+		raise RuntimeError, "Unknown pt bin"
+
+
+class appendCommandLineSymlink( LateBind ):
 	def __init__(self, currCommand, nodeList):
 		self.currCommand = currCommand
 		self.nodeList    = nodeList
 	def bind( self, edge ):
-		for node in nodeList:
-			self.currCommand.extend( node.getFiles()[0] )
+		for node in self.nodeList:
+			for oldFile in node.getFiles()[0]:
+				newFile = makeRootQCDFilenameFromInput( oldFile )
+				print " got this newfile %s" % newFile
+				if os.path.exists( newFile ):
+					os.unlink( newFile )
+				os.symlink( oldFile, newFile )
+				self.currCommand.append( newFile )
+#		print "appended commandline: %s" % self.currComand
 		return self.currCommand
 
-def merge_with_root_qcd_helper( g, name ,inputNodes, inputLuminosities ):
-	mergeNode = g.addNode( Node( name = name ) )
+def merge_with_root_qcd_helper( g, name , step_postfix,
+								inputNodes, luminosityNode ):
+	mergeNode   =  Node( name = name ) 
+	collectNode =  Node( name = "collect-" + name ) 
+	# make the node
+	g.addNode( mergeNode )
+	g.addNode( collectNode )
+	# Add the luminosity as a dependency
+	g.addEdge( luminosityNode, collectNode, NullEdge() )
+	# Add the previous S8 runs as a dependency
+	for node in inputNodes:
+		g.addEdge( node, collectNode, NullEdge() )
+	
+	#
+	# Generate the command line
+	#
+	command = appendCommandLineSymlink( 
+		currCommand = 
+			["root_qcd", getLumi( luminosityNode ), "merge.root" ],
+		nodeList = inputNodes
+	)
+
 	merge_edge = LocalScriptEdge.LocalScriptEdge(
-						command = appendCommandLine( 
-							currCommand = 
-								["root_qcd", getLumi( luminosityNode ), "merge.root" ],
-							nodeList = skiplessS8Monitor[ opoint ][ bin[0] ][ trigger[1] ] ),
+						command = command,
 						output  = "merge.root",
 						noEmptyFiles = True,
 						name = "run_root_qcd-" + step_postfix )
-	g.addNode( mergeNode )
-	# Add the luminosity as a dependency
-	g.addEdge( luminosityNode, mergeNode, NullEdge() )
-	# Add the previous S8 runs as a dependency
-	for node in skiplessS8Monitor[ opoint ][ bin[0] ][ trigger[1] ]:
-		g.addEdge( node, mergeNode, NullEdge() )
-	return mergeNode
 
+	g.addEdge( collectNode, mergeNode, merge_edge )
+
+
+
+	return mergeNode
+def makeRootQCDInputList( inputNodes ):
+	retval = []
+	for node in inputNodes:
+		retval.append( makeRootQCDFilenameFromInput( node.getName() )[0] )
+	return retval
+
+def hadd_helper( g, name, inputNodes ):
+	collectNode = Node( "collect-" + name )
+	haddNode    = Node( "haddNode-" + name    )
+	g.addNode( haddNode    )
+	g.addNode( collectNode )
+	for node in inputNodes:
+		g.addEdge( node, collectNode, NullEdge() )
+	haddEdge = LocalScriptEdge.LocalScriptEdge( name = "hadd-%s" % name,
+                                                 command = "hadd -f merged.root ",
+                                                 output  = "merged.root",
+                                                 addFileNamesToCommandLine = True,
+                                                 noEmptyFiles = True)
+	g.addEdge( collectNode, haddNode, haddEdge )
+	return g
+
+skiplessQCDMerge = {}
+skippedQCDMerge = {}
 for opoint in operating_points:
 	for bin in jet_bins:
-		for trigger in trigger_list:
+		# get the list of triggers for this bin
+#trigger_list = [ [ "HLT_BTagMu_DiJet20U*","hltdijet20u", "147196", "148818","HLT_BTagMu_DiJet20U" ],
+#                 [ "HLT_BTagMu_DiJet30U*","hltdijet30u", "148819", "149294","HLT_BTagMu_DiJet30U" ],
+#				 [ "HLT_BTagMu_Jet10U"   ,"hltjet10u"  , "141961", "142039","HLT_BTagMu_Jet10U" ],
+#				 [ "HLT_BTagMu_Jet20U"   ,"hltjet20u"  , "146428", "147116","HLT_BTagMu_Jet20U" ] 
+#]
+#
+#binToAssociatedTriggers = {
+#					"60to80" : [ "HLT_BTagMu_DiJet20U", "HLT_BTagMu_DiJet30U" ]
+#}
+
+
+		triggerNames = binToAssociatedTriggers[ bin[0 ] ]
+		triggersForThisBin = []
+		for wantedTrigger in triggerNames:
+			for trigger in trigger_list:
+				if trigger[4] == wantedTrigger:
+					triggersForThisBin.append( trigger )
+					break
+	
+		for trigger in triggersForThisBin:
+			print "trigger bin is %s " % trigger[1]
 			# only use trigger for the luminosity
 			# we're using the qcd datasets for input files
+			# first merge the skipless
+		
+			step_postfix = "-%s-%s-%s-noskip" % ( trigger[1], bin[0], opoint )
+			mergeNode = merge_with_root_qcd_helper( g, "root-qcd" + step_postfix, step_postfix,
+							inputNodes = skiplessS8Monitor[ opoint ][ bin[0] ][ trigger[1] ],
+							luminosityNode = luminositySumByTrigger[ trigger[ 1 ] ]
+						)
+			mergekey = "%s-%s" %(bin[0], opoint) 
+			if not mergekey in skiplessQCDMerge:
+				skiplessQCDMerge[ mergekey ] = []
+			skiplessQCDMerge[ mergekey ].append( mergeNode )
+
+			# now merge the skipped
 			step_postfix = "-%s-%s-%s" % ( trigger[1], bin[0], opoint )
-#			mergeNode = merge_with_root_qcd_helper( g, "root-qcd" + step_postfix,
-#							inputNodes=skiplessS8Monitor[ opoint ][ bin[0] ][ trigger[1] ],
-#							inputLuminosities= [] )
+			mergeNode = merge_with_root_qcd_helper( g, "root-qcd" + step_postfix, step_postfix,
+							inputNodes = skippedS8Monitor[ "%s-%s-%s" % ( trigger[1], bin[0], opoint ) ],
+							luminosityNode = luminositySumByTrigger[ trigger[ 1 ] ]
+						)
+			print "premerge is %s" % skippedQCDMerge
+			if not mergekey in  skippedQCDMerge:
+				print "creating mergekey %s for trigger %s" % ( mergekey, trigger[1] )
+				skippedQCDMerge[ mergekey ] = []
+				print "is is now %s" % skippedQCDMerge
+			skippedQCDMerge[ mergekey ].append( mergeNode )
+
+		# END TRIGGER LOOP, THIS IS OVER bin and opoint
+		print "skipmerge %s " % skippedQCDMerge
+
+		hadd_helper( g, mergekey + "skip", skippedQCDMerge[ mergekey ] )
+		hadd_helper( g, mergekey + "noskip", skiplessQCDMerge[ mergekey ] )
+
+		# need to hadd the skipped and skipless ones to smoosh the triggers
+				
 #			mergeNode = Node( name="root_qcd-" + step_postfix )
 #			luminosityNode = luminositySumByTrigger[ trigger[1] ]
 #			qcdSets = getFilenames( edgeList = skiplessS8Monitor[ opoint ][ bin[0] ] )
