@@ -6,34 +6,34 @@ Motivation
 
 I use this project to automate my physics research, but this could apply to anyone.
 The (little) research I've done involves basically a pattern like this:
-
->(start) -> (step a) -> (output a) -> (step b) -> (output b)
-
+<pre>
+(start) -> (step a) -> (output a) -> (step b) -> (output b)
+</pre>
 Where the different steps can be things like a short script to add up luminosities
 or grid submission consisting of 1000's of jobs. If this was the only thing I'd have
 to do, it'd be easy, but invariably, the suggestion comes from above to make things
 more difficult.
-
->(start) -> (step a) -> (output a) -> (step b with parameter 1) -> (output b1)
->(start) -> (step a) -> (output a) -> (step b with parameter 2) -> (output b2)
->(start) -> (step a) -> (output a) -> (step b with parameter 3) -> (output b3)
->(start) -> (step a) -> (output a) -> (step b with parameter 4) -> (output b4)
-
+<pre>
+(start) -> (step a) -> (output a) -> (step b with parameter 1) -> (output b1)
+(start) -> (step a) -> (output a) -> (step b with parameter 2) -> (output b2)
+(start) -> (step a) -> (output a) -> (step b with parameter 3) -> (output b3)
+(start) -> (step a) -> (output a) -> (step b with parameter 4) -> (output b4)
+</pre>
 And more difficult
-
->(start) -> (step a w/param x) -> (output ax) -> (step b with parameter 1) -> (output bx1)
->(start) -> (step a w/param y) -> (output ay) -> (step b with parameter 1) -> (output by1)
->(start) -> (step a w/param z) -> (output az) -> (step b with parameter 1) -> (output bz1)
->(start) -> (step a w/param w) -> (output aw) -> (step b with parameter 1) -> (output bw1)
->(start) -> (step a w/param x) -> (output ax) -> (step b with parameter 2) -> (output bx2)
->(start) -> (step a w/param y) -> (output ay) -> (step b with parameter 2) -> (output by2)
->(start) -> (step a w/param z) -> (output az) -> (step b with parameter 2) -> (output bz2)
->(start) -> (step a w/param w) -> (output aw) -> (step b with parameter 2) -> (output bw2)
->(start) -> (step a w/param x) -> (output ax) -> (step b with parameter 3) -> (output bx3)
->(start) -> (step a w/param y) -> (output ay) -> (step b with parameter 3) -> (output by3)
->(start) -> (step a w/param z) -> (output az) -> (step b with parameter 3) -> (output bz3)
->(start) -> (step a w/param w) -> (output aw) -> (step b with parameter 3) -> (output bw3)
-
+<pre>
+(start) -> (step a w/param x) -> (output ax) -> (step b with parameter 1) -> (output bx1)
+(start) -> (step a w/param y) -> (output ay) -> (step b with parameter 1) -> (output by1)
+(start) -> (step a w/param z) -> (output az) -> (step b with parameter 1) -> (output bz1)
+(start) -> (step a w/param w) -> (output aw) -> (step b with parameter 1) -> (output bw1)
+(start) -> (step a w/param x) -> (output ax) -> (step b with parameter 2) -> (output bx2)
+(start) -> (step a w/param y) -> (output ay) -> (step b with parameter 2) -> (output by2)
+(start) -> (step a w/param z) -> (output az) -> (step b with parameter 2) -> (output bz2)
+(start) -> (step a w/param w) -> (output aw) -> (step b with parameter 2) -> (output bw2)
+(start) -> (step a w/param x) -> (output ax) -> (step b with parameter 3) -> (output bx3)
+(start) -> (step a w/param y) -> (output ay) -> (step b with parameter 3) -> (output by3)
+(start) -> (step a w/param z) -> (output az) -> (step b with parameter 3) -> (output bz3)
+(start) -> (step a w/param w) -> (output aw) -> (step b with parameter 3) -> (output bw3)
+</pre>
 And so on, and so on.
 
 Clearly there's a lot of headaches involved with this process. One could try and
@@ -41,9 +41,9 @@ expand out this combinatorial explosion manually, hoping (praying) that they
 never forget to change an output filename in a script or miss rerunning a step
 when the underlying program changes. One could also try to write a script that does:
 
-> for a in paramlista:
->     for b in paramlistb:
->         command.execute( a, b )
+    for a in paramlista:
+        for b in paramlistb:
+            command.execute( a, b )
 
 But that ends up getting ugly as the number of parameters you want to vary over
 increases, doesn't mesh well with asynchronous steps, and serializes your effort
@@ -59,11 +59,11 @@ and the nodes are some type of output.
 
 Using our simple example above (and hopefully easily rendered using ascii),
 
-
->                                 /-> (step b with parameter 1) -> (output b1)
->(start) -> (step a)--> (output a)--> (step b with parameter 2) -> (output b2)
->                                 \-> (step b with parameter 3) -> (output b3)
-
+<pre>
+                                 /-> (step b with parameter 1) -> (output b1)
+(start) -> (step a)--> (output a)--> (step b with parameter 2) -> (output b2)
+                                 \-> (step b with parameter 3) -> (output b3)
+</pre>
 ScriptGraph has extensible classes that can check the status and execute a step. For instance,
 step a may be a grid job (where we submit several jobs to a cluster to execute), and
 in this case to check status, the edge class will query the scheduler. To execute a step, the
@@ -123,11 +123,11 @@ Without more talking, here's a simple example:
 		return g
 
 Conceptually, this becomes a workflow that looks like this:
-
->              /-> (dbsQuery-dataset1) -> (filelist-dataset1)
-> (nullInput) ---> (dbsQuery-dataset2) -> (filelist-dataset2)
->			   \-> (dbsQuery-dataset3) -> (filelist-dataset3)
-
+<pre>
+             /-> (dbsQuery-dataset1) -> (filelist-dataset1)
+(nullInput) ---> (dbsQuery-dataset2) -> (filelist-dataset2)
+    		 \-> (dbsQuery-dataset3) -> (filelist-dataset3)
+</pre>
 Obviously, this is a simple example, but it lets me demonstrate some simple patterns
 with ScriptGraph. First, some notes:
 
@@ -146,10 +146,11 @@ any child edges is has.
 Now, the whole point of chainging these commands together is to work on some
 input files, let's look at how that works
 
->              /-> (dbsQuery-dataset1) -> (filelist-dataset1) -> (getHead) -> (head-dataset1)
-> (nullInput) ---> (dbsQuery-dataset2) -> (filelist-dataset2) -> (getHead) -> (head-dataset2)
->			   \-> (dbsQuery-dataset3) -> (filelist-dataset3) -> (getHead) -> (head-dataset3)
-
+<pre>
+              /-> (dbsQuery-dataset1) -> (filelist-dataset1) -> (getHead) -> (head-dataset1)
+ (nullInput) ---> (dbsQuery-dataset2) -> (filelist-dataset2) -> (getHead) -> (head-dataset2)
+			  \-> (dbsQuery-dataset3) -> (filelist-dataset3) -> (getHead) -> (head-dataset3)
+</pre>
 
 We would do this by adding a new set of edges and nodes, and a new thing called
 late binding.
