@@ -33,4 +33,4 @@ class Node:
 	
 	def __str__( self ):
 		print "Getting str"
-		return "<%s.%s - %s" % (self.__module__(), self.__class__(), self.getName())
+		return "< %s>" % ( self.getName())

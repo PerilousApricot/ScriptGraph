@@ -127,12 +127,11 @@ class CrabEdge( Edge.Edge ):
 			self.crabWorkDir = crabWorkDirs[-1]
 		else:
 			self.setIncomplete()
-			os.chdir( self.workDir )
+			os.chdir( oldcwd )
 			return
-		self.setComplete()
-		self.setOutputRootFiles()
-		os.chdir( self.workDir )
-		return
+#		self.setOutputRootFiles()
+#		os.chdir( self.workDir )
+#		return
 		if os.path.exists('COMPLETE'):
 			print "Crab job '%s' cached as complete, not checking" % self.getName()
 			self.setComplete()

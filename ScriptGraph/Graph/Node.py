@@ -54,6 +54,7 @@ class Node( BaseNode.Node ):
 		handle = open( self.getFiles()[0][0], 'r' )
 		retval = handle.read()
 		handle.close()
+		retval = retval.strip()
 		return retval
 
 	def checkStatus( self ):

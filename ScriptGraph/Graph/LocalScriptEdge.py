@@ -33,28 +33,39 @@ class LocalScriptEdge( Edge.Edge ):
 			self.setIncomplete()
 	
 	def executeImpl( self, inputFiles, inputMap ):
+		print "%s" % LateBind
+		print "%s" % type( self.command )
+		print "%s" % self.command
 		if isinstance( self.command, type([]) ):
 			commandReplaced = []
 			for onearg in self.command:
 				commandReplaced.append( str( self.lateBind( onearg ) ) )
 			if self.addFileNames:
 				commandReplaced.extend( inputFiles )
-
-			print "Executing: %s" % commandReplaced
-			output = commands.getstatusoutput( " ".join(commandReplaced) )
-		elif isinstance( self.command, LateBind ):
+			commandReplaced = " ".join(commandReplaced)
+		elif issubclass( self.command.__class__ , LateBind ):
+			print "LATE BIND CALLED"
 			commandReplaced = self.lateBind( self.command )
+			if isinstance( commandReplaced, type([]) ):
+				commandReplaced2 = []
+				for onearg in commandReplaced:
+					commandReplaced2.append( str( self.lateBind( onearg ) ) )
+				print "replace2 = %s" % commandReplaced2
+				commandReplaced = " ".join(commandReplaced2)
 			if self.addFileNames:
 				commandReplaced = commandReplaced + ' ' + ' '.join( inputFiles )
-			print "Executing: %s" % commandReplaced
-			output = commands.getstatusoutput( commandReplaced )
 		else:
 			commandReplaced = self.command
 			if self.addFileNames:
 				commandReplaced = commandReplaced + ' ' + ' '.join( inputFiles )
-			print "Executing: %s" % commandReplaced
-			output = commands.getstatusoutput( commandReplaced )
 		
+		print "Executing: %s" % commandReplaced
+		try:
+			output = commands.getstatusoutput( commandReplaced )
+		except Exception as e:
+			print "Error in executing command %s" % commandReplaced
+			raise e
+
 		print output[1]
 
 		if self.noEmptyFiles:

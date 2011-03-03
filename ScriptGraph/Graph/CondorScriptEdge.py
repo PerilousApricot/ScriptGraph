@@ -32,7 +32,7 @@ class CondorScriptEdge( Edge.Edge ):
 			if ( self.fileExistsInWorkDir( self.output ) ):
 				if ( self.noEmptyFiles and ( os.path.getsize( absOutputPath ))):
 					# we got the file and it wasn't empty
-					self.addOutputFile( targetPath )
+					self.addOutputFile( absOutputPath )
 					self.setComplete()
 					return
 				elif ( self.noEmptyFiles ):
@@ -50,8 +50,8 @@ class CondorScriptEdge( Edge.Edge ):
 				else:
 					raise RuntimeError, "Panic. Shouldn't be here"
 			else:
-				print "Edge %s is marked as complete, but no output file "+\
-					  "is here" % self.getName()
+				print ("Edge %s is marked as complete, but no output file "+\
+					  "is here") % self.getName()
 				self.setFailed()
 				return
 		elif ( self.fileExistsInWorkDir( 'RUNNING' ) ):
@@ -133,7 +133,7 @@ rm RUNNING
 		print "JDL is at: %s" % jdlPath
 		status, output = commands.getstatusoutput( "condor_submit %s" \
 								% jdlPath )
-		if not output:
+		if not status:
 			handle = open( os.path.join( self.workDir, "RUNNING" ), 'w' )
 			handle.write( "%s" % output )
 			handle.close()
