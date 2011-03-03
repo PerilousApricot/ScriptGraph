@@ -1,4 +1,4 @@
-ScriptGraph - a tool for pepole who like tools
+ScriptGraph - a tool for people who like tools
 ==============================================
 
 Motivation
