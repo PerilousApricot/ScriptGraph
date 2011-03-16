@@ -35,10 +35,10 @@ qcd_datasets  = [
 default_trigger = "HLT_BTagMu*"
 # TODO: Update with the real list
 # <trigger name> <shorthand name< <min run> <max run>
-trigger_list_linked = { 'RUN2010B' : [ [ "HLT_BTagMu_DiJet20U*","hltdijet20u", "147196", "148818" ],
-                                     [ "HLT_BTagMu_DiJet30U*","hltdijet30u", "148819", "149294"   ],
-                                     [ "HLT_BTagMu_Jet20U"   ,"hltjet20u"  , "146428", "147116"   ] ],
-                        'RUN2010A' : [ [ "HLT_BTagMu_Jet10U"   ,"hltjet10u"  , "141961", "142039" ] ]
+trigger_list_linked = { 'RUN2010B' : [ [ "HLT_BTagMu_DiJet20U*","hltdijet20u", "147196", "148818","HLT_BTagMu_DiJet20U" ],
+                                     [ "HLT_BTagMu_DiJet30U*","hltdijet30u", "148819", "149294","HLT_BTagMu_DiJet30U"   ],
+                                     [ "HLT_BTagMu_Jet20U"   ,"hltjet20u"  , "146428", "147116","HLT_BTagMu_Jet20U"  ] ],
+                        'RUN2010A' : [ [ "HLT_BTagMu_Jet10U"   ,"hltjet10u"  , "141961", "142039","HLT_BTagMu_Jet10U" ] ]
                                   }
 
 #trigger_list_linked = { 'RUN2010B' : trigger_list_linked['RUN2010B'] }
@@ -48,17 +48,40 @@ trigger_list = [ [ "HLT_BTagMu_DiJet20U*","hltdijet20u", "147196", "148818","HLT
                  [ "HLT_BTagMu_Jet20U"   ,"hltjet20u"  , "146428", "147116","HLT_BTagMu_Jet20U" ] 
 ]
 
+trigger_to_sample = { 'hltdijet20u' : 'RUN2010B',
+    'hltdijet30u' : 'RUN2010B',
+    'hltjet20u' : 'RUN2010B',
+    'hltjet10u' : 'RUN2010A'}
+
+triggers_to_simulate = { 'hltjet10u':1, 'hltjet20u' : 1,
+                         'hltdijet20u' : 0, 'hltdijet30u' : 0 }
+
 binToAssociatedTriggers = {
-                    "60to80" : [ "HLT_BTagMu_DiJet20U", "HLT_BTagMu_DiJet30U" ]
+                    "40to60" : [ "HLT_BTagMu_Jet10U", 
+                                 "HLT_BTagMu_Jet20U" ],
+                    "60to80" : [ "HLT_BTagMu_Jet10U", 
+                                 "HLT_BTagMu_Jet20U",
+                                 "HLT_BTagMu_DiJet20U" ],
+                    "80to140" : [ "HLT_BTagMu_Jet10U", 
+                                 "HLT_BTagMu_Jet20U",
+                                 "HLT_BTagMu_DiJet20U" ],
+                    "140to"   : [ "HLT_BTagMu_Jet10U", 
+                                 "HLT_BTagMu_Jet20U",
+                                 "HLT_BTagMu_DiJet20U",
+                                 "HLT_BTagMu_DiJet30U"]
 }
 
 binToReweightTrigers = {
                     "60to80"  : [ "HLT_BTagMu_DiJet20U" ],
-                    "80to120" : [ "HLT_BTagMu_DiJet20U" ]
+                    "80to140" : [ "HLT_BTagMu_DiJet20U" ]
 }
 
 operating_points = [ "TCHEM" ]
-jet_bins = [ ["60to80", "60..80" ] ]
+jet_bins = [ ["40to60", "40..60"],
+             ["60to80", "60..80" ],
+             ["80to140", "80..140"],
+             ["140to", "140.."]
+           ]
 
 #
 # Helpers
@@ -76,7 +99,9 @@ def run_monitor_input_helper(   g,
                                 skip_events = False,
                                 event_count = False,
                                 additional_dependencies = False,
-                                data=False):
+                                data=False,
+                                reweight_trigger = False,
+                                simulate_trigger = False):
     collectNode = Node( name = "collect-s8_monitor_input" + step_postfix )
     currNode    = Node( name = "s8_monitor_input" + step_postfix )
     g.addNode( collectNode )
@@ -111,8 +136,11 @@ def run_monitor_input_helper(   g,
     if data:
         commandLine.extend(["--data", data])
     if input_files and isinstance( input_files, NodeModule.Node ):
-        commandLine.extend(["-i", BindFileList( name="input.txt" )])
-
+        commandLine.extend(["-i", BindFileList( name="input.txt", filePattern="s8_tree" )])
+    if reweight_trigger:
+        commandLine.extend(["--reweight-trigger", reweight_trigger])
+    if simulate_trigger:
+        commandLine.extend(["--simulate-trigger" ])
     currEdge = CondorScriptEdge.CondorScriptEdge( \
             name = "run_s8_monitor_input" + step_postfix,
             command = commandLine,
@@ -146,7 +174,6 @@ class ComputeEventCount( LateBind ):
         #for onenode in self.lumiCountNode:
         #   lumisForTrigger += float(onenode.getValueFromOnlyOutputFile())
         lumisForTrigger = float( onenode.getValueFromOnlyOutputFile() )
-        print "%s %s %s" % (events, lumisForTrigger, lumiCount)
         return int( ( events * lumisForTrigger ) / lumiCount)
 
 class ComputeSkipCount( LateBind ):
@@ -392,26 +419,28 @@ for opoint in operating_points:
                             trigger_name = trigger[4],
                             step_postfix = step_postfix,
                             muon_pt = "6..",
-                            input_files = qcdTreeNodes[ sample[1] ])
+                            input_files = qcdTreeNodes[ sample[1] ],
+                            simulate_trigger = triggers_to_simulate[ trigger[1] ])
                 skiplessS8Monitor[ opoint ][ bin[0] ][ trigger[1] ].append( currNode )
 #
 # Run s8_monitor_input over data without skipping events
 #
-
 skiplessS8MonitorData = {}
+skiplessS8MonitorForMerge = {}
 for opoint in operating_points:
     for bin in jet_bins:
-        for sample in data_datasets:
-            for trigger in trigger_list:
-                step_postfix = "-%s-%s-%s-%s-noskip" % (sample[1],trigger[1],bin[0],opoint)
+        for sample in trigger_list_linked.keys():
+            for trigger in trigger_list_linked[ sample ]:
+                step_postfix = "-%s-%s-%s-%s-noskip" % (sample,trigger[1],bin[0],opoint)
+                merge_key    = "%s-%s" % (bin[0], opoint)
+
                 if not opoint in skiplessS8MonitorData:
                     skiplessS8MonitorData[ opoint ] = {}
                 if not bin[0] in skiplessS8MonitorData[ opoint ]:
                     skiplessS8MonitorData[ opoint ][ bin[0] ] = {}
                 if not trigger[1] in skiplessS8MonitorData[ opoint ][ bin[0] ]:
-                    skiplessS8MonitorData[ opoint ][ bin[0] ][ trigger[1] ] = []
-
-                skiplessS8MonitorData[ opoint ][ bin[0] ][ trigger[1] ].append(\
+                    skiplessS8MonitorData[ opoint ][ bin[0] ][ trigger[1] ] = {}
+                monitor_node =\
                         run_monitor_input_helper( g,
                             jet_pt = bin[1],
                             tag = opoint,
@@ -419,7 +448,11 @@ for opoint in operating_points:
                             step_postfix = step_postfix,
                             muon_pt = "6..",
                             data = "1",
-                            input_files = dataTreeByName[ sample[1] ]))
+                            input_files = dataTreeByName[ sample ])
+                skiplessS8MonitorData[ opoint ][ bin[0] ][ trigger[1] ][ sample ] = monitor_node
+                if not merge_key in skiplessS8MonitorForMerge:
+                    skiplessS8MonitorForMerge[ merge_key ] = []
+                skiplessS8MonitorForMerge[ merge_key ].append( monitor_node )
 
 #
 # Run s8_monitor_input over QCD, taking skipevent/eventcount into consideration
@@ -453,12 +486,82 @@ for opoint in operating_points:
                             tag = opoint,
                             input_files = qcdTreeNodes[ sample[1] ],
                             muon_pt = "6..",
-                            additional_dependencies = deps)
+                            simulate_trigger = triggers_to_simulate[ trigger[1] ],
+                                                                                                                additional_dependencies = deps)
                 nodekey = "%s-%s-%s" % ( trigger[1], bin[0], opoint )
                 if not nodekey in skippedS8Monitor:
-                    skippedS8Monitor[nodekey] = []
+                    skippedS8Monitor[nodekey] = {}
 
-                skippedS8Monitor[ nodekey ].append( currNode )
+                skippedS8Monitor[ nodekey ][ sample[1] ] = currNode
+
+#
+# An additional wrinkle, some bin/trigger QCD combinations need to be reweighted. Fun.
+#
+reweightedS8Monitor = {}
+for opoint in operating_points:
+    for bin in jet_bins:
+        for trigger in trigger_list:
+            for sample in qcd_datasets:
+                step_postfix= "-%s-%s-%s-%s-reweight" % ( sample[1], trigger[1], bin[0], opoint )
+                step_key    = "%s-%s-%s" % ( trigger[1], bin[0], opoint )
+                collectNode = Node( name = "collect-reweight" + step_postfix )
+                weightNode  = Node( name = "weight" + step_postfix )
+                reweighNode = Node( name = "reweighed" + step_postfix )
+
+                dataNode    = skiplessS8MonitorData[ opoint ][ bin[0] ][ trigger[1] ][ trigger_to_sample[ trigger[1] ]]
+                
+                mcNode         = skippedS8Monitor[ step_key ][ sample[1] ]
+                # Usage: root_trigger_weights out.root data_monitor.root mc_monitor.root
+                calcWeightEdge = LocalScriptEdge.LocalScriptEdge(
+                                name = "calcweight" +  step_postfix,
+                                command = ["root_trigger_weights",
+                                                                                                                                                                                                bin[1],
+                                                "weight.root",
+                                                BindPreviousOutput( dataNode ),
+                                                BindPreviousOutput( mcNode   ) ],
+                                output = "weight.root",
+                                noEmptyFiles = True )
+                g.addNode( collectNode )
+                g.addNode( weightNode )
+                g.addEdge( dataNode, collectNode, NullEdge() )
+                g.addEdge( mcNode, collectNode, NullEdge()   )
+                g.addEdge( collectNode, weightNode, calcWeightEdge )
+
+                # now, use the weights to run s8_monitor_input again
+                deps = [ eventCountNodes[ sample[1] ],
+                         weightNode,
+                         # we automatically include deps to input files
+                         #qcdTreeNodes[ sample[1]
+                         luminositySumNode,
+                         luminositySumByTrigger[ trigger[1] ],
+                         eventCountNodes[ sample[1] ]
+                       ]
+    
+
+                reweightNode = run_monitor_input_helper( g,
+                            step_postfix,
+                            trigger_name = trigger[4],
+                            skip_events =  ComputeSkipCount(  eventCountNodes[ sample[1] ],
+                                                                 trigger[1],
+                                                                 luminosityByTrigger,
+                                                                 luminosityNodes.values() ),
+
+                            event_count =  ComputeEventCount( eventCountNodes[ sample[1] ],
+                                                                 luminositySumByTrigger[ trigger[1] ],
+                                                                 luminosityNodes.values() ),
+                            jet_pt = bin[1],
+                            tag = opoint,
+                            input_files = qcdTreeNodes[ sample[1] ],
+                            muon_pt = "6..",
+                            additional_dependencies = deps,
+                            simulate_trigger = triggers_to_simulate[ trigger[1] ],
+                            reweight_trigger = BindPreviousOutput( calcWeightEdge ) )
+                
+                if not step_key in reweightedS8Monitor:
+                    reweightedS8Monitor[ step_key ] = {}
+                reweightedS8Monitor[ step_key ][ sample[1] ] = reweightNode
+                
+            
 
 
 #
@@ -469,12 +572,10 @@ class getLumi( LateBind ):
     def __init__(self, lumiNode):
         self.lumiNode = lumiNode
     def bind( self, edge ):
-        print "lumiNode is %s" % str(self.lumiNode)
         return float( self.lumiNode.getValueFromOnlyOutputFile() )
 
 def makeRootQCDFilenameFromInput( name ):
     pattern = "-qcd(.+?)-"
-    print "searching %s and %s" % (pattern, name)
     match   = re.search( pattern, name )
     if match:
         return "pt" + match.group(1) + ".root"
@@ -490,7 +591,6 @@ class appendCommandLineSymlink( LateBind ):
         for node in self.nodeList:
             for oldFile in node.getFiles()[0]:
                 newFile = makeRootQCDFilenameFromInput( oldFile )
-                print " got this newfile %s" % newFile
                 if os.path.exists( newFile ):
                     os.unlink( newFile )
                 os.symlink( oldFile, newFile )
@@ -577,7 +677,6 @@ for opoint in operating_points:
                     break
     
         for trigger in triggersForThisBin:
-            print "trigger bin is %s " % trigger[1]
             # only use trigger for the luminosity
             # we're using the qcd datasets for input files
             # first merge the skipless
@@ -594,23 +693,27 @@ for opoint in operating_points:
 
             # now merge the skipped
             step_postfix = "-%s-%s-%s" % ( trigger[1], bin[0], opoint )
+            
+            # do we want to use the reweighed nodes or the old ones?
+            monitorKey = "%s-%s-%s" % ( trigger[1], bin[0], opoint )
+            if monitorKey in reweightedS8Monitor:
+                inputNodes = reweightedS8Monitor[ monitorKey ].values()
+            else:
+                inputNodes = skippedS8Monitor[ monitorKey ].values()
+
             mergeNode = merge_with_root_qcd_helper( g, "root-qcd" + step_postfix, step_postfix,
-                            inputNodes = skippedS8Monitor[ "%s-%s-%s" % ( trigger[1], bin[0], opoint ) ],
+                            inputNodes = inputNodes,
                             luminosityNode = luminositySumByTrigger[ trigger[ 1 ] ]
                         )
-            print "premerge is %s" % skippedQCDMerge
             if not mergekey in  skippedQCDMerge:
-                print "creating mergekey %s for trigger %s" % ( mergekey, trigger[1] )
                 skippedQCDMerge[ mergekey ] = []
-                print "is is now %s" % skippedQCDMerge
             skippedQCDMerge[ mergekey ].append( mergeNode )
 
         # END TRIGGER LOOP, THIS IS OVER bin and opoint
-        print "skipmerge %s " % skippedQCDMerge
 
         hadd_helper( g, mergekey + "skip", skippedQCDMerge[ mergekey ] )
         hadd_helper( g, mergekey + "noskip", skiplessQCDMerge[ mergekey ] )
-
+        hadd_helper( g, mergekey + "data", skiplessS8MonitorForMerge[ mergekey ] )
         # need to hadd the skipped and skipless ones to smoosh the triggers
                 
 #           mergeNode = Node( name="root_qcd-" + step_postfix )
