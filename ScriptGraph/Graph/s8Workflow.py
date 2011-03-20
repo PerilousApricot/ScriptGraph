@@ -555,8 +555,8 @@ for opoint in operating_points:
                 # Usage: root_trigger_weights out.root data_monitor.root mc_monitor.root
                 calcWeightEdge = LocalScriptEdge.LocalScriptEdge(
                                 name = "calcweight" +  step_postfix,
-                                command = ["root_trigger_weights",
-                                                                                                                                                                                                bin[1],
+                                command = ["root_trigger_weights_2d",                                                                                                       bin[1],
+                                                "-3..3",
                                                 "weight.root",
                                                 BindPreviousOutput( dataNode ),
                                                 BindPreviousOutput( mcNode   ) ],
