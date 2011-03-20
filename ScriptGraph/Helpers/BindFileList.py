@@ -4,6 +4,7 @@
 from ScriptGraph.Helpers.LateBind import LateBind
 import os.path
 import tempfile
+import re
 class BindFileList( LateBind ):
 	def __init__(self,name,filePattern = None):
 		self.fileName = name
@@ -12,10 +13,15 @@ class BindFileList( LateBind ):
 		node  = edge.getParent()
 		files,_ = node.getFiles()
 		handle = open(self.fileName, 'w')
+		if self.filePattern:
+			pattern = re.compile( self.filePattern )
+		else:
+			pattern = re.compile( ".*" )
 		for file in files:
 			if not os.path.isabs(file):
 				file = os.path.normpath(os.path.join( edge.getWorkDir(), file ) )
-			handle.write( file + "\n" )
+			if pattern.search( file ):
+				handle.write( file + "\n" )
 		handle.close()
 		if not os.path.isabs( self.fileName ):
 			return os.path.abspath( self.fileName )

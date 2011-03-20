@@ -13,6 +13,7 @@ from ScriptGraph.Helpers.GenTree import genTree
 from ScriptGraph.Helpers.BindCrabWorkDir import BindCrabWorkDir
 from ScriptGraph.Helpers.BindSubstitutes import BindSubstitutes
 from ScriptGraph.Helpers.BindFileList import BindFileList
+from ScriptGraph.Helpers.Miter import Miter
 import ScriptGraph.Graph.CondorScriptEdge as CondorScriptEdge
 g = Graph.Graph()
 g.setWorkDir("/uscms_data/d2/meloam/s8workflow")
@@ -109,6 +110,10 @@ def run_monitor_input_helper(   g,
 
     if input_files and isinstance( input_files, NodeModule.Node ):
         g.addEdge( input_files, collectNode, NullEdge() )
+    elif input_files and isinstance( input_files, type([]) ):
+        for node in input_files:
+            g.addEdge( node, collectNode, NullEdge() )
+
     if not additional_dependencies:
         additional_dependencies = []
     for dep in additional_dependencies:
@@ -135,8 +140,13 @@ def run_monitor_input_helper(   g,
         commandLine.extend(["--jet-pt", jet_pt])
     if data:
         commandLine.extend(["--data", data])
-    if input_files and isinstance( input_files, NodeModule.Node ):
+    if input_files and \
+            (isinstance( input_files, NodeModule.Node ) or\
+             isinstance( input_files, type([]) ) ):
         commandLine.extend(["-i", BindFileList( name="input.txt", filePattern="s8_tree" )])
+    elif input_files:
+        raise RuntimeError, "no input files? %s" % input_files
+
     if reweight_trigger:
         commandLine.extend(["--reweight-trigger", reweight_trigger])
     if simulate_trigger:
@@ -155,55 +165,72 @@ def run_monitor_input_helper(   g,
 # Helpers for s8_monitor_input
 #
 class ComputeEventCount( LateBind ):
-    
+
+    # Compute the number events for this particular trigger for this dataset where:
+
+    # Events = Nevents * ( lumi_for_this_trigger ) / ( lumi_for_all_trigger )
+
     # eventCountNode     - the node that has the number of events in this sample
     # lumiCountNode      - the node that has the luminosity for this trigger
     # lumiCountNodeList  - the list of all the luminosities for the triggers
     #                          in this dataset
-    def __init__( self, eventCountNode, lumiCountNode, lumiCountNodeList ):
-        self.eventNode = eventNode
-        self.lumiCountNodeList = lumiCountNodeList
-        self.lumiCountNode = lumiCountNode
+    def __init__( self, eventCountNode, trigger, lumiMiter ):
+        self.eventNode     = eventNode
+        self.targetTrigger = trigger
+        self.lumiMiter     = lumiMiter
 
     def bind( self, edge ):
         events = float(self.eventNode.getValueFromOnlyOutputFile())
         lumiCount = 0
-        for onenode in self.lumiCountNodeList:
-            lumiCount += float(onenode.getValueFromOnlyOutputFile())
-        #lumisForTrigger = 0
-        #for onenode in self.lumiCountNode:
-        #   lumisForTrigger += float(onenode.getValueFromOnlyOutputFile())
-        lumisForTrigger = float( onenode.getValueFromOnlyOutputFile() )
+        lumisForTrigger = 0
+        for onenode in self.lumiMiter.iterMany( 'trigger' ):
+            lumiCount += float(onenode[0].getValueFromOnlyOutputFile())
+            
+            if onenode[1]['trigger'] == self.targetTrigger:
+                lumisForTrigger += float( onenode[0].getValueFromOnlyOutputFile() )
+
         return int( ( events * lumisForTrigger ) / lumiCount)
 
 class ComputeSkipCount( LateBind ):
+
+    # Each dataset will correspond to many triggers, so we split it into blocks of
+    # ComputeEventCount()-sized events. We want to not overlap, so we get something
+    # that looks like:
+    # <---TRIGGER 1---><---TRIGGER 2---><-TRIGGER 3-><-----------TRIGGER 4----------->
+
     # eventCountNode     - the node that has the number of events in this sample
     # trigger            - the name of the trigger, the key for lumiByTriggerList
-    # lumiByTriggerList  - a dict of lumi nodes, keys are trigger names
-    # lumiCountNodeList  - the list of all the luminosities for the triggers
-    #                          in this dataset
-    def __init__( self, eventCountNode, trigger, lumiByTriggerList, lumiCountNodeList ):
+    # lumiMiter          - the miterator of all lumi calculations
+
+    def __init__( self, eventCountNode, trigger, lumiMiter ):
         self.eventNode = eventCountNode
-        self.lumiCountNodeList = lumiCountNodeList
-        self.lumiByTriggerList = lumiByTriggerList
+        self.lumiMiter = lumiMiter
         self.targetTrigger = trigger
 
     def bind( self, edge ):
-        #lumis  = float(self.lumiCountNodeList.getValueFromOnlyOutputFile())
         events = float(self.eventNode.getValueFromOnlyOutputFile())
         lumiCount = 0
-        for onenode in self.lumiCountNodeList:
+        for onenode in self.lumiMiter.iterManyValues( 'trigger' ):
             lumiCount += float(onenode.getValueFromOnlyOutputFile())
         
         currentEvent    = 0
-        keylist = self.lumiByTriggerList.keys()
-        for trigger in keylist:
-            if trigger == self.targetTrigger:
-                return currentEvent
-            for onenode in self.lumiByTriggerList[ trigger ]:
-                currentEvent += int( events * float( onenode.getValueFromOnlyOutputFile() )/ lumiCount )
 
-        raise RuntimeException, "Unknown trigger"
+        triggerFound = False
+        for onelumi in self.lumiMiter.iterMany( 'trigger' ):
+            
+            # did we find the trigger
+            if onelumi[1]['trigger'] == self.targetTrigger:
+                triggerFound = True
+            
+            # is this trigger name (lexicographically) before the target
+            # trigger name?
+            if onelumi[1]['trigger'] < self.targetTrigger:
+                currentEvent += int( events * float( onelumi[0].getValueFromOnlyOutputFile() )/ lumiCount )
+
+        if not triggerFound:
+            raise RuntimeException, "Unknown trigger"
+
+        return currentEvent
     
 
 # A blank node which will always allow the children to run
@@ -232,8 +259,12 @@ for dataset in datasetSum:
 #
 # Generate trees from QCD and a child node with event counts
 #
-qcdTreeNodes = {}
-eventCountNodes = {}
+#qcdTreeNodes = {}
+#eventCountNodes = {}
+
+qcdTreeMiter    = Miter()
+eventCountMiter = Miter()
+
 for dataset in qcd_datasets:
     treeNode,produceTree = genTree( g=g,input = nullInput,
                                 nodeName = "tree-%s" % dataset[1],
@@ -242,8 +273,8 @@ for dataset in qcd_datasets:
                                 cmsswCfg = "/uscms_data/d2/meloam/s8workflow/cmssw_mc.py",
                                 dataset  = dataset[0] )
 
-    qcdTreeNodes[ dataset[1] ] = treeNode
-
+    #qcdTreeNodes[ dataset[1] ] = treeNode
+    qcdTreeMiter.add( treeNode, dataset = dataset[1] )
 
     #
     # we've generated the trees, add a step to extract the luminosities
@@ -261,18 +292,21 @@ for dataset in qcd_datasets:
         noEmptyFiles=True)
     g.addNode( eventNode )
     g.addEdge( treeNode, eventNode, getEvents )
-    eventCountNodes[ dataset[1] ] = eventNode
+    #eventCountNodes[ dataset[1] ] = eventNode
+    eventCountMiter.add( eventNode, dataset = dataset[1] )
     
-
 #
 # Generate trees from data and a child node with the luminosities
 #
 
 # The tasks to generate the trees from data
-dataTreeNodes = []
-dataTreeByName = {}
-luminosityNodes = {} # stores luminosities
-luminosityByTrigger = {}
+#dataTreeNodes  = []
+#dataTreeByName = {}
+dataTreeMiter  = Miter()
+#luminosityNodes          = {} # stores luminosities
+luminosityMiter     = Miter()
+#luminosityByTrigger      = {}
+#luminosityByTriggerMiter = Miter()
 for dataset in data_datasets:
 
         #
@@ -304,8 +338,9 @@ for dataset in data_datasets:
                                 crabReplacements  = [ [ "RUNSELECTION", "runselection=%s-%s" %
                                                                     (trigger[2], trigger[3]) ] ] )
 
-            dataTreeNodes.append( treeNode )
-            dataTreeByName[ dataset[1] ] = treeNode     
+            #dataTreeNodes.append( treeNode )
+            #dataTreeByName[ dataset[1] ] = treeNode
+            dataTreeMiter.add( treeNode, dataset = dataset[1] )
             #
             # Calculate the luminosity of this (dataset*trigger)
             #
@@ -338,10 +373,11 @@ for dataset in data_datasets:
             g.addEdge( treeNode, lumiNode, getLuminosity )
             
             # Add accounting
-            luminosityNodes[ "%s-%s" % (dataset[1], trigger[1]) ] = lumiNode
-            if not trigger[1] in luminosityByTrigger:
-                luminosityByTrigger[ trigger[1] ] = []
-            luminosityByTrigger[ trigger[1] ].append( lumiNode )
+            luminosityMiter.add( lumiNode, dataset = dataset[1], trigger = trigger[1] )
+#            luminosityNodes[ "%s-%s" % (dataset[1], trigger[1]) ] = lumiNode
+#            if not trigger[1] in luminosityByTrigger:
+#                luminosityByTrigger[ trigger[1] ] = []
+#            luminosityByTrigger[ trigger[1] ].append( lumiNode )
 
 #
 # We have a bunch of individual lumis, make a node
@@ -352,7 +388,7 @@ luminosityListNode = Node( name = "luminosity-list" )
 g.addNode( luminositySumNode  )
 g.addNode( luminosityListNode )
 
-for lumiNode in luminosityNodes.values():
+for lumiNode in luminosityMiter.getValues():
     g.addEdge( lumiNode, luminosityListNode, NullEdge() )
 
 sumLuminosity = LocalScriptEdge.LocalScriptEdge( name = "sum-all-lumis",
@@ -371,20 +407,26 @@ g.addEdge( luminosityListNode, luminositySumNode, sumLuminosity )
 # luminosity node. Otherwise, we need to add them together (usually don't add
 # them)
 #
-luminositySumByTrigger = {}
-for trigger in luminosityByTrigger:
-    lumiSum = Node( "lumisum-%s" % trigger )
+#luminositySumByTrigger = {}
+luminositySumMiter = Miter()
+#for trigger in luminosityByTrigger:
+for trigger in luminosityMiter.iterGrouped( 'trigger' ):
+    # should make a wrapper for this magic
+    triggerName = trigger.vals[0][1][ 'trigger' ]
+    
+    lumiSum = Node( "lumisum-%s" % triggerName )
     g.addNode( lumiSum )
-    luminositySumByTrigger[ trigger ] = lumiSum
-    if   len( luminosityByTrigger[ trigger ] ) == 1:
-        g.addEdge( luminosityByTrigger[ trigger ][0], lumiSum, NullEdge() )
-    elif len( luminosityByTrigger[ trigger ] ) > 1:
-        lumiCollect = Node( "lumicollect-%s" % trigger )
+    luminositySumMiter.add( lumiSum, trigger = triggerName ) #ByTrigger[ trigger ] = lumiSum
+    
+    if   len( trigger ) == 1:
+        g.addEdge( trigger.getOneValue(), lumiSum, NullEdge() )
+    elif len( trigger ) > 1:
+        lumiCollect = Node( "lumicollect-%s" % triggerName )
         g.addNode( lumiCollect )
-        for node in luminosityByTrigger[ trigger ]:
-            g.addEdge( node, lumiCollect, NullEdge() )
+        for dataset in trigger:
+            g.addEdge( dataset.getOneValue(), lumiCollect, NullEdge() )
 
-        sumEdge = LocalScriptEdge.LocalScriptEdge( name = "sum-lumi-%s" % trigger,
+        sumEdge = LocalScriptEdge.LocalScriptEdge( name = "sum-lumi-%s" % triggerName,
                                                  command =
                             "/uscms_data/d2/meloam/s8workflow/lumiSum.py luminosity.txt ",
                                                  output  = "luminosity.txt",
@@ -393,7 +435,7 @@ for trigger in luminosityByTrigger:
 
         g.addEdge( lumiCollect, lumiSum, sumEdge )
     else:
-        raise RuntimeError, "No lumi node was found for trigger %s " % trigger
+        raise RuntimeError, "No lumi node was found for trigger %s " % trigger.vals
 
 
 #
@@ -419,7 +461,7 @@ for opoint in operating_points:
                             trigger_name = trigger[4],
                             step_postfix = step_postfix,
                             muon_pt = "6..",
-                            input_files = qcdTreeNodes[ sample[1] ],
+                            input_files = qcdTreeMiter.getOneValue( dataset =  sample[1] ),
                             simulate_trigger = triggers_to_simulate[ trigger[1] ])
                 skiplessS8Monitor[ opoint ][ bin[0] ][ trigger[1] ].append( currNode )
 #
@@ -448,7 +490,7 @@ for opoint in operating_points:
                             step_postfix = step_postfix,
                             muon_pt = "6..",
                             data = "1",
-                            input_files = dataTreeByName[ sample ])
+                            input_files = dataTreeMiter.getValues( dataset = sample ))
                 skiplessS8MonitorData[ opoint ][ bin[0] ][ trigger[1] ][ sample ] = monitor_node
                 if not merge_key in skiplessS8MonitorForMerge:
                     skiplessS8MonitorForMerge[ merge_key ] = []
@@ -462,32 +504,31 @@ for opoint in operating_points:
     for bin in jet_bins:
         for trigger in trigger_list:
             for sample in qcd_datasets:
-                deps = [ eventCountNodes[ sample[1] ],
+                deps = [ # eventCountMiter.getOne( dataset = sample[1] ),
                          # we automatically include deps to input files
                          #qcdTreeNodes[ sample[1]
                          luminositySumNode,
-                         luminositySumByTrigger[ trigger[1] ],
-                         eventCountNodes[ sample[1] ]
+                         luminositySumMiter.getOneValue( trigger = trigger[1] ),
+                         eventCountMiter.getOneValue( dataset = sample[1] )
                        ]
-    
                 step_postfix = "-%s-%s-%s-%s" % ( sample[1], trigger[1], bin[0],opoint )
                 currNode = run_monitor_input_helper( g,
                             step_postfix,
                             trigger_name = trigger[4],
-                            skip_events =  ComputeSkipCount(  eventCountNodes[ sample[1] ],
+                            skip_events =  ComputeSkipCount(  eventCountMiter.getOneValue( dataset = sample[1] ),
                                                                  trigger[1],
-                                                                 luminosityByTrigger,
-                                                                 luminosityNodes.values() ),
+                                                                 luminosityMiter ),
 
-                            event_count =  ComputeEventCount( eventCountNodes[ sample[1] ],
-                                                                 luminositySumByTrigger[ trigger[1] ],
-                                                                 luminosityNodes.values() ),
+                            event_count =  ComputeEventCount( eventCountMiter.getOneValue( dataset = sample[1] ),
+                                                                 trigger[1],
+                                                                 luminosityMiter ),
                             jet_pt = bin[1],
                             tag = opoint,
-                            input_files = qcdTreeNodes[ sample[1] ],
+                            input_files = qcdTreeMiter.getOneValue( dataset =  sample[1] ),
                             muon_pt = "6..",
                             simulate_trigger = triggers_to_simulate[ trigger[1] ],
-                                                                                                                additional_dependencies = deps)
+                            additional_dependencies = deps)
+                
                 nodekey = "%s-%s-%s" % ( trigger[1], bin[0], opoint )
                 if not nodekey in skippedS8Monitor:
                     skippedS8Monitor[nodekey] = {}
@@ -528,30 +569,29 @@ for opoint in operating_points:
                 g.addEdge( collectNode, weightNode, calcWeightEdge )
 
                 # now, use the weights to run s8_monitor_input again
-                deps = [ eventCountNodes[ sample[1] ],
-                         weightNode,
+                deps = [ weightNode,
                          # we automatically include deps to input files
                          #qcdTreeNodes[ sample[1]
                          luminositySumNode,
-                         luminositySumByTrigger[ trigger[1] ],
-                         eventCountNodes[ sample[1] ]
+                         luminositySumMiter.getOneValue( trigger = trigger[1] ),
+                         eventCountMiter.getOneValue( dataset = sample[1] )
                        ]
     
 
                 reweightNode = run_monitor_input_helper( g,
                             step_postfix,
                             trigger_name = trigger[4],
-                            skip_events =  ComputeSkipCount(  eventCountNodes[ sample[1] ],
+                            skip_events =  ComputeSkipCount(  eventCountMiter.getOneValue( dataset = sample[1] ),
                                                                  trigger[1],
-                                                                 luminosityByTrigger,
-                                                                 luminosityNodes.values() ),
+                                                                 luminosityMiter ),
 
-                            event_count =  ComputeEventCount( eventCountNodes[ sample[1] ],
-                                                                 luminositySumByTrigger[ trigger[1] ],
-                                                                 luminosityNodes.values() ),
+
+                            event_count =  ComputeEventCount( eventCountMiter.getOneValue( dataset = sample[1] ),
+                                                                 trigger[1],
+                                                                 luminosityMiter ),
                             jet_pt = bin[1],
                             tag = opoint,
-                            input_files = qcdTreeNodes[ sample[1] ],
+                            input_files = qcdTreeMiter.getOneValue( dataset = sample[1] ),
                             muon_pt = "6..",
                             additional_dependencies = deps,
                             simulate_trigger = triggers_to_simulate[ trigger[1] ],
@@ -569,11 +609,13 @@ for opoint in operating_points:
 # then combine those with root_qcd [use the luminosity reported from Data running with Trigger DiJet20u]
 #
 class getLumi( LateBind ):
-    def __init__(self, lumiNode):
-        self.lumiNode = lumiNode
+    def __init__(self, lumiNodeList):
+        self.lumiNodes = lumiNodeList
     def bind( self, edge ):
-        return float( self.lumiNode.getValueFromOnlyOutputFile() )
-
+        retval = 0
+        for node in self.lumiNodes:
+            retval += float( self.node.getValueFromOnlyOutputFile() )
+        return retval
 def makeRootQCDFilenameFromInput( name ):
     pattern = "-qcd(.+?)-"
     match   = re.search( pattern, name )
@@ -599,14 +641,16 @@ class appendCommandLineSymlink( LateBind ):
         return self.currCommand
 
 def merge_with_root_qcd_helper( g, name , step_postfix,
-                                inputNodes, luminosityNode ):
+                                inputNodes, triggerName, lumiMiter ):
     mergeNode   =  Node( name = name ) 
     collectNode =  Node( name = "collect-" + name ) 
     # make the node
     g.addNode( mergeNode )
     g.addNode( collectNode )
     # Add the luminosity as a dependency
-    g.addEdge( luminosityNode, collectNode, NullEdge() )
+    for onenode in lumiMiter.get( trigger = triggerName ):
+        g.addEdge( onenode[0], collectNode, NullEdge() )
+
     # Add the previous S8 runs as a dependency
     for node in inputNodes:
         g.addEdge( node, collectNode, NullEdge() )
@@ -616,7 +660,7 @@ def merge_with_root_qcd_helper( g, name , step_postfix,
     #
     command = appendCommandLineSymlink( 
         currCommand = 
-            ["root_qcd", getLumi( luminosityNode ), "merge.root" ],
+            ["root_qcd", getLumi( lumiMiter.get( trigger = triggerName ) ), "merge.root" ],
         nodeList = inputNodes
     )
 
@@ -683,8 +727,9 @@ for opoint in operating_points:
         
             step_postfix = "-%s-%s-%s-noskip" % ( trigger[1], bin[0], opoint )
             mergeNode = merge_with_root_qcd_helper( g, "root-qcd" + step_postfix, step_postfix,
-                            inputNodes = skiplessS8Monitor[ opoint ][ bin[0] ][ trigger[1] ],
-                            luminosityNode = luminositySumByTrigger[ trigger[ 1 ] ]
+                            inputNodes  = skiplessS8Monitor[ opoint ][ bin[0] ][ trigger[1] ],
+                            triggerName = trigger[1],
+                            lumiMiter   = luminosityMiter
                         )
             mergekey = "%s-%s" %(bin[0], opoint) 
             if not mergekey in skiplessQCDMerge:
@@ -702,8 +747,9 @@ for opoint in operating_points:
                 inputNodes = skippedS8Monitor[ monitorKey ].values()
 
             mergeNode = merge_with_root_qcd_helper( g, "root-qcd" + step_postfix, step_postfix,
-                            inputNodes = inputNodes,
-                            luminosityNode = luminositySumByTrigger[ trigger[ 1 ] ]
+                            inputNodes  = inputNodes,
+                            triggerName = trigger[1],
+                            lumiMiter   = luminosityMiter
                         )
             if not mergekey in  skippedQCDMerge:
                 skippedQCDMerge[ mergekey ] = []

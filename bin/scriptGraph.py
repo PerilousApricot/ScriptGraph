@@ -13,7 +13,8 @@ def main():
     
                             
     try:
-        opts, args = getopt.getopt(sys.argv[1:], "hc:v", ["help", "cfg=", "list", "execute=", "describe=","push"])
+        opts, args = getopt.getopt(sys.argv[1:], "hc:v", ["help", "cfg=", "list",
+                                                          "execute=", "describe=","status=","push","recompute="])
     except getopt.GetoptError, err:
         # print help information and exit:
         print str(err) # will print something like "option -a not recognized"
@@ -30,6 +31,7 @@ def main():
             cfg = a
     confobj = imp.load_source( "myconfig", cfg )
     g = confobj.getGraph()
+    print "Graph Loaded"
     for o, a in opts:
         if o == "--list":
             listGraph( g )
@@ -38,7 +40,12 @@ def main():
         if o == "--status":
             getStatus( g, a )
         if o == "--describe":
-            describeEdge( g, a )
+            if a in g.getEdges():
+                describeEdge( g, a )
+            if a in g.getNodes():
+                describeNode( g, a )
+
+
         if o == "--push":
             pushGraph(g)
 
@@ -46,10 +53,13 @@ def usage():
     #enter usage here
     print "scriptGraph -"
     print "Common arguments:"
-    print "  --cfg=              : configuration with graph"
-    print "  --list              : gets current processing status of graph"
-    print "  --execute edgeName  : executes the given edge"
-    print "  --status edgeName   : returns the status of a single edge"
+    print "  --cfg=               : configuration with graph"
+    print "Commands:"
+    print "  --list               : gets current processing status of graph"
+    print "  --execute edgeName   : executes the given edge"
+    print "  --status edgeName    : returns the status of a single edge"
+    print "  --push               : runs any 'ready' edges"
+    print "  --recompute edgeName : recomputes a specified edge"
 
 def prettyPrintEdge( edge ):
     print " " + edge.getName() + " " + edge.getStatus()
@@ -70,6 +80,71 @@ def globEdges( g, name ):
             output.append( edge )
     return output
 
+def getAllParents( a, isEdge = False ):
+    parentEdges  = { 0 : [] }
+    seenEdges    = {}
+    # todo: use issubclass
+    if isEdge:
+        parentEdges[0].extend( a.getParent().getParents() )
+    else:
+        parentEdges[0].extend( a.getParents() )
+    
+    depth = -1
+    keepGoing = True
+    while keepGoing:
+        depth = depth + 1
+        parentEdges[ depth + 1 ] = []
+        if not parentEdges[ depth ]:
+            keepGoing = False
+            break
+
+        for edge in parentEdges[ depth ]:
+            print "edge %s" % edge.getParent()
+
+            if (edge.hasParent()):
+                print "accepted depth %s" % depth
+                for parent in edge.getParent().getParents():
+                    if parent.getName() in seenEdges:
+                        print "alreadyseen"
+                        continue
+                    print "Accepted"
+                    parentEdges[ depth + 1 ].append( parent )
+                    seenEdges[ parent.getName() ] = 1
+            print "bottom"
+
+    return parentEdges
+
+
+def describeNode( g, a ):
+    a = g.getNode( a )
+    a.checkStatus()
+    for edge in a.getParents():
+        edge.checkStatus()
+    for edge in a.getChildren():
+        edge.checkStatus()
+    a.isReady()
+
+    parentEdges = getAllParents( a )
+    print "Node name %s type %s.%s" % (a.getName(), a.__module__, a.__class__)
+    prettyPrintEdge( a )
+    fileList, fileMap = a.getFiles()
+    if a.getParents():
+        print "Node parents"
+        for depth in parentEdges.keys():
+            print "-Depth %s" % depth
+            for edge in parentEdges[ depth ]:
+                prettyPrintEdge( edge )
+                if (depth == 0) and (edge.getName() in fileMap):
+                    print "   OutputFile"
+                    for file in fileMap[edge.getName()]:
+                        print "    " + file
+
+    if a.getChildren():
+        print "Node children"
+        for edge in a.getChildren():
+            prettyPrintEdge( edge )
+
+
 def describeEdge( g, a ):
     a = g.getEdge( a )
     a.checkStatus()
@@ -79,6 +154,24 @@ def describeEdge( g, a ):
         edge.checkStatus()
 
     a.getParent().isReady()
+
+    parentEdges = getAllParents( a, isEdge = True )
+    print "Edge name %s type %s.%s" % (a.getName(), a.__module__, a.__class__)
+    prettyPrintEdge( a )
+    for depth in parentEdges.keys():
+        if not parentEdges[ depth ]:
+            break
+        print "-Depth %s" % depth
+        for edge in parentEdges[ depth ]:
+            #if isinstance( edge, NullEdge ):
+            #    continue
+
+            prettyPrintEdge( edge )
+            if (depth == 0) and (edge.getOutputFiles()):
+                print "   OutputFile"
+                for file in edge.getOutputFiles():
+                    print "    " + file
+    return
 
     print "Edge name %s type %s.%s" % (a.getName(), a.__module__, a.__class__)
     prettyPrintEdge( a )
