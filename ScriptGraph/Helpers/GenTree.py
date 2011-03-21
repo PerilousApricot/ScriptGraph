@@ -25,5 +25,3 @@ def genTree( g=None,input=None, nodeName=None,
 	g.addNode( treeNode )
 	g.addEdge( input, treeNode, produceTree  )
 	return treeNode, produceTree
-
-

@@ -4,6 +4,10 @@ import getopt
 from optparse import OptionParser
 import sys
 import imp
+import cProfile
+import pickle
+import os.path
+
 from ScriptGraph.Graph.NullEdge import NullEdge as NullEdge
 def main():
 #    usage = "usage: %prog [options] arg"
@@ -29,8 +33,8 @@ def main():
             sys.exit()
         elif o in ("-c", "--cfg"):
             cfg = a
-    confobj = imp.load_source( "myconfig", cfg )
-    g = confobj.getGraph()
+
+    g = getGraph( cfg )
     print "Graph Loaded"
     for o, a in opts:
         if o == "--list":
@@ -60,6 +64,27 @@ def usage():
     print "  --status edgeName    : returns the status of a single edge"
     print "  --push               : runs any 'ready' edges"
     print "  --recompute edgeName : recomputes a specified edge"
+
+def getGraph( path ):
+    confobj = imp.load_source( "myconfig", path )
+    return confobj.getGraph()
+
+    if not os.path.exists( path + ".pickled" ) or \
+        ( os.stat( path ).st_mtime > os.stat( path + ".pickled")):
+        
+        confobj = imp.load_source( "myconfig", path )
+        g = confobj.getGraph()
+        handle = open( path + ".pickled", "w+" )
+        sys.setrecursionlimit( 10000 )
+        pickle.dump( g, handle )
+        handle.close()
+        return g
+    else:
+        print "Loading pickled graph"
+        handle = open( path + ".pickled", "r" )
+        g = pickle.load( handle )
+        handle.close()
+        return g
 
 def prettyPrintEdge( edge ):
     print " " + edge.getName() + " " + edge.getStatus()
@@ -266,6 +291,6 @@ def listGraph( g ):
 
 
 if __name__ == "__main__":
+#      cProfile.run('main()')
     main()
-
 

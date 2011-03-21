@@ -44,8 +44,6 @@ class Edge( BaseEdge.Edge ):
 
 	def setWorkDir( self, dir ):
 		if ( self.workDir ):
-			print "Note tried to replace workdir for edge %s with %s previous %s\nThis is disabled by default" % (self.getName(), dir, self.workDir)
-			raise
 			return
 		self.workDir = dir
 	
@@ -111,7 +109,6 @@ class Edge( BaseEdge.Edge ):
 		self.copyInputFiles()
 		oldcwd = os.getcwd()
 		os.chdir( self.workDir )
-		print "edge.executing"
 		self.executeImpl( inputFiles, inputFileMap )
 		os.chdir( oldcwd )
 
@@ -119,7 +116,7 @@ class Edge( BaseEdge.Edge ):
 		raise NotImplementedError
 
 	def copyInputFiles( self ):
-		if getattr( self, "inputFiles", [] ):
+		if getattr( self, "inputFiles", []):
 			for file in self.inputFiles:
 				print "copying file %s in edge %s" % ( file, self.getName() )
 				shutil.copyfile( file, os.path.join( self.workDir, os.path.basename( file ) ) )
