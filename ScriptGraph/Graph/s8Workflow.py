@@ -73,11 +73,18 @@ binToAssociatedTriggers = {
 }
 
 binToReweightTrigers = {
+                    "40to60"  : [],
                     "60to80"  : [ "HLT_BTagMu_DiJet20U" ],
-                    "80to140" : [ "HLT_BTagMu_DiJet20U" ]
+                    "80to140" : [ "HLT_BTagMu_DiJet20U" ],
+                    "140to"   : []
 }
 
-operating_points = [ "TCHEM" ]
+operating_points = ["TCHEM", "TCHEL",
+                    "TCHPT",  "TCHPM",  "TCHPL",
+                    "SSVT",   "SSVM",   "SSVL",
+                    "SSVHET", "SSVHEM",
+                    "SSVHPT" ]
+operating_points = operating_points[0:2]
 jet_bins = [ ["40to60", "40..60"],
              ["60to80", "60..80" ],
              ["80to140", "80..140"],
@@ -443,6 +450,7 @@ for trigger in luminosityMiter.iterGrouped( 'trigger' ):
 #
 
 skiplessS8Monitor = {}
+skiplessQCDMiter  = Miter()
 for opoint in operating_points:
     for bin in jet_bins:
         for sample in qcd_datasets:
@@ -464,11 +472,19 @@ for opoint in operating_points:
                             input_files = qcdTreeMiter.getOneValue( dataset =  sample[1] ),
                             simulate_trigger = triggers_to_simulate[ trigger[1] ])
                 skiplessS8Monitor[ opoint ][ bin[0] ][ trigger[1] ].append( currNode )
+
+                skiplessQCDMiter.add( currNode, dataset = sample[1],
+                                                trigger = trigger[1],
+                                                bin     = bin[0],
+                                                opoint  = opoint )
+ 
+
 #
 # Run s8_monitor_input over data without skipping events
 #
 skiplessS8MonitorData = {}
 skiplessS8MonitorForMerge = {}
+skiplessDataMiter = Miter()
 for opoint in operating_points:
     for bin in jet_bins:
         for sample in trigger_list_linked.keys():
@@ -496,10 +512,16 @@ for opoint in operating_points:
                     skiplessS8MonitorForMerge[ merge_key ] = []
                 skiplessS8MonitorForMerge[ merge_key ].append( monitor_node )
 
+                skiplessDataMiter.add( monitor_node, dataset = sample[1],
+                                                     trigger = trigger[1],
+                                                     bin     = bin[0],
+                                                     opoint  = opoint )
+ 
 #
 # Run s8_monitor_input over QCD, taking skipevent/eventcount into consideration
 #
 skippedS8Monitor = {}
+skippedQCDMiter  = Miter()
 for opoint in operating_points:
     for bin in jet_bins:
         for trigger in trigger_list:
@@ -534,11 +556,16 @@ for opoint in operating_points:
                     skippedS8Monitor[nodekey] = {}
 
                 skippedS8Monitor[ nodekey ][ sample[1] ] = currNode
-
+                skippedQCDMiter.add( currNode, dataset = sample[1],
+                                               trigger = trigger[1],
+                                               bin     = bin[0],
+                                               opoint  = opoint )
+ 
 #
 # An additional wrinkle, some bin/trigger QCD combinations need to be reweighted. Fun.
 #
 reweightedS8Monitor = {}
+reweightedMiter = Miter()
 for opoint in operating_points:
     for bin in jet_bins:
         for trigger in trigger_list:
@@ -600,12 +627,16 @@ for opoint in operating_points:
                 if not step_key in reweightedS8Monitor:
                     reweightedS8Monitor[ step_key ] = {}
                 reweightedS8Monitor[ step_key ][ sample[1] ] = reweightNode
-                
+
+                reweightedMiter.add( reweightNode, dataset = sample[1],
+                                                   trigger = trigger[1],
+                                                   bin     = bin[0],
+                                                   opoint  = opoint )
             
 
 
 #
-# root_qcd to stich the qcd files together
+# root_qcd to stitch the qcd files together we want to collapse on pt_hat
 # then combine those with root_qcd [use the luminosity reported from Data running with Trigger DiJet20u]
 #
 class getLumi( LateBind ):
@@ -681,6 +712,11 @@ def makeRootQCDInputList( inputNodes ):
         retval.append( makeRootQCDFilenameFromInput( node.getName() )[0] )
     return retval
 
+
+#
+# Use hadd to collapse on triggers. We then have 1 file for [data|MC] * bin * opoint
+#
+
 def hadd_helper( g, name, inputNodes ):
     collectNode = Node( "collect-" + name )
     haddNode    = Node( "haddNode-" + name    )
@@ -688,16 +724,26 @@ def hadd_helper( g, name, inputNodes ):
     g.addNode( collectNode )
     for node in inputNodes:
         g.addEdge( node, collectNode, NullEdge() )
+
     haddEdge = LocalScriptEdge.LocalScriptEdge( name = "hadd-%s" % name,
                                                  command = "hadd -f merged.root ",
                                                  output  = "merged.root",
                                                  addFileNamesToCommandLine = True,
                                                  noEmptyFiles = True)
     g.addEdge( collectNode, haddNode, haddEdge )
-    return g
+    return haddNode
 
 skiplessQCDMerge = {}
 skippedQCDMerge = {}
+
+skiplessQCDMiter = Miter()
+skippedQCDMiter  = Miter()
+
+
+haddedSkippedQCDMiter  = Miter()
+haddedSkiplessQCDMiter = Miter()
+haddedDataMiter        = Miter()
+
 for opoint in operating_points:
     for bin in jet_bins:
         # get the list of triggers for this bin
@@ -725,6 +771,7 @@ for opoint in operating_points:
             # we're using the qcd datasets for input files
             # first merge the skipless
         
+            # this is to collapse on pt_hat
             step_postfix = "-%s-%s-%s-noskip" % ( trigger[1], bin[0], opoint )
             mergeNode = merge_with_root_qcd_helper( g, "root-qcd" + step_postfix, step_postfix,
                             inputNodes  = skiplessS8Monitor[ opoint ][ bin[0] ][ trigger[1] ],
@@ -735,17 +782,19 @@ for opoint in operating_points:
             if not mergekey in skiplessQCDMerge:
                 skiplessQCDMerge[ mergekey ] = []
             skiplessQCDMerge[ mergekey ].append( mergeNode )
+            skiplessQCDMiter.add( mergeNode, opoint = opoint, bin = bin[0], trigger = trigger[1] )
 
             # now merge the skipped
             step_postfix = "-%s-%s-%s" % ( trigger[1], bin[0], opoint )
             
             # do we want to use the reweighed nodes or the old ones?
             monitorKey = "%s-%s-%s" % ( trigger[1], bin[0], opoint )
-            if monitorKey in reweightedS8Monitor:
+            if monitorKey in binToReweightTrigers[ bin[0] ]:
                 inputNodes = reweightedS8Monitor[ monitorKey ].values()
             else:
                 inputNodes = skippedS8Monitor[ monitorKey ].values()
-
+            
+            # collapse on pt_hat
             mergeNode = merge_with_root_qcd_helper( g, "root-qcd" + step_postfix, step_postfix,
                             inputNodes  = inputNodes,
                             triggerName = trigger[1],
@@ -754,32 +803,39 @@ for opoint in operating_points:
             if not mergekey in  skippedQCDMerge:
                 skippedQCDMerge[ mergekey ] = []
             skippedQCDMerge[ mergekey ].append( mergeNode )
+            skippedQCDMiter.add( mergeNode, opoint = opoint, bin = bin[0], trigger = trigger[1] )
+
 
         # END TRIGGER LOOP, THIS IS OVER bin and opoint
+        
+        # Collapse on trigger
+        haddedSkippedQCDMiter.add( 
+                            hadd_helper( g, mergekey + "skip", skippedQCDMerge[ mergekey ] ),
+                            opoint = opoint,
+                            bin = bin[0] )
+        haddedSkiplessQCDMiter.add(
+                            hadd_helper( g, mergekey + "noskip", skiplessQCDMerge[ mergekey ] ),
+                            opoint = opoint,
+                            bin = bin[0] )
+        haddedDataMiter.add(
+                            hadd_helper( g, mergekey + "data", skiplessS8MonitorForMerge[ mergekey ] ),
+                            opoint = opoint,
+                            bin = bin[0] )
 
-        hadd_helper( g, mergekey + "skip", skippedQCDMerge[ mergekey ] )
-        hadd_helper( g, mergekey + "noskip", skiplessQCDMerge[ mergekey ] )
-        hadd_helper( g, mergekey + "data", skiplessS8MonitorForMerge[ mergekey ] )
-        # need to hadd the skipped and skipless ones to smoosh the triggers
-                
-#           mergeNode = Node( name="root_qcd-" + step_postfix )
-#           luminosityNode = luminositySumByTrigger[ trigger[1] ]
-#           qcdSets = getFilenames( edgeList = skiplessS8Monitor[ opoint ][ bin[0] ] )
-#           merge_edge = LocalScriptEdge.LocalScriptEdge(
-#                           command = appendCommandLine( 
-#                               currCommand = 
-#                                   ["root_qcd", getLumi( luminosityNode ), "merge.root" ],
-#                               nodeList = skiplessS8Monitor[ opoint ][ bin[0] ][ trigger[1] ] ),
-#                           output  = "merge.root",
-#                           noEmptyFiles = True,
-#                           name = "run_root_qcd-" + step_postfix )
-#           g.addNode( mergeNode )
-#           # Add the luminosity as a dependency
-#           g.addEdge( luminosityNode, mergeNode, NullEdge() )
-#           # Add the previous S8 runs as a dependency
-#           for node in skiplessS8Monitor[ opoint ][ bin[0] ][ trigger[1] ]:
-#               g.addEdge( node, mergeNode, NullEdge() )
-            
+#
+# Make some comparison plots
+#
+webRoot  = "/afs/fnal.gov/files/home/room3/meloam/public_html/s8/v-1/"
+httpRoot = "http://home.fnal.gov/~meloam/s8/v-1/"
+
+plotMiter = Miter()
+uploadMiter = Miter()
+
+mcVsDataCollect = Node( name = "mcVsData-collect" )
+mcVsDataWebpage = Node( name = "mcVsData-page" )
+
+for (onedata, onemc) in haddedDataMiter.zip( haddedSkippedQCDMiter ):
+    print "Will zip opoint %s bin %s" % (onedata[1]['opoint'], onedata[1]['bin'])
 
 def getGraph( ):
     global g

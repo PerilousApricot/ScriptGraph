@@ -68,6 +68,13 @@ class Miter( type([]) ):
                 retval.append( oneval )
         return retval
 
+    def hasValMatching( self, **keys ):
+        keyvals = keys.keys()
+        for oneval in self.iterMany( *keyvals ):
+            if self.valMatchesKeyValPairs( oneval, keys ):
+                return True
+        return False
+
     def getValues( self, **keys ):
         retval = []
         for val in self.get( **keys ):
@@ -87,6 +94,11 @@ class Miter( type([]) ):
             if val[1][key] != keys[key]:
                 return None
         return val
+
+    def zip( self, other ):
+        for val in self.vals:
+            if other.hasValMatching( **val[1] ):
+                yield (val, other.getOne( **val[1] ))
 
     def __len__( self ):
         return len( self.vals )
