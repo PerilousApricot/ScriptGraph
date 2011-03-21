@@ -14,9 +14,14 @@ from ScriptGraph.Helpers.BindCrabWorkDir import BindCrabWorkDir
 from ScriptGraph.Helpers.BindSubstitutes import BindSubstitutes
 from ScriptGraph.Helpers.BindFileList import BindFileList
 from ScriptGraph.Helpers.Miter import Miter
+from ScriptGraph.Helpers.BindFunction import BindFunction
+from ScriptGraph.Graph.GeneratePageEdge import GeneratePageEdge
+
+
 import ScriptGraph.Graph.CondorScriptEdge as CondorScriptEdge
 g = Graph.Graph()
-g.setWorkDir("/uscms_data/d2/meloam/s8workflow")
+baseWorkDir = "/uscms_data/d2/meloam/s8workflow"
+g.setWorkDir( baseWorkDir )
 
 # <dataset name> <shorthand>
 data_datasets = [ ['/BTau/Run2010B-Dec22ReReco_v1/AOD', 'RUN2010B'],
@@ -84,16 +89,25 @@ operating_points = ["TCHEM", "TCHEL",
                     "SSVT",   "SSVM",   "SSVL",
                     "SSVHET", "SSVHEM",
                     "SSVHPT" ]
-operating_points = operating_points[0:2]
+
+operating_points = operating_points[0:1]
+
 jet_bins = [ ["40to60", "40..60"],
              ["60to80", "60..80" ],
              ["80to140", "80..140"],
              ["140to", "140.."]
            ]
 
+
+#
+# Global lists
+#
+singleMonitorMiter = Miter()
+comparisonMonitorMiter = Miter()
 #
 # Helpers
 #
+monitorInputLinkMiter = Miter()
 
 def run_monitor_input_helper(   g,
                                 step_postfix,   
@@ -104,6 +118,7 @@ def run_monitor_input_helper(   g,
                                 log = None,
                                 output = None,
                                 tag = None,
+                                fileKey = None,
                                 skip_events = False,
                                 event_count = False,
                                 additional_dependencies = False,
@@ -114,7 +129,8 @@ def run_monitor_input_helper(   g,
     currNode    = Node( name = "s8_monitor_input" + step_postfix )
     g.addNode( collectNode )
     g.addNode( currNode )
-
+    
+#    targetName = 'run_s8_monitor_input-qcd50to80-hltjet20u-40to60-TCHEM-noskip'
     if input_files and isinstance( input_files, NodeModule.Node ):
         g.addEdge( input_files, collectNode, NullEdge() )
     elif input_files and isinstance( input_files, type([]) ):
@@ -150,7 +166,7 @@ def run_monitor_input_helper(   g,
     if input_files and \
             (isinstance( input_files, NodeModule.Node ) or\
              isinstance( input_files, type([]) ) ):
-        commandLine.extend(["-i", BindFileList( name="input.txt", filePattern="s8_tree" )])
+        commandLine.extend(["-i", BindFileList( name="input.txt", filePattern="s8_tree", relative=True)])
     elif input_files:
         raise RuntimeError, "no input files? %s" % input_files
 
@@ -158,12 +174,20 @@ def run_monitor_input_helper(   g,
         commandLine.extend(["--reweight-trigger", reweight_trigger])
     if simulate_trigger:
         commandLine.extend(["--simulate-trigger" ])
+    if not fileKey:
+        raise RuntimeError, "Need a file key"
+
+    
     currEdge = CondorScriptEdge.CondorScriptEdge( \
+            inputSharing  = monitorInputLinkMiter,
+            filePattern = "s8_tree",
+            fileKey = fileKey,
             name = "run_s8_monitor_input" + step_postfix,
             command = commandLine,
             preludeLines = [ "OLDCWD=`pwd`", "cd /uscms/home/meloam/","source sets8.sh","cd $OLDCWD" ],
             output = output,
             noEmptyFiles = True)
+    monitorInputLinkMiter.add( currEdge, fileKey = fileKey )
     g.addEdge( collectNode, currNode, currEdge )
     return currNode
     
@@ -466,12 +490,22 @@ for opoint in operating_points:
                 currNode = run_monitor_input_helper( g,
                             jet_pt = bin[1],
                             tag = opoint,
+                            fileKey = sample[1],
                             trigger_name = trigger[4],
                             step_postfix = step_postfix,
                             muon_pt = "6..",
                             input_files = qcdTreeMiter.getOneValue( dataset =  sample[1] ),
                             simulate_trigger = triggers_to_simulate[ trigger[1] ])
                 skiplessS8Monitor[ opoint ][ bin[0] ][ trigger[1] ].append( currNode )
+                singleMonitorMiter.add( currNode,dataset = sample[1],
+                                                trigger = trigger[1],
+                                                bin     = bin[0],
+                                                opoint  = opoint,
+                                                njetpt  = True,
+                                                njeteta = True,
+                                                privert = True,
+                                                type    = "skipless" )
+ 
 
                 skiplessQCDMiter.add( currNode, dataset = sample[1],
                                                 trigger = trigger[1],
@@ -502,6 +536,7 @@ for opoint in operating_points:
                         run_monitor_input_helper( g,
                             jet_pt = bin[1],
                             tag = opoint,
+                            fileKey = sample,
                             trigger_name = trigger[4],
                             step_postfix = step_postfix,
                             muon_pt = "6..",
@@ -511,8 +546,16 @@ for opoint in operating_points:
                 if not merge_key in skiplessS8MonitorForMerge:
                     skiplessS8MonitorForMerge[ merge_key ] = []
                 skiplessS8MonitorForMerge[ merge_key ].append( monitor_node )
-
-                skiplessDataMiter.add( monitor_node, dataset = sample[1],
+                singleMonitorMiter.add( monitor_node,dataset = sample,
+                                                trigger = trigger[1],
+                                                bin     = bin[0],
+                                                opoint  = opoint,
+                                                njetpt  = True,
+                                                njeteta = True,
+                                                privert = True,
+                                                type    = "data" )
+ 
+                skiplessDataMiter.add( monitor_node, dataset = sample,
                                                      trigger = trigger[1],
                                                      bin     = bin[0],
                                                      opoint  = opoint )
@@ -537,6 +580,7 @@ for opoint in operating_points:
                 currNode = run_monitor_input_helper( g,
                             step_postfix,
                             trigger_name = trigger[4],
+                            fileKey = sample[1],
                             skip_events =  ComputeSkipCount(  eventCountMiter.getOneValue( dataset = sample[1] ),
                                                                  trigger[1],
                                                                  luminosityMiter ),
@@ -560,7 +604,16 @@ for opoint in operating_points:
                                                trigger = trigger[1],
                                                bin     = bin[0],
                                                opoint  = opoint )
- 
+
+                singleMonitorMiter.add( currNode,dataset = sample[1],
+                                                trigger = trigger[1],
+                                                bin     = bin[0],
+                                                opoint  = opoint,
+                                                njetpt  = True,
+                                                njeteta = True,
+                                                privert = True,
+                                                type    = "skipped" )
+
 #
 # An additional wrinkle, some bin/trigger QCD combinations need to be reweighted. Fun.
 #
@@ -607,6 +660,7 @@ for opoint in operating_points:
 
                 reweightNode = run_monitor_input_helper( g,
                             step_postfix,
+                            fileKey = sample[1],
                             trigger_name = trigger[4],
                             skip_events =  ComputeSkipCount(  eventCountMiter.getOneValue( dataset = sample[1] ),
                                                                  trigger[1],
@@ -632,6 +686,15 @@ for opoint in operating_points:
                                                    trigger = trigger[1],
                                                    bin     = bin[0],
                                                    opoint  = opoint )
+                
+                singleMonitorMiter.add( reweightNode,dataset = sample[1],
+                                                trigger = trigger[1],
+                                                bin     = bin[0],
+                                                opoint  = opoint,
+                                                njetpt  = True,
+                                                njeteta = True,
+                                                privert = True,
+                                                type    = "reweight" )
             
 
 
@@ -644,8 +707,10 @@ class getLumi( LateBind ):
         self.lumiNodes = lumiNodeList
     def bind( self, edge ):
         retval = 0
+        print ("str %s" % self.lumiNodes.__class__) + "class"
         for node in self.lumiNodes:
-            retval += float( self.node.getValueFromOnlyOutputFile() )
+            print "sublumi %s" % node
+            retval += float( node[0].getValueFromOnlyOutputFile() )
         return retval
 def makeRootQCDFilenameFromInput( name ):
     pattern = "-qcd(.+?)-"
@@ -783,7 +848,15 @@ for opoint in operating_points:
                 skiplessQCDMerge[ mergekey ] = []
             skiplessQCDMerge[ mergekey ].append( mergeNode )
             skiplessQCDMiter.add( mergeNode, opoint = opoint, bin = bin[0], trigger = trigger[1] )
-
+            singleMonitorMiter.add( mergeNode,\
+                                                trigger = trigger[1],
+                                                bin     = bin[0],
+                                                opoint  = opoint,
+                                                njetpt  = True,
+                                                njeteta = True,
+                                                privert = True,
+                                                type    = "skipless_root_qcd" )
+ 
             # now merge the skipped
             step_postfix = "-%s-%s-%s" % ( trigger[1], bin[0], opoint )
             
@@ -805,29 +878,216 @@ for opoint in operating_points:
             skippedQCDMerge[ mergekey ].append( mergeNode )
             skippedQCDMiter.add( mergeNode, opoint = opoint, bin = bin[0], trigger = trigger[1] )
 
+            singleMonitorMiter.add( currNode,\
+                                                trigger = trigger[1],
+                                                bin     = bin[0],
+                                                opoint  = opoint,
+                                                njetpt  = True,
+                                                njeteta = True,
+                                                privert = True,
+                                                type    = "skipped_root_qcd" )
+ 
 
         # END TRIGGER LOOP, THIS IS OVER bin and opoint
         
         # Collapse on trigger
+        currNode = hadd_helper( g, mergekey + "skip", skippedQCDMerge[ mergekey ] )
         haddedSkippedQCDMiter.add( 
-                            hadd_helper( g, mergekey + "skip", skippedQCDMerge[ mergekey ] ),
+                            currNode,
                             opoint = opoint,
                             bin = bin[0] )
+        singleMonitorMiter.add( currNode,\
+                                                bin     = bin[0],
+                                                opoint  = opoint,
+                                                njetpt  = True,
+                                                njeteta = True,
+                                                privert = True,
+                                                type    = "hadd_skip" )
+ 
+        currNode = hadd_helper( g, mergekey + "noskip", skiplessQCDMerge[ mergekey ] )
         haddedSkiplessQCDMiter.add(
-                            hadd_helper( g, mergekey + "noskip", skiplessQCDMerge[ mergekey ] ),
+                            currNode,
                             opoint = opoint,
                             bin = bin[0] )
+
+        singleMonitorMiter.add( currNode,\
+                                                bin     = bin[0],
+                                                opoint  = opoint,
+                                                njetpt  = True,
+                                                njeteta = True,
+                                                privert = True,
+                                                type    = "hadd_skipless" )
+        currNode = hadd_helper( g, mergekey + "data", skiplessS8MonitorForMerge[ mergekey ] )
         haddedDataMiter.add(
-                            hadd_helper( g, mergekey + "data", skiplessS8MonitorForMerge[ mergekey ] ),
+                            currNode,
                             opoint = opoint,
                             bin = bin[0] )
+
+        singleMonitorMiter.add( currNode,\
+                                                bin     = bin[0],
+                                                opoint  = opoint,
+                                                njetpt  = True,
+                                                njeteta = True,
+                                                privert = True,
+                                                type    = "hadd_data" )
+ 
+#
+# Some website stuff
+#
+allPages = Miter()
+webRoot  = "/afs/fnal.gov/files/home/room3/meloam/public_html/s8/v-1/"
+httpRoot = "http://home.fnal.gov/~meloam/s8/v-1/"
+
+
+#
+# Keep track of event counts
+#
+eventCollect = Node( name = "event-collect" )
+eventPage    = Node( name = "event-page" )
+g.addNode( eventCollect )
+g.addNode( eventPage )
+for event in eventCountMiter.iterMany( 'dataset' ):
+    g.addEdge( event[0], eventCollect, NullEdge() )
+
+def eventText( args ):
+    retval  = "<html><head><title>s8 event counts</title></head>"
+    retval += "<body><h1>event counts</h1><ul>"
+    for onepage in args['eventCount'].iterMany():
+        retval += '<li>%s - %s</a></li>' % \
+                ( onepage[1]['dataset'],
+                  int(onepage[0].getValueFromOnlyOutputFile())
+                   )
+    retval += "</ul></body></html>"
+    return retval
+   
+
+eventPageEdge = GeneratePageEdge( name = "generateEventPage",
+                                  filename = "eventscount.html",
+                                  webRoot = webRoot,
+                                  httpRoot = httpRoot,
+                                  content = BindFunction( func = eventText,
+                                                          args = { 'eventCount' :eventCountMiter } ) )
+
+g.addEdge( eventCollect, eventPage, eventPageEdge )
+allPages.add( eventPage, shortname = "eventscount.html", linkname = "Event Count",
+                         description = "Number of events per dataset/trigger" )
+
+#
+# Keep track of luminosities
+#
+lumiCollect = Node( name = "lumi-collect" )
+lumiPage    = Node( name = "lumi-page" )
+g.addNode( lumiCollect )
+g.addNode( lumiPage )
+#             luminosityMiter.add( lumiNode, dataset = dataset[1], trigger = trigger[1] )
+for lumi in luminosityMiter.iterMany( 'dataset', 'trigger' ):
+    g.addEdge( lumi[0], lumiCollect, NullEdge() )
+
+def lumiText( args ):
+    retval  = "<html><head><title>s8 lumi counts</title></head>"
+    retval += "<body><h1>lumi counts</h1><ul>"
+    for onepage in args['lumiCount'].iterMany():
+        retval += '<li>%s - %s - %s</a></li>' % \
+                ( onepage[1]['dataset'],
+                  onepage[1]['trigger'],
+                  onepage[0].getValueFromOnlyOutputFile()
+                   )
+    retval += "</ul></body></html>"
+    return retval
+   
+
+lumiPageEdge = GeneratePageEdge( name = "generateLumiPage",
+                                  filename = "lumicount.html",
+                                  webRoot = webRoot,
+                                  httpRoot = httpRoot,
+                                  content = BindFunction( func = lumiText,
+                                                          args = { 'lumiCount' : luminosityMiter } ) )
+g.addEdge( lumiCollect, lumiPage, lumiPageEdge )
+allPages.add( lumiPage, shortname = "lumicount.html", linkname = "Luminosity",
+                         description = "Number of luminosities per dataset/trigger" )
+
+#
+# Generate single monitoring plots
+#
+singleMonitorImages = Miter()
+singleMonitorTarget = Node( name = "singleMonitorTarget" )
+singleMonitorAbs = os.path.join( webRoot, 'singleMonitor' )
+singleMonitorRel  = 'singleMonitor'
+
+g.addNode( singleMonitorTarget )
+
+count = 0
+singleComparisonMacro = '/uscms/home/meloam/scratch/s8workflow/SingleComparison.C'
+
+def getFileNameStub( args ):
+    return args['node'].getOnlyFile()
+
+singleMonitorPlotList = Miter()
+for onenode in singleMonitorMiter.iterMany():
+    count += 1
+    subMonitorAbs = os.path.join( singleMonitorAbs, onenode[1]['opoint'], onenode[1]['bin'] )
+    subMonitorRel = os.path.join( singleMonitorRel, onenode[1]['opoint'], onenode[1]['bin'] )
+    monitorNames = [ [ "MonitorAnalyzer/n/njet_pt", "-njetpt.png", "Njet_{pt}" ],
+                     [ "MonitorAnalyzer/n/njet_eta","-njeteta.png", "Njet_{eta}"],
+                     [ "MonitorAnalyzer/generic/pvs","-pvs.png", "N_{pv}" ] ]
+    fileDesc = onenode[1]['type']
+    if 'dataset' in onenode[1]:
+        fileDesc += '-%s' % onenode[1]['dataset']
+    if 'trigger' in onenode[1]:
+        fileDesc += '-%s' % onenode[1]['trigger']
+
+    for oneMonitor in monitorNames:
+        #root -b -q 'SingleComparison.C("edges/run_s8_monitor_input-RUN2010A-hltjet10u-60to80-TCHEM-noskip/output.root","MonitorAnalyzer/n/njet_pt","test2.png","this is a header")'
+
+        targetFileNameAbs = os.path.join( subMonitorAbs, "%s%s" % ( fileDesc, oneMonitor[1] ) )
+        targetFileNameRel = os.path.join( subMonitorRel, "%s%s" % ( fileDesc, oneMonitor[1] ) )
+        getImage = LocalScriptEdge.LocalScriptEdge(
+                            name = "extract-monitor-%s-%s" % (count, oneMonitor[1]) , 
+                            command = BindSubstitutes("root -b -q '%s(\"%s\",\"%s\",\"%s\",\"%s\")'" % \
+                                ( singleComparisonMacro, '%s', 
+                                    oneMonitor[0], targetFileNameAbs, oneMonitor[2] ),
+                                  [BindFunction( func = getFileNameStub,
+                                                 args = { 'node': onenode[0] } )] ),
+                            output=targetFileNameAbs, 
+                            noEmptyFiles=True)
+        getImage.setWorkDir( subMonitorAbs )
+        g.addEdge( onenode[0], singleMonitorTarget, getImage )
+
+        singleMonitorPlotList.add( targetFileNameRel, opoint = onenode[1]['opoint'], 
+                                                      bin    = onenode[1]['bin'],
+                                                      trigger= onenode[1]['trigger'] if 'trigger' in onenode[1] else "none",
+                                                      dataset= onenode[1]['dataset'] if 'dataset' in onenode[1] else "none",
+                                                      plot   = oneMonitor[1] )
+
+targetList = []
+tagList    = {}
+for oneplot in singleMonitorPlotList.iterMany():
+    targetTags = { "opoint" : oneplot[1]['opoint']
+                            , "bin" : oneplot[1]['bin']
+                            , "trigger" : oneplot[1]['trigger']
+                            , "dataset" : oneplot[1]['dataset']
+                            , "plot" : oneplot[1]['plot'] }
+    for key in targetTags:
+        if not key in tagList:
+            tagList[ key ] = {}
+        tagList[ key ][ targetTags[ key ] ] = 1
+
+    targetTags[ "url" ] = oneplot[0]
+    targetList.append( targetTags )
+import json
+handle = open( "/afs/fnal.gov/files/home/room3/meloam/public_html/s8/v-1/input_single.json", "w+")
+handle.write( json.dumps( { "data"    : targetList,
+                            "tagList" : tagList } ) )
+handle.close()
+
+
+        
+
+
 
 #
 # Make some comparison plots
 #
-webRoot  = "/afs/fnal.gov/files/home/room3/meloam/public_html/s8/v-1/"
-httpRoot = "http://home.fnal.gov/~meloam/s8/v-1/"
-
 plotMiter = Miter()
 uploadMiter = Miter()
 
@@ -836,6 +1096,36 @@ mcVsDataWebpage = Node( name = "mcVsData-page" )
 
 for (onedata, onemc) in haddedDataMiter.zip( haddedSkippedQCDMiter ):
     print "Will zip opoint %s bin %s" % (onedata[1]['opoint'], onedata[1]['bin'])
+
+#
+# Set up global index
+#
+
+def pageText( args ):
+    retval  = "<html><head><title>Global s8 index</title></head>"
+    retval += "<body><h1>s8 workflow output!</h1><ul>"
+    for onepage in args['pages'].iterMany():
+        retval += '<li><a href="%s">%s</a> - %s</a></li>' % \
+                ( httpRoot + onepage[1]['shortname'],
+                  onepage[1]['linkname'],
+                  onepage[1]['description'] )
+    retval += "</ul></body></html>"
+    return retval
+
+globalPageCollect = Node( name = "global-page-collect" )
+globalPage = Node( name = "global-page-generate" )
+g.addNode( globalPageCollect )
+g.addNode( globalPage )
+for event in allPages.iterMany():
+    g.addEdge( event[0], globalPageCollect, NullEdge() )
+
+globalPageEdge = GeneratePageEdge( name     = "generateGlobalPage",
+                                   filename = "index.html",
+                                   webRoot  = webRoot,
+                                   httpRoot = httpRoot,
+                                   content  = BindFunction( func = pageText,
+                                                args = { 'pages' : allPages } ) )
+g.addEdge( globalPageCollect, globalPage, globalPageEdge )
 
 def getGraph( ):
     global g
