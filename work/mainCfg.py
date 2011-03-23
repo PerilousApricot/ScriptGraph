@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-import os, os.path, re
+import os, os.path, re, sys
 import ScriptGraph.Graph.Graph as Graph
 import ScriptGraph.Graph.Node as NodeModule
 from ScriptGraph.Graph.Node import Node as Node
@@ -17,6 +17,8 @@ from ScriptGraph.Helpers.Miter import Miter
 from ScriptGraph.Helpers.BindFunction import BindFunction
 from ScriptGraph.Graph.GeneratePageEdge import GeneratePageEdge
 
+sys.path.append( os.path.dirname( os.path.abspath( __file__ )  ))
+from s8.MonitorInput import run_monitor_input_helper
 
 import ScriptGraph.Graph.CondorScriptEdge as CondorScriptEdge
 g = Graph.Graph()
@@ -108,89 +110,6 @@ comparisonMonitorMiter = Miter()
 # Helpers
 #
 monitorInputLinkMiter = Miter()
-
-def run_monitor_input_helper(   g,
-                                step_postfix,   
-                                input_files = None, #can be a node from event generation
-                                muon_pt = None,
-                                jet_pt  = None,
-                                trigger_name = None,
-                                log = None,
-                                output = None,
-                                tag = None,
-                                fileKey = None,
-                                skip_events = False,
-                                event_count = False,
-                                additional_dependencies = False,
-                                data=False,
-                                reweight_trigger = False,
-                                simulate_trigger = False):
-    collectNode = Node( name = "collect-s8_monitor_input" + step_postfix )
-    currNode    = Node( name = "s8_monitor_input" + step_postfix )
-    g.addNode( collectNode )
-    g.addNode( currNode )
-    
-#    targetName = 'run_s8_monitor_input-qcd50to80-hltjet20u-40to60-TCHEM-noskip'
-    if input_files and isinstance( input_files, NodeModule.Node ):
-        g.addEdge( input_files, collectNode, NullEdge() )
-    elif input_files and isinstance( input_files, type([]) ):
-        for node in input_files:
-            g.addEdge( node, collectNode, NullEdge() )
-
-    if not additional_dependencies:
-        additional_dependencies = []
-    for dep in additional_dependencies:
-        g.addEdge( dep, collectNode, NullEdge() )
-    
-    commandLine = ["s8_monitor_input"]
-    if log:
-        commandLine.extend(["-d", log])
-    if muon_pt:
-        commandLine.extend(["--muon-pt=%s"% muon_pt])
-    if trigger_name:
-        commandLine.extend(["--trigger=%s"% trigger_name])
-    if output:
-        commandLine.extend(["-o", output])
-    else:
-        output = "output.root"
-    if tag:
-        commandLine.extend(["--tag", tag])
-    if event_count:
-        commandLine.extend(["-e", event_count])
-    if skip_events:
-        commandLine.extend(["-s", skip_events])
-    if jet_pt:
-        commandLine.extend(["--jet-pt", jet_pt])
-    if data:
-        commandLine.extend(["--data", data])
-    if input_files and \
-            (isinstance( input_files, NodeModule.Node ) or\
-             isinstance( input_files, type([]) ) ):
-        commandLine.extend(["-i", BindFileList( name="input.txt", filePattern="s8_tree", relative=True)])
-    elif input_files:
-        raise RuntimeError, "no input files? %s" % input_files
-
-    if reweight_trigger:
-        commandLine.extend(["--reweight-trigger", reweight_trigger])
-    if simulate_trigger:
-        commandLine.extend(["--simulate-trigger" ])
-    if not fileKey:
-        raise RuntimeError, "Need a file key"
-
-    
-    currEdge = CondorScriptEdge.CondorScriptEdge( \
-            inputSharing  = monitorInputLinkMiter,
-            filePattern = "s8_tree",
-            fileKey = fileKey,
-            name = "run_s8_monitor_input" + step_postfix,
-            command = commandLine,
-            preludeLines = [ "OLDCWD=`pwd`", "cd /uscms/home/meloam/","source sets8.sh","cd $OLDCWD" ],
-            output = output,
-            noEmptyFiles = True)
-    monitorInputLinkMiter.add( currEdge, fileKey = fileKey )
-    g.addEdge( collectNode, currNode, currEdge )
-    return currNode
-    
 
 #
 # Helpers for s8_monitor_input
@@ -878,7 +797,7 @@ for opoint in operating_points:
             skippedQCDMerge[ mergekey ].append( mergeNode )
             skippedQCDMiter.add( mergeNode, opoint = opoint, bin = bin[0], trigger = trigger[1] )
 
-            singleMonitorMiter.add( currNode,\
+            singleMonitorMiter.add( mergeNode,\
                                                 trigger = trigger[1],
                                                 bin     = bin[0],
                                                 opoint  = opoint,
@@ -1126,6 +1045,11 @@ globalPageEdge = GeneratePageEdge( name     = "generateGlobalPage",
                                    content  = BindFunction( func = pageText,
                                                 args = { 'pages' : allPages } ) )
 g.addEdge( globalPageCollect, globalPage, globalPageEdge )
+
+def getDatasets( ):
+    global qcdTreeMiter, dataTreeMiter
+    return { "qcd" : qcdTreeMiter,
+             "data": dataTreeMiter }
 
 def getGraph( ):
     global g
