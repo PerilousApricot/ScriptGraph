@@ -18,7 +18,6 @@ class Node( BaseNode.Node ):
 
     def setWorkDir( self, dir ):
         if self.workDir:
-            print "Note tried to replace workdir for node %s with %s\nThis is disabled by default" % (self.getName(), dir)
             return
         self.workDir = dir
     

@@ -70,7 +70,7 @@ class LocalScriptEdge( Edge.Edge ):
 
 		if self.noEmptyFiles:
 			if not os.path.exists( self.output ):
-				raise RuntimeError, "Output from script wasn't found"
+				raise RuntimeError, "Output from script wasn't found (%s/%s)" % (self.workDir, self.output)
 			if os.path.getsize( self.output ) == 0:
 				raise RuntimeError, "Output from script had zero bytes"
 			

@@ -24,8 +24,7 @@ class Graph( BaseGraph.Graph ):
     def __init__( self ):
         BaseGraph.Graph.__init__( self )
         self.workingDir = '.'
-
-
+    
     def setWorkDir( self, dir ):
         """ sets the root of the workdir for this graph, this can be overrided though """
         self.workingDir = dir
@@ -33,6 +32,9 @@ class Graph( BaseGraph.Graph ):
             node.setWorkDir( os.path.join( self.workingDir, "nodes", node.getName() ) )
         for edge in self.edges.values():
             edge.setWorkDir( os.path.join( self.workingDir, "edges", edge.getName() ) )
+ 
+    def getWorkDir( self ):
+        return self.workingDir
 
     def makeWorkDirs( self ):
         if not os.path.exists( self.workingDir ):
@@ -49,11 +51,14 @@ class Graph( BaseGraph.Graph ):
             edge.clearStatus()
 
     def checkStatus( self ):
-        for node in self.nodes.values():
-            node.checkStatus()
+        count = 0
         for edge in self.edges.values():
             edge.checkStatus()
-    
+            count += 1
+            if (count % 500) == 0:
+                print "Checked %s/%s edges" % ( count, len(self.edges) )
+        for node in self.nodes.values():
+            node.checkStatus()   
     def getReadyNodes( self ):
         retval = []
         for node in self.nodes.values():
@@ -72,7 +77,7 @@ class Graph( BaseGraph.Graph ):
                 nextEdgeList.append( edge )
         return nextEdgeList
 
-    maxProcesses = 2
+    maxProcesses = 16
     
     def pushGraph( self ):
         print "Pushing graph submissions, current edges"
@@ -83,17 +88,23 @@ class Graph( BaseGraph.Graph ):
         currPids = {}
         masterPid = os.getpid()
         
-        totalCondorJobs = 0
-
+        totalCondorJobs   = 0
+        condorJobsToGroup = 0
+        maxCondorJobs     = 3000
         if totalCondorJobs == 0:
             print "Calling out to condor_q"
-            output = commands.getoutput("condor_q -global `whoami`")
+            output = commands.getoutput("condor_q  `whoami`")
             matchObj = re.search("(\d+) jobs; (\d+) idle, (\d+) running, (\d+) held",output)
             if matchObj:
                 totalCondorJobs = int(matchObj.group(1))
 
-
+        condorGroups = {}
         for edge in nextEdgeList:
+            edgeParent = edge.getParent().getName()
+            if not nodeFileCache.get( edgeParent ):
+                    nodeFileCache[ edgeParent ], nodeFileMapCache[ edgeParent ] =\
+                        self.getNodeFiles( edgeParent )
+
             if currProcesses > self.maxProcesses:
                 print "Waiting on child to return"
                 while True:
@@ -104,19 +115,32 @@ class Graph( BaseGraph.Graph ):
                         break
             
             if issubclass( edge.__class__, CondorScriptEdge ):
-                totalCondorJobs += 1
                 
-                if totalCondorJobs > 150:
+                if totalCondorJobs > maxCondorJobs:
                     print "Too many Condor jobs running, continuing.."
                     continue
+
+                fileKey = edge.getFileKey()
+                if fileKey:
+                    if not fileKey in condorGroups:
+                        condorGroups[ fileKey ] = []
+                    condorGroups[ fileKey ].append( edge )
+
+                    if len( condorGroups[ fileKey ] ) > condorJobsToGroup:
+                        print "Executing batch of %s condor jobs together (shared input files)" % \
+                                        len( condorGroups[ fileKey ] )
+
+                        totalCondorJobs += 1
+                        edge.executeMany( condorGroups[ fileKey ], nodeFileCache, nodeFileMapCache )
+                        condorGroups[ fileKey ] = []
+                        continue
+                    else:
+                        continue
+
 
             onePid = os.fork()
             if onePid == 0:
                 edgeParent = edge.getParent().getName()
-                print "  examining %s" % edgeParent
-                if not nodeFileCache.get( edgeParent ):
-                    nodeFileCache[ edgeParent ], nodeFileMapCache[ edgeParent ] =\
-                        self.getNodeFiles( edgeParent )
                 print "  processing %s from %s to %s" % (edge.getName(), edge.getParent().getName(), edge.getChild().getName())
                 edge.execute( nodeFileCache[ edgeParent ], nodeFileMapCache[ edgeParent ] )
                 sys.stdout.flush()
@@ -129,8 +153,15 @@ class Graph( BaseGraph.Graph ):
             if os.getpid() != masterPid:
                 print "Shouldn't be here!"
                 os._exit(0)
-        
 
+        # looked at all the edges, drain the spare condor bits
+        for fileKey in condorGroups:
+            if totalCondorJobs < maxCondorJobs:
+                if condorGroups[ fileKey ]:
+                    print "Draining condor filekey %s" % fileKey
+                    edge = condorGroups[ fileKey ][0]
+                    edge.executeMany( condorGroups[ fileKey ], nodeFileCache, nodeFileMapCache )
+                    totalCondorJobs += 1
         
     def getInputs( self ):
         """ Returns input nodes """
@@ -149,8 +180,15 @@ class Graph( BaseGraph.Graph ):
         return retval
 
     def getNodeFiles( self, nodeName ):
-        return self.nodes[nodeName].getFiles()
+        return self.nodes[ nodeName ].getFiles()
     
+    def addGraph( self, o ):
+        for node in o.getNodes().values():
+            self.addNode( node )
+        
+        for edge in o.getEdges().values():
+            self.addEdge( edge.getParent(), edge.getChild(), edge )
+
     def addNode( self, node ):
         BaseGraph.Graph.addNode( self, node )
         node.setWorkDir( os.path.join( 

@@ -92,7 +92,7 @@ operating_points = ["TCHEM", "TCHEL",
                     "SSVHET", "SSVHEM",
                     "SSVHPT" ]
 
-operating_points = operating_points[0:1]
+# operating_points = operating_points[0:1]
 
 jet_bins = [ ["40to60", "40..60"],
              ["60to80", "60..80" ],

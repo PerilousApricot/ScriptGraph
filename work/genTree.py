@@ -43,20 +43,39 @@ qcd_datasets  = [
 default_trigger = "HLT_BTagMu*"
 # TODO: Update with the real list
 # <trigger name> <shorthand name< <min run> <max run>
-trigger_list_linked = { 'RUN2010B' : [ [ "HLT_BTagMu_DiJet20U*","hltdijet20u", "147196", "148818","HLT_BTagMu_DiJet20U" ],
-                                     [ "HLT_BTagMu_DiJet30U*","hltdijet30u", "148819", "149294","HLT_BTagMu_DiJet30U"   ],
-                                     [ "HLT_BTagMu_Jet20U"   ,"hltjet20u"  , "146428", "147116","HLT_BTagMu_Jet20U"  ] ],
-                        'RUN2010A' : [ [ "HLT_BTagMu_Jet10U"   ,"hltjet10u"  , "141961", "142039","HLT_BTagMu_Jet10U" ] ]
+trigger_list_linked = { 'RUN2010B' : [ [ "HLT_BTagMu_DiJet20U*","hltdijet20u", "147196", "148818","HLT_BTagMu_DiJet20U",
+            "/uscms/home/samvel/Code/System8/v5.1/CMSSW_3_8_7/src/EDModule/Analyzer/test/prod_11_02_24/BTau/dijet20u_not_dijet30u_json/Cert_132440-149442_7TeV_StreamExpress_Collisions10_JSON_v3.txt"],
+                                     [ "HLT_BTagMu_DiJet20U*","hltdijet20u-fullrange", "147196", "149294","HLT_BTagMu_DiJet20U",
+            "/uscms/home/samvel/Code/System8/v5.1/CMSSW_3_8_7/src/EDModule/Analyzer/test/prod_11_02_24/BTau/dijet20u_json/Cert_132440-149442_7TeV_StreamExpress_Collisions10_JSON_v3.txt"],
+                                     [ "HLT_BTagMu_DiJet30U*","hltdijet30u", "148819", "149294","HLT_BTagMu_DiJet30U",
+            "/uscms/home/samvel/Code/System8/v5.1/CMSSW_3_8_7/src/EDModule/Analyzer/test/prod_11_02_24/BTau/dijet30u_json/Cert_132440-149442_7TeV_StreamExpress_Collisions10_JSON_v3.txt"],
+#                                     [ "HLT_BTagMu_DiJet10U*","hltdijet10u", "147196", "149294","HLT_BTagMu_DiJet10U" ],
+                                     [ "HLT_BTagMu_Jet20U*"   ,"hltjet20u"  , "146428", "147116","HLT_BTagMu_Jet20U",
+            "/uscms/home/samvel/Code/System8/v5.1/CMSSW_3_8_7/src/EDModule/Analyzer/test/prod_11_02_18/BTau/jet20u/Cert_132440-149442_7TeV_StreamExpress_Collisions10_JSON_v3.txt"] ],
+                        'RUN2010A' : [ [ "HLT_BTagMu_Jet10U*"   ,"hltjet10u"  , "141961", "142039","HLT_BTagMu_Jet10U",
+            "/uscms/home/samvel/Code/System8/v5.1/CMSSW_3_8_7/src/EDModule/Analyzer/test/prod_11_02_18/BTau/jet10u/Cert_132440-149442_7TeV_StreamExpress_Collisions10_JSON_v3.txt"] ]
                                   }
+#/uscms/home/samvel/Code/System8/v5.1/CMSSW_3_8_7/src/EDModule/Analyzer/test/prod_11_02_18/BTau/jet10u/Cert_132440-149442_7TeV_StreamExpress_Collisions10_JSON_v3.txt
+#/uscms/home/samvel/Code/System8/v5.1/CMSSW_3_8_7/src/EDModule/Analyzer/test/prod_11_02_18/BTau/jet20u/Cert_132440-149442_7TeV_StreamExpress_Collisions10_JSON_v3.txt
+#/uscms/home/samvel/Code/System8/v5.1/CMSSW_3_8_7/src/EDModule/Analyzer/test/prod_11_02_24/BTau/dijet20u_json/Cert_132440-149442_7TeV_StreamExpress_Collisions10_JSON_v3.txt
+#/uscms/home/samvel/Code/System8/v5.1/CMSSW_3_8_7/src/EDModule/Analyzer/test/prod_11_02_24/BTau/dijet20u_not_dijet30u_json/Cert_132440-149442_7TeV_StreamExpress_Collisions10_JSON_v3.txt
+#/uscms/home/samvel/Code/System8/v5.1/CMSSW_3_8_7/src/EDModule/Analyzer/test/prod_11_02_24/BTau/dijet30u_json/Cert_132440-149442_7TeV_StreamExpress_Collisions10_JSON_v3.txt
+#dijet20u_json -> DiJet20 (large)
+#dijet20u_not_dijet30u_json -> DiJet20 (small)
+#dijet30u_json -> DiJet30
 
 #trigger_list_linked = { 'RUN2010B' : trigger_list_linked['RUN2010B'] }
-trigger_list = [ [ "HLT_BTagMu_DiJet20U*","hltdijet20u", "147196", "148818","HLT_BTagMu_DiJet20U" ],
+trigger_list = [ [ "HLT_BTagMu_DiJet10U*","hltdijet10u", "147196", "149294","HLT_BTagMu_DiJet10U" ],
+                 [ "HLT_BTagMu_DiJet20U*","hltdijet20u", "147196", "148818","HLT_BTagMu_DiJet20U" ],
+                 [ "HLT_BTagMu_DiJet20U*","hltdijet20u", "147196", "149294","HLT_BTagMu_DiJet20U" ],
                  [ "HLT_BTagMu_DiJet30U*","hltdijet30u", "148819", "149294","HLT_BTagMu_DiJet30U" ],
                  [ "HLT_BTagMu_Jet10U"   ,"hltjet10u"  , "141961", "142039","HLT_BTagMu_Jet10U" ],
                  [ "HLT_BTagMu_Jet20U"   ,"hltjet20u"  , "146428", "147116","HLT_BTagMu_Jet20U" ] 
 ]
 
-trigger_to_sample = { 'hltdijet20u' : 'RUN2010B',
+trigger_to_sample = { 
+    'hltdijet10u' : 'RUN2010B',
+    'hltdijet20u' : 'RUN2010B',
     'hltdijet30u' : 'RUN2010B',
     'hltjet20u' : 'RUN2010B',
     'hltjet10u' : 'RUN2010A'}
@@ -129,14 +148,14 @@ for dataset in data_datasets:
         #
         # Produce tree over the whole dataset (sans trigger)
         #
-        treeNode,_ = genTree( g = g, input = nullInput,
-                                nodeName = "tree-%s" % dataset[1],
-                                edgeName = "generateTree-%s-%s" % (dataset[1], "default_trigger"),
-                                crabCfg  = "/uscms_data/d2/meloam/s8workflow/crab_data.cfg", 
-                                cmsswCfg = "/uscms_data/d2/meloam/s8workflow/cmssw_data.py",
-                                dataset  = dataset[0],  
-                                cmsswReplacements = [ ["CURRENTTRIGGER", default_trigger ] ],
-                                crabReplacements  = [ [ "RUNSELECTION", "" ] ] )
+#        treeNode,_ = genTree( g = g, input = nullInput,
+#                                nodeName = "tree-%s" % dataset[1],
+#                                edgeName = "generateTree-%s-%s" % (dataset[1], "default_trigger"),
+#                                crabCfg  = "/uscms_data/d2/meloam/s8workflow/crab_data.cfg", 
+#                                cmsswCfg = "/uscms_data/d2/meloam/s8workflow/cmssw_data.py",
+#                                dataset  = dataset[0],  
+#                                cmsswReplacements = [ ["CURRENTTRIGGER", default_trigger ] ],
+#                                crabReplacements  = [ [ "RUNSELECTION", "" ] ] )
 
         #
         # Now we need to run over each trigger a dataset's supposed to have
@@ -152,8 +171,8 @@ for dataset in data_datasets:
                                 cmsswCfg = "/uscms_data/d2/meloam/s8workflow/cmssw_data.py",
                                 dataset  = dataset[0],  
                                 cmsswReplacements = [ ["CURRENTTRIGGER", trigger[0] ] ],
-                                crabReplacements  = [ [ "RUNSELECTION", "runselection=%s-%s" %
-                                                                    (trigger[2], trigger[3]) ] ] )
+                                crabReplacements  = [ [ "RUNSELECTION", "lumi_mask=%s" %
+                                                                    (trigger[5]) ] ] )
 
             #dataTreeNodes.append( treeNode )
             #dataTreeByName[ dataset[1] ] = treeNode
@@ -249,7 +268,8 @@ for trigger in luminosityMiter.iterGrouped( 'trigger' ):
 def getDatasets( ):
     global qcdTreeMiter, dataTreeMiter
     return { "qcd" : qcdTreeMiter,
-             "data": dataTreeMiter }
+             "data": dataTreeMiter,
+             "luminosityMiter": luminosityMiter }
 
 def getGraph( ):
     global g

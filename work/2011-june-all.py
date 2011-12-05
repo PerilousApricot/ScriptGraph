@@ -31,7 +31,7 @@ exports   = genTree.getDatasets()
 
 g.addGraph( treeGraph )
 
-simple_mode = True
+simple_mode = False
 
 operating_points = ["SSVHEM","TCHEM", "TCHEL", "TCHET",
                     "TCHPT",  "TCHPM",  "TCHPL",
@@ -39,9 +39,8 @@ operating_points = ["SSVHEM","TCHEM", "TCHEL", "TCHET",
                     "SSVHET",
                     "SSVHPT" ]
 operating_points = ["SSVHEM", "SSVHPT", "TCHEL", "TCHEM", "TCHPM", "TCHPT","JPL"]
-
 if simple_mode:
-#    operating_points = ["SSVHEM","TCHEM"]
+    operating_points = ["SSVHEM","TCHEM"]
     pass
 jet_bins = [
         [ "20to30", "20..30", "15", "35" ],
@@ -119,6 +118,8 @@ systematicDataList = [
 	[ "gsplit", [] ],
     [ "lowpv", ["--primary-vertices=0..4"] ],
     [ "medpv", ["--primary-vertices=4..6"] ],
+    [ "lowpv-ptrel", ["--primary-vertices=0..5"] ],
+    [ "highpv-ptrel", ["--primary-vertices=5.."] ],
     [ "highpv",["--primary-vertices=6.."]  ],
     [ "loweta",["--jet-eta=0..1.2"]],
     [ "higheta",["--jet-eta=1.2..2.4"]],
@@ -126,19 +127,96 @@ systematicDataList = [
     [ "drop5B", []],
     [ "drop10B", []],
     [ "drop20B", []],
+    [ "scalebm05", []],
+    [ "scalebm10", []],
+    [ "scalebm20", []],
+    [ "scalebp05", []],
+    [ "scalebp10", []],
+    [ "scalebp20", []],
+    [ "scaleclm05", []],
+    [ "scaleclm10", []],
+    [ "scaleclm20", []],
+    [ "scaleclp05", []],
+    [ "scaleclp10", []],
+    [ "scaleclp20", []],
+    [ "scalenm05", []],
+    [ "scalenm10", []],
+    [ "scalenm20", []],
+    [ "scalenp05", []],
+    [ "scalenp10", []],
+    [ "scalenp20", []],
+    [ "scalepm05", []],
+    [ "scalepm10", []],
+    [ "scalepm20", []],
+    [ "scalepp05", []],
+    [ "scalepp10", []],
+    [ "scalepp20", []],
+
+
 ]
 
-systematicsMCUsingNominalData = [ "drop5B","drop10B", "drop20B", "ttbar" ]
+systematicsMCUsingNominalData =  ["drop5B","drop10B", "drop20B", "ttbar",
+     "scalebm05",
+     "scalebm10", 
+     "scalebm20", 
+     "scalebp05", 
+     "scalebp10", 
+     "scalebp20", 
+     "scaleclm05",
+     "scaleclm10",
+     "scaleclm20",
+     "scaleclp05",
+     "scaleclp10",
+     "scaleclp20",
+     "scalenm05",
+     "scalenm10", 
+     "scalenm20", 
+     "scalenp05", 
+     "scalenp10", 
+     "scalenp20",
+     "scalepm05",
+     "scalepm10", 
+     "scalepm20", 
+     "scalepp05", 
+     "scalepp10", 
+     "scalepp20",
+
+
+     ]
 
 if simple_mode:
     systematicDataList = [ [ "nominal", [] ],
-                           [ "drop5B",  [] ],
-                            [ "drop10B", []],
-                            [ "drop20B", []],
+                           [ "lowpv-ptrel", ["--primary-vertices=0..5"] ],
+    [ "highpv-ptrel", ["--primary-vertices=5.."] ],
 
-                         ]
-    systematicsMCUsingNominalData = [ "drop5B","drop10B", "drop20B" ]
+     ]
+    systematicsMCUsingNominalData = [     "scalebm05",
+     "scalebm10", 
+     "scalebm20", 
+     "scalebp05", 
+     "scalebp10", 
+     "scalebp20", 
+     "scaleclm05",
+     "scaleclm10",
+     "scaleclm20",
+     "scaleclp05",
+     "scaleclp10",
+     "scaleclp20",
+          "scalenm05",
+     "scalenm10", 
+     "scalenm20", 
+     "scalenp05", 
+     "scalenp10", 
+     "scalenp20",
+     "scalepm05",
+     "scalepm10", 
+     "scalepm20", 
+     "scalepp05", 
+     "scalepp10", 
+     "scalepp20",]
 
+
+    
 systematicsDataMiter = Miter()
 for systematic in systematicDataList:
 
@@ -272,20 +350,101 @@ systematicsMCList = [
     [ "lowpv", ["--primary-vertices=0..4"] ],
     [ "medpv", ["--primary-vertices=4..6"] ],
     [ "highpv",["--primary-vertices=6.."]  ],
+    [ "lowpv-ptrel", ["--primary-vertices=0..5"] ],
+    [ "highpv-ptrel", ["--primary-vertices=5.."] ],
     [ "loweta",["--jet-eta=0..1.2"]],
     [ "higheta",["--jet-eta=1.2..2.4"]],
     [ "ttbar",[]],
     [ "drop5B", ["--dropBFraction=0.05"]], 
     [ "drop10B", ["--dropBFraction=0.10"]], 
     [ "drop20B", ["--dropBFraction=0.20"]], 
+    [ "scalebm05", []],
+    [ "scalebm10", []],
+    [ "scalebm20", []],
+    [ "scalebp05", []],
+    [ "scalebp10", []],
+    [ "scalebp20", []],
+    [ "scaleclm05", []],
+    [ "scaleclm10", []],
+    [ "scaleclm20", []],
+    [ "scaleclp05", []],
+    [ "scaleclp10", []],
+    [ "scaleclp20", []],
+    [ "scalenm05", []],
+    [ "scalenm10", []],
+    [ "scalenm20", []],
+    [ "scalenp05", []],
+    [ "scalenp10", []],
+    [ "scalenp20", []],
+    [ "scalepm05", []],
+    [ "scalepm10", []],
+    [ "scalepm20", []],
+    [ "scalepp05", []],
+    [ "scalepp10", []],
+    [ "scalepp20", []],
+
 
 ]
+
+
+systematicsUsingNominalMC =  ["scalebm05",
+     "scalebm10", 
+     "scalebm20", 
+     "scalebp05", 
+     "scalebp10", 
+     "scalebp20", 
+     "scaleclm05",
+     "scaleclm10",
+     "scaleclm20",
+     "scaleclp05",
+     "scaleclp10",
+     "scaleclp20",
+     "scalenm05",
+     "scalenm10", 
+     "scalenm20", 
+     "scalenp05", 
+     "scalenp10", 
+     "scalenp20",
+     "scalepm05",
+     "scalepm10", 
+     "scalepm20", 
+     "scalepp05", 
+     "scalepp10", 
+     "scalepp20",
+     "ttbar" ]
+
+solversToSkip =  ["scalebm05",
+     "scalebm10", 
+     "scalebm20", 
+     "scalebp05", 
+     "scalebp10", 
+     "scalebp20", 
+     "scaleclm05",
+     "scaleclm10",
+     "scaleclm20",
+     "scaleclp05",
+     "scaleclp10",
+     "scaleclp20",
+     "scalenm05",
+     "scalenm10", 
+     "scalenm20", 
+     "scalenp05", 
+     "scalenp10", 
+     "scalenp20",
+     "scalepm05",
+     "scalepm10", 
+     "scalepm20", 
+     "scalepp05", 
+     "scalepp10", 
+     "scalepp20",
+]
+
 if simple_mode:
     systematicsMCList = [ [ "nominal", [] ],
-                          [ "drop5B", ["--dropBFraction=0.05"]],
-                          [ "drop10B", ["--dropBFraction=0.10"]], 
-                          [ "drop20B", ["--dropBFraction=0.20"]], 
-]
+        [ "lowpv-ptrel", ["--primary-vertices=0..5"] ],
+        [ "highpv-ptrel", ["--primary-vertices=5.."] ],
+
+                     ]
 
 
 #
@@ -294,7 +453,8 @@ if simple_mode:
 #
 preweightMiterSyst   = Miter()
 for systematic in systematicsMCList:
-    if systematic[0] == 'ttbar':
+    # Some systematics just borrows data from nominal
+    if systematic[0] in systematicsUsingNominalMC:
         continue
 
     for dataset in exports['qcd'].iterMany():
@@ -320,7 +480,8 @@ for systematic in systematicsMCList:
 mcForWeightsSyst = Miter()
 preweightMergeMiterSyst = Miter()
 for systematic in systematicsMCList:
-    if systematic[0] == 'ttbar':
+    # Some systematics just borrows data from nominal
+    if systematic[0] in systematicsUsingNominalMC:
         continue
 
     for currmerge in preweightMiterSyst.iterGrouped( 'bin', 'syst' ):
@@ -334,6 +495,14 @@ for systematic in systematicsMCList:
 
 			mcForWeightsSyst.add(mergeNode, bin=  currmerge.vals[0][1]['bin'] , syst= systematic[0] )
 
+    if ( systematic[0] == 'nominal' ):
+        for borrow_syst in systematicsUsingNominalMC:
+            systematicsDataMiter.add( monitor_node, dataset = sample,
+                                         trigger = trigger[1],
+                                         bin     = bin[0],
+                                         opoint  = opoint,
+                                         syst    = borrow_syst )
+
 
 #
 # SYST Calculate the weights (on a bin-only basis) SYST
@@ -342,8 +511,10 @@ weightMiterSyst = Miter()
 
 #print "data %s mc %s" % (dataForWeights, mcForWeights )
 for systematic in systematicsMCList:
-    if systematic[0] == 'ttbar':
+    # Some systematics just borrows data from nominal
+    if systematic[0] in systematicsUsingNominalMC:
         continue
+
 
     for bin in jet_bins:
         step_key    = "-%s-%s" % ( bin[0],systematic[0] )
@@ -373,7 +544,8 @@ for systematic in systematicsMCList:
     
         weightMiterSyst.add( calcWeightEdge, bin=bin[0], syst=systematic[0] )
         if systematic[0] == 'nominal':
-            weightMiterSyst.add( calcWeightEdge, bin=bin[0], syst='ttbar' )
+            for borrow_syst in systematicsUsingNominalMC:
+                weightMiterSyst.add( calcWeightEdge, bin=bin[0], syst=borrow_syst )
 
 #
 # reweight s8_monito_input 
@@ -381,6 +553,10 @@ for systematic in systematicsMCList:
 
 reweightSystMiter = Miter()
 for systematic in systematicsMCList:
+    # Some systematics just borrows data from nominal
+    if systematic[0] in systematicsUsingNominalMC:
+        continue
+
     for opoint in operating_points:
         for bin in jet_bins:
             if systematic[0] == 'ttbar':
@@ -428,12 +604,6 @@ for systematic in systematicsMCList:
 
 reweightMergePthatSystMiter = Miter()
 for currmerge in reweightSystMiter.iterGrouped( 'bin', 'opoint', 'syst' ):
-    if currmerge.vals[0][1]['syst'] == 'ttbar':
-        reweightMergePthatSystMiter.add( currmerge.getOneValue(),
-                        bin     = currmerge.vals[0][1]['bin'],
-                        opoint  = currmerge.vals[0][1]['opoint'],
-                        syst    = currmerge.vals[0][1]['syst'])
-        continue
         
     step_postfix = "-%s-%s-%s-reweight" % ( currmerge.vals[0][1]['syst'],currmerge.vals[0][1]['bin'],currmerge.vals[0][1]['opoint'] )
     mergeNode = merge_with_root_qcd_helper( g, "root-qcd" + step_postfix, step_postfix,
@@ -443,6 +613,15 @@ for currmerge in reweightSystMiter.iterGrouped( 'bin', 'opoint', 'syst' ):
                         bin     = currmerge.vals[0][1]['bin'],
                         opoint  = currmerge.vals[0][1]['opoint'],
                         syst    = currmerge.vals[0][1]['syst'])
+
+    if ( currmerge.vals[0][1]['syst'] == 'nominal' ):
+        for borrow_syst in systematicsMCUsingNominalData:
+            reweightMergePthatSystMiter.add( mergeNode,
+                        bin     = currmerge.vals[0][1]['bin'],
+                        opoint  = currmerge.vals[0][1]['opoint'],
+                        syst    = borrow_syst )
+
+    
                         
 
 #
@@ -464,62 +643,6 @@ webroot   = "/afs/fnal.gov/files/home/room3/meloam/public_html/s8/2011plots"
 #webRoot  = "/uscms_data/d2/meloam/input39x2/edges/plots/"
 httpRoot = "http://home.fnal.gov/~meloam/s8/39x/"
 #print singleMonitorMiter.vals
-
-#
-# Generate single monitoring plots
-#
-#singleMonitorImages = Miter()
-#singleMonitorTarget = Node( name = "singleMonitorTarget" )
-#singleMonitorAbs = os.path.join( webRoot, 'singleMonitor' )
-#singleMonitorRel  = 'singleMonitor'
-#
-#g.addNode( singleMonitorTarget )
-#
-#count = 0
-#singleComparisonMacro = '/uscms/home/meloam/scratch/s8workflow/SingleComparison.C'
-#
-#def getFileNameStub( args ):
-#    return args['node'].getOnlyFile()
-#
-#singleMonitorPlotList = Miter()
-#for onenode in singleMonitorMiter.iterMany():
-#
-#    print "miter is %s" % onenode[1]
-#    count += 1
-#    subMonitorAbs = os.path.join( singleMonitorAbs )#, onenode[1]['opoint'], onenode[1]['bin'] )
-#    subMonitorRel = os.path.join( singleMonitorRel )#, onenode[1]['opoint'], onenode[1]['bin'] )
-#    monitorNames = [ [ "MonitorAnalyzer/n/njet_pt", "-njetpt.png", "Njet_{pt}" ],
-#                     [ "MonitorAnalyzer/n/njet_eta","-njeteta.png", "Njet_{eta}"],
-#                     [ "MonitorAnalyzer/generic/pvs","-pvs.png", "N_{pv}" ] ]
-#    fileDesc = onenode[1]['type']
-#    if 'dataset' in onenode[1]:
-#        fileDesc += '-%s' % onenode[1]['dataset']
-#    if 'trigger' in onenode[1]:
-#        fileDesc += '-%s' % onenode[1]['trigger']
-#
-#    for oneMonitor in monitorNames:
-#        #root -b -q 'SingleComparison.C("edges/run_s8_monitor_input-RUN2010A-hltjet10u-60to80-TCHEM-noskip/output.root","MonitorAnalyzer/n/njet_pt","test2.png","this is a header")'
-#
-#        targetFileNameAbs = os.path.join( subMonitorAbs, "%s%s" % ( fileDesc, oneMonitor[1] ) )
-#        targetFileNameRel = os.path.join( subMonitorRel, "%s%s" % ( fileDesc, oneMonitor[1] ) )
-#        getImage = LocalScriptEdge(
-#                            name = "extract-monitor-%s-%s" % (count, oneMonitor[1]) , 
-#                            command = BindSubstitutes("root -b -q '%s(\"%s\",\"%s\",\"%s\",\"%s\")'" % \
-#                                ( singleComparisonMacro, '%s', 
-#                                    oneMonitor[0], targetFileNameAbs, oneMonitor[2] ),
-#                                  [BindFunction( func = getFileNameStub,
-#                                                 args = { 'node': onenode[0] } )] ),
-#                            output=targetFileNameAbs, 
-#                            noEmptyFiles=True)
-#        getImage.setWorkDir( subMonitorAbs )
-#        g.addEdge( onenode[0], singleMonitorTarget, getImage )
-#
-#        singleMonitorPlotList.add( targetFileNameRel, opoint = onenode[1]['opoint'], 
-#                                                      bin    = onenode[1]['bin'],
-#                                                      trigger= onenode[1]['trigger'] if 'trigger' in onenode[1] else "none" )
-#
-#
-
 def getFileNameStub( args ):
     print "looking at %s" % args['node'].getName()
     try:
@@ -531,36 +654,38 @@ def getFileNameStub( args ):
 
 s8macro = "/uscms/home/meloam/s8/CMSSW_3_9_8_patch1/src/RecoBTag/PerformanceMeasurements/test/S8Solver/run_s8.C"
 scaleFactors = Miter()
-#
-#for (onedata, onemc) in haddedDataFinalMiterSyst.zip( haddedMCFinalMiter ):
-#    print "zipping1 %s, %s" % (onedata[1],onemc[1])
-#    opoint = onedata[1]['opoint']
-#    collect = Node( name = "collect-s8solve-close-%s" % opoint )
-#    solution= Node( name = "s8volve-close-%s" % opoint )
-#    g.addNode( collect )
-#    g.addNode( solution )
-#    g.addEdge( onedata[0], collect, NullEdge() )
-#    g.addEdge( onemc[0]  , collect, NullEdge() )
-#
-#    runs8edge = LocalScriptEdge(
-#                        name = "s8solver-closure-%s" % ( opoint) , 
-#                        command = BindSubstitutes("root -b -q '%s(\"%s\",\"%s\")' &> output.txt" % \
-#                            ( s8macro, '%s','%s' ),
-#                              [BindFunction( func = getFileNameStub,
-#                                             args = { 'node': onemc[0] } ),
-#                               BindFunction( func = getFileNameStub,
-#                                             args = { 'node': onemc[0] } )] ),
-#                        output="output.txt", 
-#                        noEmptyFiles=True)
-#    g.addEdge( collect, solution, runs8edge )
-#    scaleFactors.add( runs8edge, type = "closure", opoint=opoint )
-#
 
+solversToSkip =  ["scalebm05",
+     "scalebm10", 
+     "scalebm20", 
+     "scalebp05", 
+     "scalebp10", 
+     "scalebp20", 
+     "scaleclm05",
+     "scaleclm10",
+     "scaleclm20",
+     "scaleclp05",
+     "scaleclp10",
+     "scaleclp20",
+     "scalenm05",
+     "scalenm10", 
+     "scalenm20", 
+     "scalenp05", 
+     "scalenp10", 
+     "scalenp20",
+     "scalepm05",
+     "scalepm10", 
+     "scalepm20", 
+     "scalepp05", 
+     "scalepp10", 
+     "scalepp20",
+]
 closureSolver = Miter()
 for (onedata, onemc) in haddedDataFinalSystMiter.zip( haddedMCFinalSystMiter ):
-    print "zipping1 %s, %s" % (onedata[1],onemc[1])
     opoint = onedata[1]['opoint']
     syst   = onedata[1]['syst']
+    if syst in solversToSkip:
+        continue
     collect = Node( name = "collect-s8solve-close-%s-%s" % (syst,opoint) )
     solution= Node( name = "s8volve-close-%s-%s" % (syst, opoint) )
     g.addNode( collect )
@@ -589,57 +714,13 @@ def getFileNameForClosureStub( args ):
     except:
         print "failed at %s" % args['node'].getName()
         raise
-#
-#for closure in scaleFactors.iterManyMatchingConditions( type = "closure" ):
-#    print "got closure %s" % closure[1]['opoint']
-#    opoint = closure[1]['opoint']
-#    closureNode = Node( name = "systeamatics-closure-%s" % opoint )
-#    g.addNode( closureNode )
-#    runs8edge = LocalScriptEdge(
-#                        name = "systematics-closure--%s" % ( opoint) , 
-#                        command = BindSubstitutes("rm mc.root ; ln -s %s mc.root ; root_systematics output.root %s mc.root",
-#                              [BindFunction( func = getFileNameForClosureStub,
-#                                             args = { 'node': closure[0].getChild() } ),
-#                               BindFunction( func = getFileNameForClosureStub,
-#                                             args = { 'node': closure[0].getChild() } )] ),
-#                        output="output.root", 
-#                        noEmptyFiles=True)
-#
-#    g.addEdge( closure[0].getChild(), closureNode, runs8edge )
-#
 
-
-#
-# TIME FOR SOLVN
-#
-
-#for (onedata, onemc) in haddedDataFinalMiter.zip( haddedMCFinalMiter ):
-#    print "zipping1 %s, %s" % (onedata[1],onemc[1])
-#    opoint = onedata[1]['opoint']
-#    collect = Node( name = "collect-s8solve-%s" % opoint )
-#    solution= Node( name = "s8volve-%s" % opoint )
-#    g.addNode( collect )
-#    g.addNode( solution )
-#    g.addEdge( onedata[0], collect, NullEdge() )
-#    g.addEdge( onemc[0]  , collect, NullEdge() )
-#
-#    runs8edge = LocalScriptEdge(
-#                        name = "s8solver-%s" % ( opoint) , 
-#                        command = BindSubstitutes("root -b -q '%s(\"%s\",\"%s\")' &> output.txt" % \
-#                            ( s8macro, '%s','%s' ),
-#                              [BindFunction( func = getFileNameStub,
-#                                             args = { 'node': onedata[0] } ),
-#                               BindFunction( func = getFileNameStub,
-#                                             args = { 'node': onemc[0] } )] ),
-#                        output="output.txt", 
-#                        noEmptyFiles=True)
-#    g.addEdge( collect, solution, runs8edge )
-#    scaleFactors.add( runs8edge, type = "nominal" )
-#
 normalSolver = Miter()
 for (onedata, onemc) in haddedDataFinalSystMiter.zip( haddedMCFinalSystMiter ):
     opoint = onedata[1]['opoint']
     syst   = onedata[1]['syst']
+    if syst in solversToSkip:
+        continue
     collect = Node( name = "collect-s8solve-%s-%s" % (syst,opoint) )
     solution= Node( name = "s8volve-%s-%s" % (syst,opoint) )
     g.addNode( collect )
@@ -680,6 +761,65 @@ for (onedata, onemc) in haddedDataFinalSystMiter.zip( haddedMCFinalSystMiter ):
                                 name = "s8solver-%s-%s-pasbin2" % (syst, opoint) , 
                                 command = BindSubstitutes("root -b -q '%s(\"%s\",\"%s\",%s)' &> output.txt" % \
                                     ( s8macro, '%s','%s', extra ),
+                                      [BindFunction( func = getFileNameStub,
+                                                     args = { 'node': onedata[0] } ),
+                                       BindFunction( func = getFileNameStub,
+                                                     args = { 'node': onemc[0] } )] ),
+                                output="output.txt", 
+                                noEmptyFiles=True)
+            g.addEdge( collect, solution, runs8edge )
+            normalSolver.add( runs8edge, syst = syst, opoint = opoint )
+
+# raise/lower tags
+raiseLower = [
+    [ "scalebm05", 0.95,1.0 ],
+    [ "scalebm10", 0.90,1.0 ],
+    [ "scalebm20", 0.80,1 ],
+    [ "scalebp05", 1.05,1 ],
+    [ "scalebp10", 1.10,1 ],
+    [ "scalebp20", 1.20,1 ],
+    [ "scaleclm05",1.00,0.95 ],
+    [ "scaleclm10",1.00,0.90 ],
+    [ "scaleclm20",1.00,0.80 ],
+    [ "scaleclp05",1.00,1.05 ],
+    [ "scaleclp10",1.00,1.10 ],
+    [ "scaleclp20",1.00,1.20 ],
+    [ "scalepm05",1,1, 0.95,1.0 ],
+    [ "scalepm10",1,1, 0.90,1.0 ],
+    [ "scalepm20",1,1, 0.80,1 ],
+    [ "scalepp05",1,1, 1.05,1 ],
+    [ "scalepp10",1,1, 1.10,1 ],
+    [ "scalepp20",1,1, 1.20,1 ],
+    [ "scalenm05",1,1,1.00,0.95 ],
+    [ "scalenm10",1,1,1.00,0.90 ],
+    [ "scalenm20",1,1,1.00,0.80 ],
+    [ "scalenp05",1,1,1.00,1.05 ],
+    [ "scalenp10",1,1,1.00,1.10 ],
+    [ "scalenp20",1,1,1.00,1.20 ],
+
+
+
+]
+for (onedata, onemc) in haddedDataFinalSystMiter.zip( haddedMCFinalSystMiter ):
+    opoint = onedata[1]['opoint']
+    syst   = onedata[1]['syst']
+    if syst == 'nominal':
+        for ptstuff in raiseLower:
+            print ptstuff
+            syst    = ptstuff[0]
+            bscale  = ptstuff[1]
+            clscale = ptstuff[2]
+            collect = Node( name = "collect-s8solve-%s-%s" % (syst,opoint) )
+            solution= Node( name = "s8volve-%s-%s" % (syst,opoint) )
+            g.addNode( collect )
+            g.addNode( solution )
+            g.addEdge( onedata[0], collect, NullEdge() )
+            g.addEdge( onemc[0]  , collect, NullEdge() )
+
+            runs8edge = LocalScriptEdge(
+                                name = "s8solver-%s-%s-pasbin2" % (syst, opoint) , 
+                                command = BindSubstitutes("root -b -q '%s(\"%s\",\"%s\",%s,%.2g,%.2g)' &> output.txt" % \
+                                    ( s8macro, '%s','%s',0,bscale,clscale ),
                                       [BindFunction( func = getFileNameStub,
                                                      args = { 'node': onedata[0] } ),
                                        BindFunction( func = getFileNameStub,
@@ -760,6 +900,17 @@ if not simple_mode:
                         opoint = opoint,
                         syst = 'ttbar')
 
+    for opoint in operating_points:
+        combinedMiter.add(makeTableHelper( g, reference = normalSolver.getOneValue( syst = 'nominal', opoint = opoint ),
+                            syst1     = normalSolver.getOneValue( syst = 'lowpv-ptrel', opoint = opoint ),
+                            syst2     = normalSolver.getOneValue( syst = 'highpv-ptrel', opoint = opoint ),
+                            systname  = "syst.txt",
+                            outlatex  = "latex.txt",
+                            step_postfix = "%s-%s-pasbin2" % (opoint, 'pu-ptrel')),
+                        opoint = opoint,
+                        syst = 'pu-ptrel')
+
+
 
     for opoint in operating_points:
         combinedMiter.add(makeTableHelper( g, reference = normalSolver.getOneValue( syst = 'nominal', opoint = opoint ),
@@ -771,6 +922,18 @@ if not simple_mode:
                             step_postfix = "%s-%s-pasbin2" % (opoint, 'pu')),
                         opoint = opoint,
                         syst = 'pu')
+
+    for opoint in operating_points:
+        combinedMiter.add(makeTableHelper( g, reference = normalSolver.getOneValue( syst = 'nominal', opoint = opoint ),
+                            syst1     = normalSolver.getOneValue( syst = 'drop5B', opoint = opoint ),
+                            syst2     = normalSolver.getOneValue( syst = 'drop10B', opoint = opoint ),
+                            syst3     = normalSolver.getOneValue( syst = 'drop20B', opoint = opoint ),
+                            systname  = "syst.txt",
+                            outlatex  = "latex.txt",
+                            step_postfix = "%s-%s-pasbin2" % (opoint, 'dropB')),
+                        opoint = opoint,
+                        syst = 'dropB')
+
 
 def getTotalAddStub( args ):
     try:

@@ -10,7 +10,7 @@
 #   print val ## val = [ 'foo', { "param1" : "a", "param2" : "1" } ]
 #             ## val = [ 'bar', { "param1" : "b", "param2" : "2", someval = "X" } ]
 
-class Miter( type([]) ):
+class Miter(  ):
     def __init__( self, vals = None ):
         if not vals:
             self.vals = []
@@ -32,7 +32,8 @@ class Miter( type([]) ):
                     retval[ key ] = []
                 retval[ key ].append( oneval )
         for onekey in retval:
-            yield Miter( vals = retval[ onekey ] )
+            onemiter = Miter( vals = retval[ onekey ] )
+            yield onemiter
 
     def add( self, value, **tags ):
         self.vals.append([ value, tags ])
@@ -46,6 +47,12 @@ class Miter( type([]) ):
     def iterManyValues( self, *keys ):
         for oneval in self.iterMany( *keys ):
             yield oneval[0]
+    
+    def iterManyMatchingConditions( self, **keys ):
+        for oneval in self.vals:
+            response = self.valMatchesKeyValPairs( oneval, keys )
+            if response != None:
+                yield response
 
     def getOne( self, **keys ):
         retval = []

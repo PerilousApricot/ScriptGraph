@@ -1,6 +1,8 @@
 from ScriptGraph.Graph.Node import Node
 from ScriptGraph.Graph.LocalScriptEdge import LocalScriptEdge
 from ScriptGraph.Helpers.LateBind import LateBind
+from ScriptGraph.Graph.NullEdge import NullEdge
+import re,os,os.path
 
 class getLumi( LateBind ):
     def __init__(self, lumiNodeList):
@@ -13,12 +15,16 @@ class getLumi( LateBind ):
             retval += float( node[0].getValueFromOnlyOutputFile() )
         return retval
 def makeRootQCDFilenameFromInput( name ):
-    pattern = "-qcd(.+?)-"
+    pattern = "_input-([0-9to]+?)-"
     match   = re.search( pattern, name )
     if match:
-        return "pt" + match.group(1) + ".root"
+        filename = match.group(1)
+        if filename == "150to":
+            filename = "150"
+
+        return "pt" + filename + ".root"
     else:
-        raise RuntimeError, "Unknown pt bin"
+        raise RuntimeError, "Unknown pt bin with name %s" % name
 
 
 class appendCommandLineSymlink( LateBind ):
@@ -33,20 +39,20 @@ class appendCommandLineSymlink( LateBind ):
                     os.unlink( newFile )
                 os.symlink( oldFile, newFile )
                 self.currCommand.append( newFile )
-#       print "appended commandline: %s" % self.currComand
+        print "appended commandline: %s" % self.currCommand
         return self.currCommand
 
-
 def merge_with_root_qcd_helper( g, name , step_postfix,
-                                inputNodes, triggerName, lumiMiter ):
+                                inputNodes, triggerName = None, lumiMiter = None, pu = False ):
     mergeNode   =  Node( name = name )           
-    collectNode =  Node( name = "collect-" + name ) 
+    collectNode =  Node( name = "collect-" + name )
     # make the node
     g.addNode( mergeNode )
     g.addNode( collectNode )
     # Add the luminosity as a dependency
-    for onenode in lumiMiter.get( trigger = triggerName ):
-        g.addEdge( onenode[0], collectNode, NullEdge() )
+    if lumiMiter:
+        for onenode in lumiMiter.get( trigger = triggerName ):
+            g.addEdge( onenode[0], collectNode, NullEdge() )
 
     # Add the previous S8 runs as a dependency
     for node in inputNodes:
@@ -55,10 +61,20 @@ def merge_with_root_qcd_helper( g, name , step_postfix,
     #
     # Generate the command line
     #
-    command = appendCommandLineSymlink(
-                    currCommand = 
-                        ["root_qcd", getLumi( lumiMiter.get( trigger = triggerName ) ), "merge.root" ],
-                            nodeList = inputNodes )
+    executable = "root_qcd_pu"
+    if pu:
+        executable = "root_qcd_pu"
+        
+    if lumiMiter:
+        command = appendCommandLineSymlink(
+                        currCommand = 
+                            [executable, getLumi( lumiMiter.get( trigger = triggerName ) ), "merge.root" ],
+                                nodeList = inputNodes )
+    else:
+         command = appendCommandLineSymlink(
+                        currCommand = 
+                            [executable, "1", "merge.root" ],
+                                nodeList = inputNodes )
 
     merge_edge = LocalScriptEdge(
                         command = command,

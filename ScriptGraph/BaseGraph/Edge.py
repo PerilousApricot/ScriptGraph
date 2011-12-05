@@ -18,12 +18,13 @@ class Edge:
         return self.name
 
     def setParent( self, parent ):
-        if ( self.parent ):
+        if self.hasParent() and ( self.parent != parent ):
+            print "%s and %s" % (self.parent, parent)
             raise RuntimeError, "Can't change the parent"
         self.parent = parent
     
     def setChild( self, child ):
-        if ( self.child ):
+        if self.hasChild() and ( self.child != child ):
             raise RuntimeError, "Can't change the child"
         self.child = child
 
