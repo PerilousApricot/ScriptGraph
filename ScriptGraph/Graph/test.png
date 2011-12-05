@@ -1,0 +1,65 @@
+{
+//========= Macro generated from object: njet_pt/Pt
+//========= by ROOT version5.22/00d
+   
+   TH1 *njet_pt = new TH1F("njet_pt","Pt",230,0,230);
+   njet_pt->SetBinContent(61,113);
+   njet_pt->SetBinContent(62,122);
+   njet_pt->SetBinContent(63,105);
+   njet_pt->SetBinContent(64,73);
+   njet_pt->SetBinContent(65,89);
+   njet_pt->SetBinContent(66,94);
+   njet_pt->SetBinContent(67,73);
+   njet_pt->SetBinContent(68,73);
+   njet_pt->SetBinContent(69,65);
+   njet_pt->SetBinContent(70,71);
+   njet_pt->SetBinContent(71,51);
+   njet_pt->SetBinContent(72,58);
+   njet_pt->SetBinContent(73,73);
+   njet_pt->SetBinContent(74,64);
+   njet_pt->SetBinContent(75,53);
+   njet_pt->SetBinContent(76,39);
+   njet_pt->SetBinContent(77,46);
+   njet_pt->SetBinContent(78,41);
+   njet_pt->SetBinContent(79,42);
+   njet_pt->SetBinContent(80,31);
+   njet_pt->SetBinError(61,10.6301);
+   njet_pt->SetBinError(62,11.0454);
+   njet_pt->SetBinError(63,10.247);
+   njet_pt->SetBinError(64,8.544);
+   njet_pt->SetBinError(65,9.43398);
+   njet_pt->SetBinError(66,9.69536);
+   njet_pt->SetBinError(67,8.544);
+   njet_pt->SetBinError(68,8.544);
+   njet_pt->SetBinError(69,8.06226);
+   njet_pt->SetBinError(70,8.42615);
+   njet_pt->SetBinError(71,7.14143);
+   njet_pt->SetBinError(72,7.61577);
+   njet_pt->SetBinError(73,8.544);
+   njet_pt->SetBinError(74,8);
+   njet_pt->SetBinError(75,7.28011);
+   njet_pt->SetBinError(76,6.245);
+   njet_pt->SetBinError(77,6.78233);
+   njet_pt->SetBinError(78,6.40312);
+   njet_pt->SetBinError(79,6.48074);
+   njet_pt->SetBinError(80,5.56776);
+   njet_pt->SetEntries(1376);
+   
+   TPaveStats *ptstats = new TPaveStats(0.78,0.835,0.98,0.995,"brNDC");
+   ptstats->SetName("stats");
+   ptstats->SetBorderSize(2);
+   ptstats->SetFillColor(19);
+   ptstats->SetTextAlign(12);
+   TText *text = ptstats->AddText("njet_pt");
+   text->SetTextSize(0.0368);
+   text = ptstats->AddText("Entries = 1376   ");
+   text = ptstats->AddText("Mean  =  68.07");
+   text = ptstats->AddText("RMS   =  5.601");
+   ptstats->SetOptStat(1111);
+   ptstats->SetOptFit(0);
+   ptstats->Draw();
+   njet_pt->GetListOfFunctions()->Add(ptstats);
+   ptstats->SetParent(njet_pt->GetListOfFunctions());
+   njet_pt->GetXaxis()->SetTitle("p_{T} [GeV/c]");
+   njet_pt->Draw("");
+}

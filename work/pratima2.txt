@@ -1,0 +1,11 @@
+/pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/QCD_Pt-120to150_MuPt5Enriched_TuneZ2_7TeV-pythia6/qcd120to150-summer11-_rev2:
+068e51b43ee0c1dc384fc320117636e1
+
+/pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/QCD_Pt-150_MuPt5Enriched_TuneZ2_7TeV-pythia6/qcd150to-summer11-_rev2:
+068e51b43ee0c1dc384fc320117636e1
+
+/pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/QCD_Pt-15to20_MuPt5Enriched_TuneZ2_7TeV-pythia6/qcd15to20-summer11-_rev2:
+068e51b43ee0c1dc384fc320117636e1
+
+/pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/QCD_Pt-20to30_MuPt5Enriched_TuneZ2_7TeV-pythia6/qcd20to30-summer11-_rev2:
+068e51b43ee0c1dc384fc320117636e1

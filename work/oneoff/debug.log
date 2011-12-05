@@ -1,0 +1,527 @@
+Generic Options
+ [+] Debug               debug.log
+ [+] Output              output.root
+ [+] Skip Events         ---
+ [+] Events              all
+ [+] Inputs              (462):
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v3/e4ca6cb6b3121938857794255f9959e9/s8_tree_46_1_AF8.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v3/e4ca6cb6b3121938857794255f9959e9/s8_tree_63_1_c2h.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v3/e4ca6cb6b3121938857794255f9959e9/s8_tree_33_1_HLj.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v3/e4ca6cb6b3121938857794255f9959e9/s8_tree_16_1_gXh.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v3/e4ca6cb6b3121938857794255f9959e9/s8_tree_39_1_z6i.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v3/e4ca6cb6b3121938857794255f9959e9/s8_tree_2_1_CFB.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v3/e4ca6cb6b3121938857794255f9959e9/s8_tree_56_1_fx5.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v3/e4ca6cb6b3121938857794255f9959e9/s8_tree_57_1_nOl.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v3/e4ca6cb6b3121938857794255f9959e9/s8_tree_69_1_LvD.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v3/e4ca6cb6b3121938857794255f9959e9/s8_tree_66_1_Ey6.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v3/e4ca6cb6b3121938857794255f9959e9/s8_tree_67_1_ZBM.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v3/e4ca6cb6b3121938857794255f9959e9/s8_tree_38_1_AnL.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v3/e4ca6cb6b3121938857794255f9959e9/s8_tree_60_1_F6B.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v3/e4ca6cb6b3121938857794255f9959e9/s8_tree_21_1_mzh.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v3/e4ca6cb6b3121938857794255f9959e9/s8_tree_41_1_7x8.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v3/e4ca6cb6b3121938857794255f9959e9/s8_tree_49_1_cQb.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v3/e4ca6cb6b3121938857794255f9959e9/s8_tree_59_1_cZC.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v3/e4ca6cb6b3121938857794255f9959e9/s8_tree_7_1_cpd.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v3/e4ca6cb6b3121938857794255f9959e9/s8_tree_14_1_DlP.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v3/e4ca6cb6b3121938857794255f9959e9/s8_tree_3_1_CPr.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v3/e4ca6cb6b3121938857794255f9959e9/s8_tree_61_1_3e7.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v3/e4ca6cb6b3121938857794255f9959e9/s8_tree_22_1_Pax.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v3/e4ca6cb6b3121938857794255f9959e9/s8_tree_47_1_KuE.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v3/e4ca6cb6b3121938857794255f9959e9/s8_tree_6_1_i8E.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v3/e4ca6cb6b3121938857794255f9959e9/s8_tree_1_1_FSv.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v3/e4ca6cb6b3121938857794255f9959e9/s8_tree_50_1_BKu.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v3/e4ca6cb6b3121938857794255f9959e9/s8_tree_20_1_cUf.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v3/e4ca6cb6b3121938857794255f9959e9/s8_tree_26_1_T7Y.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v3/e4ca6cb6b3121938857794255f9959e9/s8_tree_19_1_2Us.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v3/e4ca6cb6b3121938857794255f9959e9/s8_tree_15_1_rEH.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v3/e4ca6cb6b3121938857794255f9959e9/s8_tree_62_1_lmR.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v3/e4ca6cb6b3121938857794255f9959e9/s8_tree_34_1_BN4.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v3/e4ca6cb6b3121938857794255f9959e9/s8_tree_8_1_IKB.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v3/e4ca6cb6b3121938857794255f9959e9/s8_tree_24_1_DfI.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v3/e4ca6cb6b3121938857794255f9959e9/s8_tree_37_1_XSB.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v3/e4ca6cb6b3121938857794255f9959e9/s8_tree_71_1_jDK.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v3/e4ca6cb6b3121938857794255f9959e9/s8_tree_27_1_Pt3.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v3/e4ca6cb6b3121938857794255f9959e9/s8_tree_9_1_2MH.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v3/e4ca6cb6b3121938857794255f9959e9/s8_tree_70_1_1Ko.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v3/e4ca6cb6b3121938857794255f9959e9/s8_tree_11_1_Bms.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v3/e4ca6cb6b3121938857794255f9959e9/s8_tree_65_1_NLn.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v3/e4ca6cb6b3121938857794255f9959e9/s8_tree_43_1_2du.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v3/e4ca6cb6b3121938857794255f9959e9/s8_tree_64_1_GNg.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v3/e4ca6cb6b3121938857794255f9959e9/s8_tree_13_1_a90.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v3/e4ca6cb6b3121938857794255f9959e9/s8_tree_32_1_2Hu.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v3/e4ca6cb6b3121938857794255f9959e9/s8_tree_48_1_MVq.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v3/e4ca6cb6b3121938857794255f9959e9/s8_tree_12_1_mBn.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v3/e4ca6cb6b3121938857794255f9959e9/s8_tree_25_1_iCN.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v3/e4ca6cb6b3121938857794255f9959e9/s8_tree_23_1_aEy.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v3/e4ca6cb6b3121938857794255f9959e9/s8_tree_5_1_xBU.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v3/e4ca6cb6b3121938857794255f9959e9/s8_tree_30_1_bhQ.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v3/e4ca6cb6b3121938857794255f9959e9/s8_tree_17_1_S22.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v3/e4ca6cb6b3121938857794255f9959e9/s8_tree_31_1_fru.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v3/e4ca6cb6b3121938857794255f9959e9/s8_tree_29_1_2ba.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v3/e4ca6cb6b3121938857794255f9959e9/s8_tree_10_1_SeS.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v3/e4ca6cb6b3121938857794255f9959e9/s8_tree_58_1_qi1.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v3/e4ca6cb6b3121938857794255f9959e9/s8_tree_4_1_niB.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v3/e4ca6cb6b3121938857794255f9959e9/s8_tree_51_1_HMt.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v3/e4ca6cb6b3121938857794255f9959e9/s8_tree_52_1_z5G.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v3/e4ca6cb6b3121938857794255f9959e9/s8_tree_18_1_Ljm.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v3/e4ca6cb6b3121938857794255f9959e9/s8_tree_28_1_X9y.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v3/e4ca6cb6b3121938857794255f9959e9/s8_tree_53_1_b9p.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v3/e4ca6cb6b3121938857794255f9959e9/s8_tree_45_1_wgi.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v3/e4ca6cb6b3121938857794255f9959e9/s8_tree_44_1_dcT.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v3/e4ca6cb6b3121938857794255f9959e9/s8_tree_68_1_TLD.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v3/e4ca6cb6b3121938857794255f9959e9/s8_tree_54_1_jqR.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v3/e4ca6cb6b3121938857794255f9959e9/s8_tree_40_1_TAp.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v3/e4ca6cb6b3121938857794255f9959e9/s8_tree_36_1_oNe.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v3/e4ca6cb6b3121938857794255f9959e9/s8_tree_35_1_wfU.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v3/e4ca6cb6b3121938857794255f9959e9/s8_tree_55_1_GzZ.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v3/e4ca6cb6b3121938857794255f9959e9/s8_tree_42_1_aqG.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v4/e4ca6cb6b3121938857794255f9959e9/s8_tree_20_1_iub.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v4/e4ca6cb6b3121938857794255f9959e9/s8_tree_2_1_fa1.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v4/e4ca6cb6b3121938857794255f9959e9/s8_tree_46_1_4Os.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v4/e4ca6cb6b3121938857794255f9959e9/s8_tree_44_1_Jp7.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v4/e4ca6cb6b3121938857794255f9959e9/s8_tree_47_1_ZhP.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v4/e4ca6cb6b3121938857794255f9959e9/s8_tree_11_1_S3t.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v4/e4ca6cb6b3121938857794255f9959e9/s8_tree_9_1_96N.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v4/e4ca6cb6b3121938857794255f9959e9/s8_tree_31_1_Mzt.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v4/e4ca6cb6b3121938857794255f9959e9/s8_tree_22_1_J6D.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v4/e4ca6cb6b3121938857794255f9959e9/s8_tree_30_1_aov.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v4/e4ca6cb6b3121938857794255f9959e9/s8_tree_10_1_NZb.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v4/e4ca6cb6b3121938857794255f9959e9/s8_tree_54_1_vCc.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v4/e4ca6cb6b3121938857794255f9959e9/s8_tree_56_1_JCO.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v4/e4ca6cb6b3121938857794255f9959e9/s8_tree_36_1_QYB.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v4/e4ca6cb6b3121938857794255f9959e9/s8_tree_52_1_02Y.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v4/e4ca6cb6b3121938857794255f9959e9/s8_tree_53_1_f13.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v4/e4ca6cb6b3121938857794255f9959e9/s8_tree_19_1_9Vz.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v4/e4ca6cb6b3121938857794255f9959e9/s8_tree_6_1_OJW.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v4/e4ca6cb6b3121938857794255f9959e9/s8_tree_35_1_4pD.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v4/e4ca6cb6b3121938857794255f9959e9/s8_tree_45_1_RX8.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v4/e4ca6cb6b3121938857794255f9959e9/s8_tree_49_1_F8S.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v4/e4ca6cb6b3121938857794255f9959e9/s8_tree_51_1_GrX.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v4/e4ca6cb6b3121938857794255f9959e9/s8_tree_48_1_pIr.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v4/e4ca6cb6b3121938857794255f9959e9/s8_tree_23_1_2Kp.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v4/e4ca6cb6b3121938857794255f9959e9/s8_tree_7_1_RJf.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v4/e4ca6cb6b3121938857794255f9959e9/s8_tree_27_1_zRo.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v4/e4ca6cb6b3121938857794255f9959e9/s8_tree_15_1_uLN.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v4/e4ca6cb6b3121938857794255f9959e9/s8_tree_41_1_tge.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v4/e4ca6cb6b3121938857794255f9959e9/s8_tree_42_1_oio.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v4/e4ca6cb6b3121938857794255f9959e9/s8_tree_18_1_mrx.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v4/e4ca6cb6b3121938857794255f9959e9/s8_tree_28_1_Hs5.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v4/e4ca6cb6b3121938857794255f9959e9/s8_tree_17_1_E7m.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v4/e4ca6cb6b3121938857794255f9959e9/s8_tree_5_1_2sN.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v4/e4ca6cb6b3121938857794255f9959e9/s8_tree_29_1_Bs6.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v4/e4ca6cb6b3121938857794255f9959e9/s8_tree_1_1_frk.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v4/e4ca6cb6b3121938857794255f9959e9/s8_tree_32_1_3BJ.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v4/e4ca6cb6b3121938857794255f9959e9/s8_tree_38_1_8yP.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v4/e4ca6cb6b3121938857794255f9959e9/s8_tree_12_1_9IH.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v4/e4ca6cb6b3121938857794255f9959e9/s8_tree_4_1_s3A.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v4/e4ca6cb6b3121938857794255f9959e9/s8_tree_13_1_gxM.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v4/e4ca6cb6b3121938857794255f9959e9/s8_tree_25_1_zB1.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v4/e4ca6cb6b3121938857794255f9959e9/s8_tree_14_1_mZ8.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v4/e4ca6cb6b3121938857794255f9959e9/s8_tree_3_1_kWx.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v4/e4ca6cb6b3121938857794255f9959e9/s8_tree_50_1_IFc.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v4/e4ca6cb6b3121938857794255f9959e9/s8_tree_37_1_p3r.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v4/e4ca6cb6b3121938857794255f9959e9/s8_tree_33_1_VzD.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v4/e4ca6cb6b3121938857794255f9959e9/s8_tree_40_1_GiP.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v4/e4ca6cb6b3121938857794255f9959e9/s8_tree_43_1_ICw.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v4/e4ca6cb6b3121938857794255f9959e9/s8_tree_21_1_xyI.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v4/e4ca6cb6b3121938857794255f9959e9/s8_tree_26_1_vA2.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v4/e4ca6cb6b3121938857794255f9959e9/s8_tree_24_1_9fj.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v4/e4ca6cb6b3121938857794255f9959e9/s8_tree_55_1_iNr.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v4/e4ca6cb6b3121938857794255f9959e9/s8_tree_16_1_VVd.root
+        /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v4/e4ca6cb6b3121938857794255f9959e9/s8_tree_39_1_4He.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_100_1_5B1.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_101_1_ouR.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_102_1_gFd.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_103_1_UtY.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_104_1_yaQ.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_105_1_Uqs.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_106_1_EDs.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_107_1_MOj.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_108_1_Qjv.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_109_1_zph.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_10_1_KMr.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_110_1_fK0.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_111_1_B9h.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_112_1_dX7.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_113_1_df8.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_114_1_i7m.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_115_1_G02.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_116_1_p45.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_117_1_BgW.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_118_1_2HO.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_119_1_iLZ.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_11_1_F4D.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_120_1_R6d.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_121_1_CQP.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_122_1_o60.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_123_1_1lY.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_124_1_uEz.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_125_1_M3E.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_126_1_2Ly.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_127_1_5tY.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_128_1_Qku.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_129_1_vdc.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_12_1_fv6.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_130_1_NfI.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_131_1_CEj.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_132_1_Uke.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_133_1_V6j.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_134_1_kBx.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_135_1_kQK.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_136_1_Yk4.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_137_1_X3n.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_138_1_uyf.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_139_1_V58.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_13_1_SW8.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_140_1_430.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_141_1_7Ap.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_142_1_z8D.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_143_1_NB3.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_144_1_l1h.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_145_1_5aa.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_146_1_NO7.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_147_1_3on.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_148_1_nzG.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_149_1_x1w.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_14_1_iQq.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_150_1_nyK.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_151_1_Sms.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_152_1_CLK.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_153_1_hk9.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_154_1_pwW.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_155_1_ypo.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_156_1_uLY.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_157_1_BTs.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_158_1_Vck.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_159_1_PNd.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_15_1_0ve.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_160_1_Rmh.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_161_1_RrG.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_162_1_rsC.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_163_1_j75.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_164_1_7ZG.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_165_1_CZ6.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_166_1_JFR.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_167_1_BVW.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_168_1_24E.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_169_1_Bx9.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_16_1_eHR.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_170_1_wB3.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_171_1_sz5.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_172_1_kA1.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_173_1_ySX.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_174_1_4VU.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_175_1_VZ3.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_176_1_hMZ.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_177_1_Wiq.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_178_1_La3.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_179_1_JgS.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_17_1_ZI9.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_180_1_eOo.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_181_1_S2m.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_182_1_qda.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_183_1_iGF.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_184_1_Afg.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_185_1_syU.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_186_1_3rr.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_187_1_zdc.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_188_1_ntO.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_189_1_AOi.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_18_1_MMj.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_190_1_GKa.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_191_1_osn.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_192_1_DgM.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_193_1_ET5.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_194_1_hLX.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_195_1_i2D.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_196_1_rdG.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_197_1_0Nj.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_198_1_8Ps.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_199_1_iN2.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_19_1_8Ky.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_1_1_f0d.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_200_1_w7E.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_201_1_iAo.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_202_1_zrL.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_203_1_sLl.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_204_1_MDp.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_205_1_cQv.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_206_1_4mb.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_207_1_Qqb.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_208_1_ntT.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_209_1_OYA.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_20_1_sJu.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_210_1_43J.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_211_1_AYC.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_212_1_Pbf.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_213_1_gR4.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_214_1_YpG.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_215_1_3Y7.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_216_1_1Au.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_217_1_96e.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_218_1_1UD.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_219_1_sPt.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_21_1_QSv.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_220_1_UF5.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_221_1_mh4.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_222_1_J74.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_223_1_VEo.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_224_1_uhD.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_225_1_6Cf.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_226_1_D4f.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_227_1_IRW.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_228_1_Cze.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_229_1_eCB.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_22_1_VS6.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_230_1_nnt.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_231_1_l6e.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_232_1_7aR.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_233_1_hlv.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_234_1_aoM.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_235_1_3qb.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_236_1_MzY.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_237_1_Eji.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_238_1_wFY.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_239_1_GDP.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_23_1_oqa.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_240_1_bKf.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_241_1_cCe.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_242_1_vp5.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_243_1_jHX.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_244_1_S9U.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_245_1_MFK.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_246_1_cgx.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_247_1_k3R.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_248_1_SUu.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_249_1_PS8.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_24_1_Lmo.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_250_1_Pqd.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_251_1_ScT.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_252_1_d4c.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_253_1_6Dc.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_254_1_wGk.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_255_1_DM7.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_256_1_miU.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_257_1_Uc0.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_258_1_3NV.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_259_1_ncr.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_25_1_TjU.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_260_1_YSG.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_261_1_vH5.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_262_1_1NF.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_263_1_6GD.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_264_1_mMF.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_265_1_mh3.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_266_1_IcR.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_267_1_DET.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_268_1_uOW.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_269_1_02q.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_26_1_CRZ.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_270_1_lRL.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_271_1_hp5.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_272_1_GNi.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_273_1_aEH.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_274_1_RMk.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_275_1_0T2.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_276_1_FKB.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_277_1_P7H.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_278_1_5Bm.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_279_1_5PQ.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_27_1_Jmf.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_280_1_aLb.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_281_1_oDX.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_282_1_a5L.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_283_1_mLH.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_284_1_Dva.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_285_1_keu.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_286_1_YYv.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_287_1_t0F.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_288_1_0lM.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_289_1_E93.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_28_1_ikZ.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_290_1_ReY.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_291_1_yop.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_292_1_Njf.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_293_1_Joq.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_294_1_P66.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_295_1_2d5.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_296_1_RU1.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_297_1_5JN.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_298_1_IT6.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_299_1_6rI.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_29_1_JwX.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_2_1_pFM.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_300_1_HSI.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_301_1_0SQ.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_302_1_U1r.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_303_1_p9i.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_304_1_Tl9.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_305_1_AGx.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_306_1_dRx.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_307_1_8fa.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_308_1_OKh.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_309_1_PTO.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_30_1_rLK.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_310_1_TCJ.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_311_1_tcJ.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_312_1_KTT.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_313_1_jGK.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_314_1_9dW.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_315_1_HWN.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_316_1_5op.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_317_1_lkX.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_318_1_LQw.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_319_1_5rg.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_31_1_EB6.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_320_1_fWs.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_321_1_Xsu.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_322_1_ACb.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_323_1_8nP.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_324_1_EJK.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_325_1_qUa.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_326_1_RCY.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_327_1_xkh.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_328_1_7Xc.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_329_1_Swj.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_32_1_2h3.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_330_1_127.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_331_1_QhI.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_332_1_HEb.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_333_1_GZE.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_334_1_bIF.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_335_1_99v.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_336_1_jS8.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_337_1_7s4.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_33_1_a18.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_34_1_kir.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_35_1_jiX.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_36_1_9qp.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_37_1_jh8.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_38_1_62e.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_39_1_Nxa.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_3_1_vvo.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_40_1_xxu.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_41_1_IrB.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_42_1_Pvw.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_43_1_mMR.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_44_1_dfZ.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_45_1_K9H.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_46_1_WnI.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_47_1_vMI.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_48_1_QiE.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_49_1_FxR.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_4_1_phE.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_50_1_R9N.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_51_1_dl0.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_52_1_SdJ.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_53_1_9mg.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_54_1_1fJ.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_55_1_DnB.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_56_1_35a.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_57_1_9aP.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_58_1_26s.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_59_1_UQJ.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_5_1_XEq.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_60_1_11e.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_61_1_lzQ.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_62_1_EBu.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_63_1_tmt.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_64_1_y1y.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_65_1_WL9.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_66_1_mfx.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_67_1_crf.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_68_1_dBM.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_69_1_XqD.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_6_1_Cns.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_70_1_teW.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_71_1_i97.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_72_1_LWC.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_73_1_JVq.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_74_1_atn.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_75_1_IGm.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_76_1_6Sd.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_77_1_CKB.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_78_1_rAE.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_79_1_TBr.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_7_1_02w.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_80_1_Zgz.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_81_1_JH8.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_82_1_2gh.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_83_1_J1g.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_84_1_J3F.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_85_1_szH.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_86_1_4md.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_87_1_VmP.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_88_1_DXK.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_89_1_qGT.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_8_1_WfK.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_90_1_IKt.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_91_1_IIy.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_92_1_nBC.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_93_1_zIC.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_94_1_1h7.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_95_1_Fsr.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_96_1_TEW.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_97_1_d3R.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_98_1_NUR.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_99_1_zTL.root
+        dcap://cmsgridftp.fnal.gov:24125/pnfs/fnal.gov/usr/cms/WAX/11/store/user/lpcbtagging/yumiceva/METBTag/btag_Run2011A_v2/e4ca6cb6b3121938857794255f9959e9/s8_tree_9_1_lS8.root
+
+Misc Options
+ [+] Primary Vertices    ---
+
+Muon-In-Jet Options
+ [+] Jet Tag             SSVHEM
+ [+] Away Jet Tag        TCHEL
+ [+] Muon pT             6..
+ [+] Jet pT              120..130
+ [+] Jet Eta             ---
+
+Pythia Options
+ [+] Gluon Splitting     ---
+ [+] Pt Hat Cut          ---
+
+Trigger Options
+ [+] Triggers            (1)
+
+      Name                          Hash
+---------------------------------------------------
+ [+] HLT_BTagMu_DiJet110_Mu5_v3    346755997
+---------------------------------------------------
+ [+] Use Prescale        ---
+ [+] Simulate            ---
+ [+] Reweight            ---
+
+Solver Input Options
+ [+] Input Type          data
+
+[exception] Failed to open input file: /pnfs/cms/WAX/11/store/user/lpcbtagging/jindal/BTag/btag_Promptv4_v3/e4ca6cb6b3121938857794255f9959e9/s8_tree_46_1_AF8.root
+S8Selector cutflow (events passed)
+ Total               0
+ Primary Vertices    0
+ Pt Hat              0
+ Triggers            0
+ Gluon Splitting     0
+
+Triggers Cutflow
+      Name                          Hash
+---------------------------------------------------
+ [+] 346755997                     0
+---------------------------------------------------
+S8Selector cutflow (events passed)
+ Total               0
+ Primary Vertices    0
+ Pt Hat              0
+ Triggers            0
+ Gluon Splitting     0
+
+Triggers Cutflow
+      Name                          Hash
+---------------------------------------------------
+ [+] 346755997                     0
+---------------------------------------------------
+
+Stats
+ - Run time              0.24 (s)
+     (per event)         inf (s)
+ - Processed events      0

@@ -1,0 +1,92 @@
+Generic Options
+ [+] Debug               debug.log
+ [+] Output              output.root
+ [+] Skip Events         ---
+ [+] Events              all
+ [+] Inputs              (37):
+        /uscms_data/d2/meloam/s8workflow/edges/generateTree-qcd120to150/crab_0_110224_133207/res/s8_tree_1_1_9r0.root
+        /uscms_data/d2/meloam/s8workflow/edges/generateTree-qcd120to150/crab_0_110224_133207/res/s8_tree_3_1_D4d.root
+        /uscms_data/d2/meloam/s8workflow/edges/generateTree-qcd120to150/crab_0_110224_133207/res/s8_tree_4_1_8zK.root
+        /uscms_data/d2/meloam/s8workflow/edges/generateTree-qcd120to150/crab_0_110224_133207/res/s8_tree_5_1_xzT.root
+        /uscms_data/d2/meloam/s8workflow/edges/generateTree-qcd120to150/crab_0_110224_133207/res/s8_tree_6_1_lcq.root
+        /uscms_data/d2/meloam/s8workflow/edges/generateTree-qcd120to150/crab_0_110224_133207/res/s8_tree_7_1_7rk.root
+        /uscms_data/d2/meloam/s8workflow/edges/generateTree-qcd120to150/crab_0_110224_133207/res/s8_tree_8_1_9XS.root
+        /uscms_data/d2/meloam/s8workflow/edges/generateTree-qcd120to150/crab_0_110224_133207/res/s8_tree_9_1_GzI.root
+        /uscms_data/d2/meloam/s8workflow/edges/generateTree-qcd120to150/crab_0_110224_133207/res/s8_tree_10_1_Sy4.root
+        /uscms_data/d2/meloam/s8workflow/edges/generateTree-qcd120to150/crab_0_110224_133207/res/s8_tree_11_1_6n3.root
+        /uscms_data/d2/meloam/s8workflow/edges/generateTree-qcd120to150/crab_0_110224_133207/res/s8_tree_12_1_If1.root
+        /uscms_data/d2/meloam/s8workflow/edges/generateTree-qcd120to150/crab_0_110224_133207/res/s8_tree_13_1_d8l.root
+        /uscms_data/d2/meloam/s8workflow/edges/generateTree-qcd120to150/crab_0_110224_133207/res/s8_tree_14_1_Ugv.root
+        /uscms_data/d2/meloam/s8workflow/edges/generateTree-qcd120to150/crab_0_110224_133207/res/s8_tree_15_1_F2v.root
+        /uscms_data/d2/meloam/s8workflow/edges/generateTree-qcd120to150/crab_0_110224_133207/res/s8_tree_16_1_mHA.root
+        /uscms_data/d2/meloam/s8workflow/edges/generateTree-qcd120to150/crab_0_110224_133207/res/s8_tree_19_1_Lba.root
+        /uscms_data/d2/meloam/s8workflow/edges/generateTree-qcd120to150/crab_0_110224_133207/res/s8_tree_20_1_2PL.root
+        /uscms_data/d2/meloam/s8workflow/edges/generateTree-qcd120to150/crab_0_110224_133207/res/s8_tree_21_1_LJC.root
+        /uscms_data/d2/meloam/s8workflow/edges/generateTree-qcd120to150/crab_0_110224_133207/res/s8_tree_22_1_JNx.root
+        /uscms_data/d2/meloam/s8workflow/edges/generateTree-qcd120to150/crab_0_110224_133207/res/s8_tree_23_1_sOW.root
+        /uscms_data/d2/meloam/s8workflow/edges/generateTree-qcd120to150/crab_0_110224_133207/res/s8_tree_25_1_q7N.root
+        /uscms_data/d2/meloam/s8workflow/edges/generateTree-qcd120to150/crab_0_110224_133207/res/s8_tree_26_1_UYi.root
+        /uscms_data/d2/meloam/s8workflow/edges/generateTree-qcd120to150/crab_0_110224_133207/res/s8_tree_27_1_ZW3.root
+        /uscms_data/d2/meloam/s8workflow/edges/generateTree-qcd120to150/crab_0_110224_133207/res/s8_tree_28_1_NNB.root
+        /uscms_data/d2/meloam/s8workflow/edges/generateTree-qcd120to150/crab_0_110224_133207/res/s8_tree_29_1_2bN.root
+        /uscms_data/d2/meloam/s8workflow/edges/generateTree-qcd120to150/crab_0_110224_133207/res/s8_tree_30_1_xwh.root
+        /uscms_data/d2/meloam/s8workflow/edges/generateTree-qcd120to150/crab_0_110224_133207/res/s8_tree_31_1_dmT.root
+        /uscms_data/d2/meloam/s8workflow/edges/generateTree-qcd120to150/crab_0_110224_133207/res/s8_tree_32_1_4sk.root
+        /uscms_data/d2/meloam/s8workflow/edges/generateTree-qcd120to150/crab_0_110224_133207/res/s8_tree_33_1_z3k.root
+        /uscms_data/d2/meloam/s8workflow/edges/generateTree-qcd120to150/crab_0_110224_133207/res/s8_tree_34_1_kEm.root
+        /uscms_data/d2/meloam/s8workflow/edges/generateTree-qcd120to150/crab_0_110224_133207/res/s8_tree_35_1_2Xm.root
+        /uscms_data/d2/meloam/s8workflow/edges/generateTree-qcd120to150/crab_0_110224_133207/res/s8_tree_36_1_ecz.root
+        /uscms_data/d2/meloam/s8workflow/edges/generateTree-qcd120to150/crab_0_110224_133207/res/s8_tree_37_1_H7q.root
+        /uscms_data/d2/meloam/s8workflow/edges/generateTree-qcd120to150/crab_0_110224_133207/res/s8_tree_38_1_DiE.root
+        /uscms_data/d2/meloam/s8workflow/edges/generateTree-qcd120to150/crab_0_110224_133207/res/s8_tree_39_1_LiM.root
+        /uscms_data/d2/meloam/s8workflow/edges/generateTree-qcd120to150/crab_0_110224_133207/res/s8_tree_40_1_8Jo.root
+        /uscms_data/d2/meloam/s8workflow/edges/generateTree-qcd120to150/crab_0_110224_133207/res/s8_tree_2_1_HgO.root
+
+Muon-In-Jet Options
+ [+] Jet Tag             TCHEM
+ [+] Away Jet Tag        TCHPL
+ [+] Muon pT             6..
+ [+] Jet pT              60..80
+ [+] Jet Eta             ---
+
+Pythia Options
+ [+] Gluon Splitting     ---
+ [+] Pt Hat Cut          ---
+
+Trigger Options
+ [+] Triggers            (1)
+
+      Name                          Hash
+---------------------------------------------------
+ [+] HLT_BTagMu_DiJet30U           1698049857
+---------------------------------------------------
+
+Solver Input Options
+ [+] Input Type          monte-carlo
+
+<< /uscms_data/d2/meloam/s8workflow/edges/generateTree-qcd120to150/crab_0_110224_133207/res/s8_tree_1_1_9r0.root
+ Tree 5.0 with 199 triggers.
+
+ Extract S8 Tree from input file
+ + Disable Electrons branch
+
+ File has 20857 entries stored
+
+done analyzing Tree
+<< /uscms_data/d2/meloam/s8workflow/edges/generateTree-qcd120to150/crab_0_110224_133207/res/s8_tree_3_1_D4d.root
+ Tree 5.0 with 199 triggers.
+
+ Extract S8 Tree from input file
+ + Disable Electrons branch
+
+ File has 20804 entries stored
+
+done analyzing Tree
+<< /uscms_data/d2/meloam/s8workflow/edges/generateTree-qcd120to150/crab_0_110224_133207/res/s8_tree_4_1_8zK.root
+ Tree 5.0 with 199 triggers.
+
+ Extract S8 Tree from input file
+ + Disable Electrons branch
+
+ File has 20897 entries stored
+
